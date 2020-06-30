@@ -11,10 +11,11 @@ export FZF_DEFAULT_COMMAND='fd'
 alias f='open -a Finder ./' # opens cd in finder
 alias c='clear'
 alias fuck="sudo !!"
-alias ls='ls -G'
-alias ll='ls -Gl'
-alias lt='ls -GlAtr'
-alias l='ls -GlA'
+alias ls='ls -Gh'
+alias ll='ls -Glh'
+alias lt='ls -GlAtrh'
+alias l='ls -GlAh'
+alias lpo='stat --printf="%A %a %n\n" *'
 alias hideDesktop='defaults write com.apple.finder CreateDesktop false; killall Finder'
 alias showDesktop='defaults write com.apple.finder CreateDesktop true; killall Finder'
 
