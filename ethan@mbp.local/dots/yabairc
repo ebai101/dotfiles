@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#YABAI_CERT=yabai-cert sh -c "$(curl -sSL "https://git.io/update-yabai")" &
+
+yabai -m config layout bsp
+
+yabai -m config window_shadow float
+yabai -m config window_topmost off
+yabai -m config mouse_modifier ctrl
+yabai -m config mouse_follows_focus on
+
+yabai -m rule --add app!="(Brave Browser|iTerm2|Code)" manage=off
+yabai -m rule --add app="(Brave Browser|Spotify|Messages|Mailspring)" display=^1
+yabai -m rule --add app="(iTerm2|Code)" display=^2
+yabai -m rule --add app="LuLu Helper" sticky=on

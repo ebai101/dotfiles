@@ -1,0 +1,5 @@
+add_newline = false
+prompt_order = ["hostname", "directory", "git_branch", "line_break", "character"]
+
+[hostname]
+ssh_only = true

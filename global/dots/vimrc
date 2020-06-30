@@ -1,0 +1,116 @@
+syntax on
+
+set hidden
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set autoindent
+set nu rnu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set nowritebackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+if has('nvim')
+    set noshowmode
+    set signcolumn=yes
+endif
+
+" leader boi
+let mapleader = " "
+
+" clear them search
+nnoremap <leader>/ :let @/ = ""<CR> 
+
+" netrw boi
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+
+" netrw toggler
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+
+" window stuff
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>pv :call ToggleNetrw()<bar> :vertical resize 30<CR>
+nnoremap <leader>= :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
+nnoremap <leader>6 <C-^>
+
+" move stuff around
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" preferences
+nnoremap <leader>, :e ~/.vimrc<CR>
+
+"
+" plugins boi
+"
+
+" auto-install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" plug list
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+if has('nvim')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'itchyny/lightline.vim'
+    Plug 'mbbill/undotree'
+    Plug 'shinchu/lightline-gruvbox.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+    Plug 'sheerun/vim-polyglot'
+endif
+call plug#end()
+
+" colors
+colorscheme gruvbox
+set background=dark
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox'
+highlight Normal ctermbg=NONE guibg=NONE
+
+" undotree
+nnoremap <leader>u :UndotreeShow<CR>
+
+" fzf
+nnoremap <leader>pg :GFiles<CR>
+nnoremap <leader>pf :Files<CR>
+
