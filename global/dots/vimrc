@@ -72,10 +72,6 @@ vnoremap K :m '<-2<CR>gv=gv
 " preferences
 nnoremap <leader>, :e ~/.vimrc<CR>
 
-"
-" plugins boi
-"
-
 " auto-install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -85,19 +81,21 @@ endif
 
 " plug list
 call plug#begin('~/.vim/plugged')
+" use everywhere
 Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-if has('nvim')
+
+" use locally
+if has('nvim') 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'itchyny/lightline.vim'
-    Plug 'mbbill/undotree'
     Plug 'shinchu/lightline-gruvbox.vim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
     Plug 'sheerun/vim-polyglot'
+    Plug 'mbbill/undotree'
+    Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 endif
 call plug#end()
 
@@ -114,10 +112,6 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-" undotree
-nnoremap <leader>u :UndotreeShow<CR>
-
 " fzf
 nnoremap <leader>pg :GFiles<CR>
 nnoremap <leader>pf :Files<CR>
-

@@ -6,6 +6,9 @@ source ~/.vimrc
 set makeprg=ninja\ -Cbuild
 nnoremap <leader>5 :make<CR>
 
+" undotree
+nnoremap <leader>u :UndotreeShow<CR>
+
 " coc
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -39,8 +42,3 @@ nmap <leader>f  <Plug>(coc-format-selected)
 nnoremap <leader>cr :CocRestart<CR>
 nnoremap <leader>4 :CocCommand clangd.switchSourceHeader<CR>
 command! -nargs=0 Format :call CocAction('format')
-
-" fugitive
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-nmap <leader>gs :G<CR>
