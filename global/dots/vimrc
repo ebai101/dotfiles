@@ -27,8 +27,9 @@ endif
 " leader boi
 let mapleader = " "
 
-" clear them search
+" clear stuff
 nnoremap <leader>/ :let @/ = ""<CR> 
+nnoremap <leader>ws :%s/\s\+$//e<CR>
 
 " netrw boi
 let g:netrw_banner = 0
