@@ -16,6 +16,7 @@ case $OSTYPE in
         alias l='ls -GlAh'
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias yabai-restart='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+        alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias vim='nvim'
         ;;
     linux*)
