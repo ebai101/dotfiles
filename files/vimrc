@@ -99,6 +99,9 @@ endif
 nnoremap <leader>pg :GFiles<CR>
 nnoremap <leader>pf :Files<CR>
 
+" vim-commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 " nvim specific
 if has('nvim')
     " make
