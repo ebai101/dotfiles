@@ -1,0 +1,11 @@
+{
+    "clangd.path": "/usr/local/opt/llvm/bin/clangd",
+    "coc.preferences.formatOnSaveFiletypes": ["cpp", "hpp", "c", "h"],
+    "eslint.autoFixOnSave": true,
+    "python.jediEnabled": false,
+    "diagnostic-languageserver.filetypes": {
+        "vim": "vint",
+        "sh, prof": "shellcheck"
+    }
+}
+

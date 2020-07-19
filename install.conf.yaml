@@ -1,0 +1,42 @@
+- clean: ['~']
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.starship: dots/starship
+    ~/.tmux.conf: dots/tmux.conf
+    ~/.vimrc: dots/vimrc
+
+# OSX
+- defaults:
+    link:
+      relink: true
+      if: '[[ $OSTYPE == darwin* ]]'
+    create:
+      if: '[[ $OSTYPE == darwin* ]]'
+
+- link:
+    ~/.zshrc: dots/zshrc
+    ~/.gitconfig: dots/gitconfig
+    ~/.gitignore: dots/gitignore
+    ~/.hammerspoon: config/hammerspoon
+    ~/.config/nvim: config/nvim
+    ~/.config/karabiner: config/karabiner
+
+- create:
+    - ~/.vim/undodir
+
+# Linux
+- defaults:
+    link:
+      relink: true
+      if: '[[ $OSTYPE == linux* ]]'
+    create:
+      if: '[[ $OSTYPE == linux* ]]'
+
+- link:
+    ~/.bashrc:
+      file: dots/bashrc
+      force: true
+
