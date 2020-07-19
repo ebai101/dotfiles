@@ -11,10 +11,10 @@ source ~/.variables
 source ~/.aliases
 
 # ssh aliases (not in the git repo for obvious reasons)
-[ -f ~/.ssh_aliases ] && source ~/.ssh_aliases
+[ -f ~/.ssh-aliases ] && source ~/.ssh-aliases
 
 # local config
-source ~/.bashrc-local
+[ -f ~/.bashrc-local ] && source ~/.bashrc-local
 
 # load theme
 eval "$(starship init bash)"
