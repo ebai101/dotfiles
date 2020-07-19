@@ -1,81 +1,20 @@
 # shellcheck shell=bash
 
-# basic vars
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export TERM="xterm-256color"
-export STARSHIP_CONFIG=~/.starship
-export FZF_DEFAULT_COMMAND='fd'
-case $OSTYPE in
-    darwin*)
-        export EDITOR=/usr/local/bin/nvim
-        export HOMEBREW_NO_ANALYTICS=1
-        ;;
-    linux*)
-        export EDITOR=vim
-        export TERM="xterm-256color"
-        shopt -s cdspell
-        shopt -s autocd
-        shopt -s dirspell
-        ;;
-esac
+autoload -Uz compinit; compinit
+bindkey -e
+setopt AUTO_CD
 
-# aliases
-alias c='clear'
-alias dockstat='docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.PIDs}}"'
-alias cgb='cargo build'
-alias cgr='cargo run -q'
-alias cmconf='cmake -Bbuild -H. -GNinja'
-alias cmbuild='ninja -Cbuild'
-alias ta="tmux attach -t"
-alias lg='lazygit'
+# standard variables
+source ~/.variables
 
-case $OSTYPE in
-    darwin*)
-        alias f='open -a Finder ./' # opens cd in finder
-        alias ls='ls -Gh'
-        alias ll='ls -Glh'
-        alias lt='ls -GlAtrh'
-        alias l='ls -GlAh'
-        alias lpo='gstat --printf="%A %a %n\n" *'
-        alias yabai-restart='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
-        alias vim='nvim'
-        ;;
-    linux*)
-        alias ls='ls --color=auto -h'
-        alias ll='ls --color=auto -lh'
-        alias lt='ls --color=auto -lAtrh'
-        alias l='ls --color=auto -lAh'
-        alias lpo='stat --printf="%A %a %n\n" *'
-        ;;
-esac
+# standard aliases
+source ~/.aliases
 
-# vim tmux session
-vmux() {
-    name="vim-$(basename "${PWD##*/.}")"
-    tmux new-session -Ads "$name"
-    tmux new-window -t "$name:2"
-    tmux new-window -t "$name:3" -n "git"
-    tmux send-keys -t "$name:1" "vim" Enter
-    tmux send-keys -t "$name:3" "lg" Enter
-    tmux select-window -t "$name:1"
-    tmux attach -t "$name"
-}
+# ssh aliases (not in the git repo for obvious reasons)
+[ -f ~/.ssh_aliases ] && source ~/.ssh_aliases
 
-# load nvm (not done by default cause it's slow)
-nvm_init() {
-    export NVM_DIR="$HOME/.nvm"
-    # shellcheck source=/dev/null
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    # shellcheck source=/dev/null
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-
-# load pyenv and pyenv-virtualenv (also slow)
-pyenv_init() {
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-}
+# local config
+source ~/.zshrc-local
 
 # load theme
 eval "$(starship init zsh)"

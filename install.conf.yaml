@@ -1,9 +1,12 @@
 - clean: ['~']
 
 - shell:
+  - [touch ~/.hushlogin]
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
+    ~/.variables: dots/variables
+    ~/.aliases: dots/aliases
     ~/.starship: dots/starship
     ~/.tmux.conf: dots/tmux.conf
     ~/.vimrc: dots/vimrc
@@ -23,6 +26,14 @@
     ~/.hammerspoon: config/hammerspoon
     ~/.config/nvim: config/nvim
     ~/.config/karabiner: config/karabiner
+- link:
+    ~/.zshrc-local:
+      file: dots/zshrc-ht
+      if: '[[ $OSTYPE == darwin* && $(hostname) == "hackerman" ]]'
+- link:
+    ~/.zshrc-local:
+      file: dots/zshrc-mbp
+      if: '[[ $OSTYPE == darwin* && $(hostname) == "mbp.local" ]]'
 
 - create:
     - ~/.vim/undodir
@@ -36,6 +47,9 @@
       if: '[[ $OSTYPE == linux* ]]'
 
 - link:
+    ~/.bash_profile:
+      file: dots/bash_profile
+      force: true
     ~/.bashrc:
       file: dots/bashrc
       force: true

@@ -1,0 +1,98 @@
+alias c='clear'
+alias dockstat='docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.PIDs}}"'
+alias cgb='cargo build'
+alias cgr='cargo run -q'
+alias cmconf='cmake -Bbuild -H. -GNinja'
+alias cmbuild='ninja -Cbuild'
+alias ta="tmux attach -t"
+alias lg='lazygit'
+
+case $OSTYPE in
+    darwin*)
+        alias f='open -a Finder ./' # opens cd in finder
+        alias ls='ls -Gh'
+        alias ll='ls -Glh'
+        alias lt='ls -GlAtrh'
+        alias l='ls -GlAh'
+        alias lpo='gstat --printf="%A %a %n\n" *'
+        alias yabai-restart='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+        alias vim='nvim'
+        ;;
+    linux*)
+        alias ls='ls --color=auto -h'
+        alias ll='ls --color=auto -lh'
+        alias lt='ls --color=auto -lAtrh'
+        alias l='ls --color=auto -lAh'
+        alias lpo='stat --printf="%A %a %n\n" *'
+        ;;
+esac
+
+# vim tmux session
+vmux() {
+    name="vim-$(basename "${PWD##*/.}")"
+    tmux new-session -Ads "$name"
+    tmux new-window -t "$name:2"
+    tmux new-window -t "$name:3" -n "git"
+    tmux send-keys -t "$name:1" "vim" Enter
+    tmux send-keys -t "$name:3" "lg" Enter
+    tmux select-window -t "$name:1"
+    tmux attach -t "$name"
+}
+
+# load nvm (slow)
+nvm_init() {
+    export NVM_DIR="$HOME/.nvm"
+    # shellcheck source=/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    # shellcheck source=/dev/null
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+# load pyenv and pyenv-virtualenv (slow)
+pyenv_init() {
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+}
+
+# mqtt light control
+lights() {
+    [[ -v day_color ]] || day_color="100,0,0,150,255"
+    [[ -v eve_color ]] || eve_color="255,140,50,0,170"
+    [[ -v nite_color ]] || nite_color="170,50,255,0,100"
+
+    case $1 in
+        on)
+            mqtt_cmd_type="power"
+            mqtt_msg="on"
+            ;;
+        off)
+            mqtt_cmd_type="power"
+            mqtt_msg="off"
+            ;;
+        tog)
+            mqtt_cmd_type="power"
+            mqtt_msg="toggle"
+            ;;
+        day)
+            mqtt_cmd_type="color"
+            mqtt_msg=$day_color
+            ;;
+        eve)
+            mqtt_cmd_type="color"
+            mqtt_msg=$eve_color
+            ;;
+        nite)
+            mqtt_cmd_type="color"
+            mqtt_msg=$nite_color
+            ;;
+        *)
+            echo unknown light command
+            return 1
+        esac
+
+    mqtt_ip="172.16.21.96"
+    mqtt_cmd="/usr/local/bin/mqtt pub -t light/cmnd/$mqtt_cmd_type -m $mqtt_msg -h $mqtt_ip -p 1883 -V 3"
+
+    echo "$mqtt_cmd"
+    /bin/bash -c "$mqtt_cmd"
+}
