@@ -32,7 +32,7 @@ vmux() {
     name="vim-$(basename "${PWD##*/.}")"
     tmux new-session -Ads "$name"
     tmux new-window -t "$name:2"
-    tmux new-window -t "$name:3" -n "git"
+    tmux new-window -t "$name:3"
     tmux send-keys -t "$name:1" "vim" Enter
     tmux send-keys -t "$name:3" "lg" Enter
     tmux select-window -t "$name:1"
