@@ -28,11 +28,11 @@
     ~/.config/karabiner: config/karabiner
 - link:
     ~/.zshrc-local:
-      file: dots/zshrc-ht
+      path: dots/zshrc-ht
       if: '[[ $OSTYPE == darwin* && $(hostname) == "hackerman" ]]'
 - link:
     ~/.zshrc-local:
-      file: dots/zshrc-mbp
+      path: dots/zshrc-mbp
       if: '[[ $OSTYPE == darwin* && $(hostname) == "mbp.local" ]]'
 
 - create:
@@ -48,9 +48,9 @@
 
 - link:
     ~/.bash_profile:
-      file: dots/bash_profile
+      path: dots/bash_profile
       force: true
     ~/.bashrc:
-      file: dots/bashrc
+      path: dots/bashrc
       force: true
 
