@@ -2,4 +2,5 @@ add_newline = false
 prompt_order = ["hostname", "directory", "git_branch", "character"]
 
 [hostname]
+style = "blue"
 ssh_only = true
