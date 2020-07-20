@@ -3,22 +3,19 @@ env:
 
 font:
   normal:
-    family: Meslo LGS NF
+    family: MesloLGS NF
     style: Regular
   italic:
-    family: Meslo LGS NF
+    family: MesloLGS NF
     style: Italic
   bold:
-    family: Meslo LGS NF
+    family: MesloLGS NF
     style: Bold
   bold_italic:
-    family: Meslo LGS NF
+    family: MesloLGS NF
     style: Bold Italic
   size: 14
   use_thin_strokes: false
-  glyph_offset:
-    x: 0
-    y: 1
 
 scrolling:
   history: 10000
@@ -33,6 +30,15 @@ mouse:
 key_bindings:
   - { key: Return,  mods: Command|Alt|Control,  action: SpawnNewInstance    } 
   - { key: Space,   mods: Command,              chars:  "\x00"              }
+  - { key: Key1,    mods: Command,              chars:  "\x001"             }
+  - { key: Key2,    mods: Command,              chars:  "\x002"             }
+  - { key: Key3,    mods: Command,              chars:  "\x003"             }
+  - { key: Key4,    mods: Command,              chars:  "\x004"             }
+  - { key: Key5,    mods: Command,              chars:  "\x005"             }
+  - { key: Key6,    mods: Command,              chars:  "\x006"             }
+  - { key: Key7,    mods: Command,              chars:  "\x007"             }
+  - { key: Key8,    mods: Command,              chars:  "\x008"             }
+  - { key: Key9,    mods: Command,              chars:  "\x009"             }
 
 # GRUVBOX BABY
 colors:
