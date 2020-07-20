@@ -2,9 +2,10 @@ alias c='clear'
 alias dockstat='docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.PIDs}}"'
 alias cgb='cargo build'
 alias cgr='cargo run -q'
-alias cmconf='cmake -Bbuild -H. -GNinja'
-alias cmbuild='ninja -Cbuild'
+alias cmc='cmake -Bbuild -H. -GNinja'
+alias cmb='ninja -Cbuild'
 alias ta="tmux attach -t"
+alias tk="tmux kill-session"
 alias lg='lazygit'
 
 case $OSTYPE in

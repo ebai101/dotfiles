@@ -28,6 +28,7 @@
     ~/.hammerspoon: config/hammerspoon
     ~/.config/nvim: config/nvim
     ~/.config/karabiner: config/karabiner
+    ~/.config/alacritty: config/alacritty
 - link:
     ~/.zshrc-local:
       path: files/zshrc-ht

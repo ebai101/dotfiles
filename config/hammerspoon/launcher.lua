@@ -8,7 +8,7 @@ local hyper = {"cmd", "alt", "ctrl"}
 
 -- hotkey, app name, floating
 local apps = {
-    {'d', 'iTerm',          false},
+    {'d', 'Alacritty',      false},
     {'e', 'Brave Browser',  false},
     {'r', 'Messages',       true},
     {'f', 'Mailspring',     true},

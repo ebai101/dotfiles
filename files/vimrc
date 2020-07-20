@@ -78,7 +78,7 @@ if has('nvim')
     Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'mbbill/undotree'
-    Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+    " Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 endif
 call plug#end()
 
