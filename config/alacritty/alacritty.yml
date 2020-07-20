@@ -23,6 +23,9 @@ scrolling:
 window:
   decorations: none
   startup_mode: Maximized
+  padding:
+    x: 5
+    y: 5
 
 mouse:
   hide_when_typing: true
