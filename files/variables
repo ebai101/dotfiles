@@ -7,7 +7,6 @@ case $OSTYPE in
     darwin*)
         export EDITOR=/usr/local/bin/nvim
         export HOMEBREW_NO_ANALYTICS=1
-        export FZF_DEFAULT_COMMAND='fd'
         ;;
     linux*)
         export EDITOR=vim
