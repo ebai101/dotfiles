@@ -1,8 +1,8 @@
 hsapplication   = require('hs.application')
 hswindow        = require('hs.window')
-hs.loadSpoon('MiroWindowsManager')
 
 -- miro setup
+hs.loadSpoon('MiroWindowsManager')
 local hyper     = {"cmd", "ctrl", "alt"}
 local shyper    = {"shift", "cmd", "ctrl", "alt"}
 
@@ -29,15 +29,11 @@ end)
 -- reload
 hs.hotkey.bind(shyper, 'r', hs.reload)
 
-hs.alert.show("config loaded")
-
+-- externals
 launcher        = require('launcher')
 windows         = require('windows')
 messages        = require('messages')
 reason          = require('reason')
 google          = require('google')
 
-
-
-
-
+hs.alert.show("config loaded")
