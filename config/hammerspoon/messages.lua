@@ -15,13 +15,13 @@ table.insert(messagesHotkeys, hs.hotkey.new({}, 'pagedown', function()
     messages:selectMenuItem({'Window', 'Select Next Conversation'})
 end))
 
-local messagesEnableAll = function()
+local function messagesEnableAll()
     for i=1, #messagesHotkeys do
         messagesHotkeys[i]:enable()
     end
 end
 
-local messagesDisableAll = function()
+local function messagesDisableAll()
     for i=1, #messagesHotkeys do
         messagesHotkeys[i]:disable()
     end

@@ -9,7 +9,7 @@
 local hyper = {"cmd", "alt", "ctrl"}
 local shyper = {"shift", "cmd", "alt", "ctrl"}
 
-local focuser = function(direction)
+local function focuser(direction)
     return function()
         local current = hs.window.focusedWindow() or hs.application.frontmostApplication():allWindows()[1] or hs.window.desktop()
         if not current then
@@ -25,7 +25,7 @@ local focuser = function(direction)
     end
 end
 
-local moveWindowToDisplay = function(d)
+local function moveWindowToDisplay(d)
     return function()
         hs.window.focusedWindow():moveToScreen(hs.screen.allScreens()[d], false, true)
         hs.mouse.setAbsolutePosition(hs.geometry.rectMidPoint(hs.window.focusedWindow():frame()))

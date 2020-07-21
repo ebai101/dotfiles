@@ -1,10 +1,5 @@
 hsapplication   = require('hs.application')
 hswindow        = require('hs.window')
-launcher        = require('launcher')
-windows         = require('windows')
-messages        = require('messages')
-reason          = require('reason')
-
 hs.loadSpoon('MiroWindowsManager')
 
 -- miro setup
@@ -35,3 +30,14 @@ end)
 hs.hotkey.bind(shyper, 'r', hs.reload)
 
 hs.alert.show("config loaded")
+
+launcher        = require('launcher')
+windows         = require('windows')
+messages        = require('messages')
+reason          = require('reason')
+google          = require('google')
+
+
+
+
+

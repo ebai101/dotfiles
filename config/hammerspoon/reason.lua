@@ -1,24 +1,54 @@
+-- local function bofHelper(dirname)
+--     local i, d = hs.fs.dir(dirname)
+--     for f in i, d do
+--         if not(f == '.' or f == '..') then
+--             local fullPath = hs.fs.pathToAbsolute(dirname .. '/' .. f)
+--             if hs.fs.attributes(fullPath).mode == 'directory' then bofHelper(fullPath)
+--             elseif string.match(f, '.reason') then
+--                 table.insert(bofChooserOptions, {
+--                         ["text"] = f,
+--                         ["subtext"] = fullPath
+--                     })
+--                 bofChooser:choices(bofChooserOptions)
+--             end
+--         end
+--     end
+-- end
+
 local reasonApp = hs.appfinder.appFromName('Reason')
 local reasonLog = hs.logger.new('reason', 'info')
 local isEmptyString = function(s) return s == nil or s == '' end
 local reasonHotkeys = {}
 
--- Navigation
--- table.insert(reasonHotkeys, hs.hotkey.new('cmd', '1', function()
---     hs.osascript.javascript([[
---         Application('System Events')
---             .processes.byName('Reason')
---             .menuBars[0].menuBarItems.byName('File')
---             .click();
---     ]])
--- end))
+-- Better open file - searches songs directory for reason files
+local bofChooserOptions = {}
+local bofChooser = hs.chooser.new(function(choice) hs.open(choice['subtext']) end)
+    :bgDark(true)
+    :choices(bofChooserOptions)
+
+local function bofUpdateChooser(task, out, err)
+    reasonLog.i(out)
+end
+
+local function bofCreateChooserOptions()
+    bofChooserOptions = {}
+    reasonLog.i('creating Better Open File list')
+
+    local findTask = hs.task.new('/usr/bin/find', nil, bofUpdateChooser, { '.', '-name', '"*.reason"' })
+findTask:start()
+
+    reasonLog.i('done creating Better Open File list')
+end
+bofChooser:showCallback(bofCreateChooserOptions)
+
+table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'o', function() bofChooser:show() end))
 
 -- Better create effect - chooser to search the menus for rack units/plugins like Ableton
 local bceChooserOptions = {}
-local bceCreateChooserOptions = function()
+local function bceCreateChooserOptions()
     bceChooserOptions = {}
-    reasonLog.i('creating chooser options list')
-    
+    reasonLog.i('creating Better Create Effect list')
+
     local menus = reasonApp:getMenuItems()[4]['AXChildren'][1]
     for i=7, 9 do
         for j=11, #menus[i]['AXChildren'][1] do
@@ -54,12 +84,11 @@ local bceCreateChooserOptions = function()
         end
     end
 
-    reasonLog.i('done creating chooser options list')
+    reasonLog.i('done creating Better Create Effect list')
 end
 
 table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'f', function()
     local chooser = hs.chooser.new(function(choice) 
-        reasonLog.i(hs.inspect(choice))
         reasonApp:selectMenuItem(choice['menuSelector'])
     end)
     chooser:choices(bceChooserOptions)
@@ -67,21 +96,25 @@ table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'f', function()
     chooser:show()
 end))
 
--- window filter setup
-local reasonEnableAll = function()
+-- app watcher setup
+local function reasonEnableAll()
     for i=1, #reasonHotkeys do
         reasonHotkeys[i]:enable()
     end
     bceCreateChooserOptions()
 end
 
-local reasonDisableAll = function()
+local function reasonDisableAll()
     for i=1, #reasonHotkeys do
         reasonHotkeys[i]:disable()
     end
 end
 
-reasonWindowFilter = hs.window.filter.new(false)
-    :setAppFilter('Reason', {allowTitles='.reason'})
-    :subscribe(hs.window.filter.windowFocused,function() reasonEnableAll() end)
-    :subscribe(hs.window.filter.windowUnfocused,function() reasonDisableAll() end)
+reasonAppWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
+    if eventType == hs.application.watcher.activated then
+        if appName == 'Reason' then reasonEnableAll() end
+    elseif eventType == hs.application.watcher.deactivated then
+        if appName == 'Reason' then reasonDisableAll() end
+    end
+end)
+reasonAppWatcher:start()
