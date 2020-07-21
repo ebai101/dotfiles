@@ -42,6 +42,10 @@ key_bindings:
   - { key: Key7,    mods: Command,              chars:  "\x137"             }
   - { key: Key8,    mods: Command,              chars:  "\x138"             }
   - { key: Key9,    mods: Command,              chars:  "\x139"             }
+  - { key: H,       mods: Command,              chars:  "\x13h"             }
+  - { key: J,       mods: Command,              chars:  "\x13j"             }
+  - { key: K,       mods: Command,              chars:  "\x13k"             }
+  - { key: L,       mods: Command,              chars:  "\x13l"             }
 
 # GRUVBOX BABY
 colors:
