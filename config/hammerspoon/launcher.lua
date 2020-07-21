@@ -10,21 +10,21 @@ local apps = {}
 -- different apps for different comps
 if hs.host.localizedName() == 'mbp' then
     apps = {
-        {'d', 'Alacritty',      '/Applications/Alacritty.app',              false},
-        {'e', 'Brave Browser',  '/Applications/Brave Browser.app',          false},
-        {'r', 'Messages',       '/Applications/Messages.app',               true },
-        {'f', 'Mailspring',     '/Applications/Mailspring.app',             true },
-        {'v', 'Finder',         '/System/Library/CoreServices/Finder.app',  true },
-        {'c', 'Spotify',        '/Applications/Spotify.app',                true }
+        {'d', 'Alacritty',      false},
+        {'e', 'Brave Browser',  false},
+        {'r', 'Messages',       true },
+        {'f', 'Mailspring',     true },
+        {'v', 'Finder',         true },
+        {'c', 'Spotify',        true }
     }
 elseif hs.host.localizedName() == 'hackerman' then
     apps = {
-        {'d', 'Alacritty',      '/Applications/Alacritty.app',              false},
-        {'e', 'Brave Browser',  '/Applications/Brave Browser.app',          false},
-        {'r', 'Messages',       '/Applications/Messages.app',               true },
-        {'f', 'Reason',         '/Applications/Reason.app',                 false},
-        {'v', 'Finder',         '/System/Library/CoreServices/Finder.app',  true },
-        {'c', 'Console',        '/Applications/Universal Audio/Console.app',true }
+        {'d', 'Reason',             false},
+        {'e', 'Brave Browser',      false},
+        {'r', 'Messages',           true },
+        {'f', 'Mail',               false},
+        {'v', 'Finder',             true },
+        {'c', 'com.uaudio.console', true }
     }
 end
 
@@ -32,10 +32,13 @@ local k = hs.hotkey.modal.new(hyper, 'p')
 k:bind({}, 'escape', function() k:exit() end)
 for i = 1, #apps do
     k:bind(hyper, apps[i][1], function() 
-        if hs.application.frontmostApplication():title() == apps[i][2] and apps[i][4] then
+        if hs.application.frontmostApplication():title() == apps[i][2] and apps[i][3] then
             hs.application.frontmostApplication():hide()
         else
-            hs.application.launchOrFocus(apps[i][3])
+            if not hs.application.launchOrFocus(apps[i][2]) then
+                hs.application.launchOrFocusByBundleID(apps[i][2])
+            end
         end
+        k:exit()
     end)
 end
