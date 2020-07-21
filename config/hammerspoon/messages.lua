@@ -3,6 +3,7 @@
 -- Page Up: Select Previous Conversation
 -- Page Down: Select Next Conversation
 -----------------------------------------------
+
 local messagesHotkeys = {}
 
 table.insert(messagesHotkeys, hs.hotkey.new({}, 'pageup', function()

@@ -1,7 +1,12 @@
+-----------------------------------------------
+-- Hyper Google Search
+-- G: Open Tab in Browser for Search
+-----------------------------------------------
+
 local googleChooser = hs.chooser.new(function(term)
     hs.task.new('/usr/bin/open', nil, {'https://www.google.com/search?q=' .. term.text}):start()
 end):bgDark(true):choices({})
- 
+
 googleChooser:queryChangedCallback(function()
     if not(googleChooser:query() == '') then
         local queryURL = 'http://suggestqueries.google.com/complete/search?client=chrome&q=' .. hs.http.encodeForQuery(googleChooser:query())

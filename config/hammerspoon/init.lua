@@ -1,3 +1,7 @@
+-----------------------------------------------
+-- init.lua
+-----------------------------------------------
+
 hsapplication   = require('hs.application')
 hswindow        = require('hs.window')
 hyper           = {'cmd', 'ctrl', 'alt'}

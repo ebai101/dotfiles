@@ -1,3 +1,9 @@
+-----------------------------------------------
+-- Reason Hotkeys
+-- CMD-O: Better Open File
+-- CMD-F: Better Create Effect
+-----------------------------------------------
+
 local reason = hs.appfinder.appFromName('Reason')
 local reasonLog = hs.logger.new('reason', 'info')
 local reasonHotkeys = {}
