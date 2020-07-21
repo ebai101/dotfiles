@@ -23,7 +23,7 @@ googleChooser:queryChangedCallback(function()
     end
 end)
 
-hs.hotkey.bind({'cmd','alt','ctrl'}, 'g', function()
+hs.hotkey.bind(hyper, 'g', function()
     local brave = hs.application.open('Brave Browser', 5, true)
     brave:selectMenuItem({'File', 'New Tab'})
     -- googleChooser:choices({})

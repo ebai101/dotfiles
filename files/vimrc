@@ -140,7 +140,6 @@ if has('nvim')
     nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
     xmap <leader>f  <Plug>(coc-format-selected)
     nmap <leader>f  <Plug>(coc-format-selected)
-    nnoremap <leader>cr :CocRestart<CR>
     nnoremap <leader>4 :CocCommand clangd.switchSourceHeader<CR>
     command! -nargs=0 Format :call CocAction('format')
 endif

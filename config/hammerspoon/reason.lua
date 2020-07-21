@@ -2,9 +2,6 @@ local reason = hs.appfinder.appFromName('Reason')
 local reasonLog = hs.logger.new('reason', 'info')
 local reasonHotkeys = {}
 
-local hyper = {"cmd", "alt", "ctrl"}
-local shyper = {"shift", "cmd", "alt", "ctrl"}
-
 -- Better open file - searches songs directory for reason files
 local bofChooser = hs.chooser.new(function(choice) hs.open(choice['subText']) end)
     :searchSubText(true)
@@ -13,7 +10,7 @@ local bofChooser = hs.chooser.new(function(choice) hs.open(choice['subText']) en
 local function bofPopulate()
     local options = {}
     reasonLog.i('creating Better Open File list')
-    local findTask = hs.task.new('/usr/bin/find', function(task, out, err)
+    hs.task.new('/usr/bin/find', function(task, out, err)
         for path in out:gmatch("[^\r\n]+") do
             table.insert(options, {
                     ['text'] = string.match(path, ".*/(.+)%..+$"),
@@ -92,7 +89,7 @@ local function reasonDisableAll()
     for i=1, #reasonHotkeys do reasonHotkeys[i]:disable() end
 end
 
-reasonWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
+local reasonWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
     if eventType == hs.application.watcher.activated then
         if appName == 'Reason' then reasonEnableAll() end
     elseif eventType == hs.application.watcher.deactivated then

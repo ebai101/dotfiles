@@ -6,9 +6,6 @@
 -- Shift-TB: moves front window to top/bottom
 -----------------------------------------------
 
-local hyper = {"cmd", "alt", "ctrl"}
-local shyper = {"shift", "cmd", "alt", "ctrl"}
-
 local function focuser(direction)
     return function()
         local current = hs.window.focusedWindow() or hs.application.frontmostApplication():allWindows()[1] or hs.window.desktop()

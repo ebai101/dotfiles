@@ -16,15 +16,11 @@ table.insert(messagesHotkeys, hs.hotkey.new({}, 'pagedown', function()
 end))
 
 local function messagesEnableAll()
-    for i=1, #messagesHotkeys do
-        messagesHotkeys[i]:enable()
-    end
+    for i=1, #messagesHotkeys do messagesHotkeys[i]:enable() end
 end
 
 local function messagesDisableAll()
-    for i=1, #messagesHotkeys do
-        messagesHotkeys[i]:disable()
-    end
+    for i=1, #messagesHotkeys do messagesHotkeys[i]:disable() end
 end
 
 messagesWindowFilter = hs.window.filter.new(false)

@@ -4,7 +4,6 @@
 -- Esc: Deactivate launcher mode
 -----------------------------------------------
 
-local hyper = {"cmd", "alt", "ctrl"}
 local apps = {}
 
 -- different apps for different comps
@@ -30,10 +29,12 @@ end
 
 local k = hs.hotkey.modal.new(hyper, 'p')
 k:bind({}, 'escape', function() k:exit() end)
+
 for i = 1, #apps do
-    k:bind(hyper, apps[i][1], function() 
-        if hs.application.frontmostApplication():title() == apps[i][2] and apps[i][3] then
-            hs.application.frontmostApplication():hide()
+    k:bind(hyper, apps[i][1], function()
+        local frontApp = hs.application.frontmostApplication()
+        if frontApp:title() == apps[i][2] or frontApp:bundleID() == apps[i][2] then
+            if apps[i][3] then hs.application.frontmostApplication():hide() end
         else
             if not hs.application.launchOrFocus(apps[i][2]) then
                 hs.application.launchOrFocusByBundleID(apps[i][2])

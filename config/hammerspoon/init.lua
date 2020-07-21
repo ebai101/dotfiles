@@ -1,18 +1,17 @@
 hsapplication   = require('hs.application')
 hswindow        = require('hs.window')
+hyper           = {'cmd', 'ctrl', 'alt'}
+shyper          = {'shift', 'cmd', 'ctrl', 'alt'}
 
 -- miro setup
 hs.loadSpoon('MiroWindowsManager')
-local hyper     = {"cmd", "ctrl", "alt"}
-local shyper    = {"shift", "cmd", "ctrl", "alt"}
-
 hs.window.animationDuration = 0.0
 spoon.MiroWindowsManager:bindHotkeys({
-    up          = {shyper, "k"},
-    right       = {shyper, "l"},
-    down        = {shyper, "j"},
-    left        = {shyper, "h"},
-    fullscreen  = {shyper, "f"}
+    up          = {shyper, 'k'},
+    right       = {shyper, 'l'},
+    down        = {shyper, 'j'},
+    left        = {shyper, 'h'},
+    fullscreen  = {shyper, 'f'}
 })
 
 -- console stuff
