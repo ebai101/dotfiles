@@ -4,7 +4,7 @@ alias cgb='cargo build'
 alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
-alias ta="tmux attach -t"
+alias ta="tmux attach -t || tmux attach"
 alias tk="tmux kill-session"
 alias lg='lazygit'
 
