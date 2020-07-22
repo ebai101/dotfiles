@@ -36,13 +36,13 @@ bofChooser:showCallback(bofPopulate)
 table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'o', function() bofChooser:show() end))
 
 -- Better create effect - chooser to search the menus for rack units/plugins like Ableton
-local bceChooser = hs.chooser.new(function(choice) reason:selectMenuItem(choice['menuSelector']) end):bgDark(true)
+local bceChooser = hs.chooser.new(function(choice) reasonApp:selectMenuItem(choice['menuSelector']) end):bgDark(true)
 
 local function bcePopulate()
     local options = {}
     reasonLog.i('creating Better Create Effect list')
 
-    local menus = reason:getMenuItems()[4]['AXChildren'][1]
+    local menus = reasonApp:getMenuItems()[4]['AXChildren'][1]
     for i=7, 9 do
         for j=11, #menus[i]['AXChildren'][1] do
             for k=1, #menus[i]['AXChildren'][1][j]['AXChildren'][1] do
