@@ -4,8 +4,10 @@ alias cgb='cargo build'
 alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
-alias ta="tmux attach -t || tmux attach"
+alias tm='tmux'
+alias ta='tmux attach'
 alias tk="tmux kill-session"
+alias tls="tmux ls"
 alias lg='lazygit'
 
 case $OSTYPE in

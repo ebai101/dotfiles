@@ -1,8 +1,8 @@
 # shellcheck shell=bash
 
+set -o vi
+bind ^l:clear-screen
 shopt -s autocd
-shopt -s cdspell
-shopt -s dirspell
 
 # standard variables
 source ~/.variables

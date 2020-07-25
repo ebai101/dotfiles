@@ -22,6 +22,7 @@ set shortmess+=c
 if has('nvim')
     set noshowmode
     set signcolumn=yes
+    set inccommand=split
 endif
 
 " leader boi
@@ -64,6 +65,7 @@ endif
 
 " plug list
 call plug#begin('~/.vim/plugged')
+
 " use everywhere
 Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -79,6 +81,7 @@ if has('nvim')
     Plug 'sheerun/vim-polyglot'
     Plug 'mbbill/undotree'
 endif
+
 call plug#end()
 
 " colors
