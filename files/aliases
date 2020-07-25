@@ -21,10 +21,10 @@ case $OSTYPE in
         alias vim='nvim'
         ;;
     linux*)
-        alias ls='ls --color=auto -h'
-        alias ll='ls --color=auto -lh'
-        alias lt='ls --color=auto -lAtrh'
-        alias l='ls --color=auto -lAh'
+        alias ls='ls --color=auto -h --group-directories-first'
+        alias ll='ls --color=auto -lh --group-directories-first'
+        alias lt='ls --color=auto -lAtrh --group-directories-first'
+        alias l='ls --color=auto -lAh --group-directories-first'
         alias lpo='stat --printf="%A %a %n\n" *'
         ;;
 esac
