@@ -20,7 +20,9 @@
       if: '[[ $OSTYPE == darwin* ]]'
 
 - link:
-    ~/.zshrc: files/zshrc
+    ~/.zshrc:
+      path: files/zshrc
+      force: true
     ~/.gitconfig: files/gitconfig
     ~/.gitignore: files/gitignore
     ~/.clang-format: files/clang-format

@@ -12,10 +12,10 @@ alias lg='lazygit'
 case $OSTYPE in
     darwin*)
         alias f='open -a Finder ./' # opens cd in finder
-        alias ls='ls -Gh'
-        alias ll='ls -Glh'
-        alias lt='ls -GlAtrh'
-        alias l='ls -GlAh'
+        alias ls='gls --color=auto -h --group-directories-first'
+        alias ll='gls --color=auto -lh --group-directories-first'
+        alias lt='gls --color=auto -lAtrh --group-directories-first'
+        alias l='gls --color=auto -lAh --group-directories-first'
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias vim='nvim'

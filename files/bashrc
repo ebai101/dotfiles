@@ -19,4 +19,7 @@ source ~/.aliases
 # load theme
 eval "$(starship init bash)"
 
+# reload alias
+alias ref='source ~/.bashrc && echo reloaded bashrc'
+
 clear
