@@ -35,7 +35,6 @@ hs.hotkey.bind(shyper, 'r', hs.reload)
 -- externals
 launcher        = require('launcher')
 windows         = require('windows')
--- messages        = require('messages')
 reason          = require('reason')
 google          = require('google')
 
