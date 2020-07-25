@@ -24,7 +24,11 @@ local function messagesDisableAll()
     for i=1, #messagesHotkeys do messagesHotkeys[i]:disable() end
 end
 
-messagesWindowFilter = hs.window.filter.new(false)
-    :setAppFilter('Messages')
-    :subscribe(hs.window.filter.windowFocused,function() messagesEnableAll() end)
-    :subscribe(hs.window.filter.windowUnfocused,function() messagesDisableAll() end)
+local messagesWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
+    if eventType == hs.application.watcher.activated then
+        if appObject.bundleID == 'com.apple.iChat' or appName == 'Messages' then messagesEnableAll() end
+    elseif eventType == hs.application.watcher.deactivated then
+        if appObject.bundleID == 'com.apple.iChat' or appName == 'Messages' then messagesDisableAll() end
+    end
+end)
+messagesWatcher:start()

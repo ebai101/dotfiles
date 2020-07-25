@@ -4,7 +4,7 @@
 -- CMD-F: Better Create Effect
 -----------------------------------------------
 
-local reason = hs.appfinder.appFromName('Reason')
+local reasonApp = hs.appfinder.appFromName('Reason')
 local reasonLog = hs.logger.new('reason', 'info')
 local reasonHotkeys = {}
 
