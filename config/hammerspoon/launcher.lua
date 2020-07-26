@@ -1,6 +1,6 @@
 -----------------------------------------------
 -- Hyper App Launcher
--- O: Activate launcher mode
+-- P: Activate launcher mode
 -- Esc: Deactivate launcher mode
 -----------------------------------------------
 
