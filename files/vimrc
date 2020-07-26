@@ -56,6 +56,10 @@ vnoremap K :m '<-2<CR>gv=gv
 " preferences
 nnoremap <leader>, :e ~/.vimrc<CR>
 
+" syntax for dotfiles
+autocmd BufNewFile,BufRead *aliases set syntax=sh
+autocmd BufNewFile,BufRead *variables set syntax=sh
+
 " auto-install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
