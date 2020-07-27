@@ -31,14 +31,6 @@
     ~/.config/nvim: config/nvim
     ~/.config/karabiner: config/karabiner
     ~/.config/alacritty: config/alacritty
-- link:
-    ~/.zshrc-local:
-      path: files/zshrc-ht
-      if: '[[ $OSTYPE == darwin* && $(hostname) == "hackerman" ]]'
-- link:
-    ~/.zshrc-local:
-      path: files/zshrc-mbp
-      if: '[[ $OSTYPE == darwin* && $(hostname) == "mbp.local" ]]'
 
 - create:
     - ~/.vim/undodir
