@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 
 autoload -Uz compinit; compinit
-bindkey -v
+bindkey -e
 setopt AUTO_CD
 
 # standard variables

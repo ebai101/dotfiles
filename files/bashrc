@@ -1,7 +1,5 @@
 # shellcheck shell=bash
 
-set -o vi
-bind ^l:clear-screen
 shopt -s autocd
 
 # standard variables
