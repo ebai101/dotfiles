@@ -2,6 +2,3 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "UADCtrl.spoon"]
-	path = config/hammerspoon/Spoons/UADCtrl.spoon
-	url = git@github.com:ebai101/UADCtrl.spoon.git
