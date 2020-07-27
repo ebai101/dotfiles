@@ -22,7 +22,7 @@ spoon.MiroWindowsManager:bindHotkeys({
 hs.console.darkMode(true)
 hs.console.toolbar(nil)
 hs.hotkey.bind(shyper, '0', function()
-    if hs.window.focusedWindow():application():title() == 'Hammerspoon' then
+    if hs.application.frontmostApplication():title() == 'Hammerspoon' then
         hs.window.focusedWindow():application():hide()
     else
         hs.openConsole()
@@ -32,7 +32,13 @@ end)
 -- reload
 hs.hotkey.bind(shyper, 'r', hs.reload)
 
--- externals
+-- uadctrl setup
+print(hs.loadSpoon('UADCtrl'))
+spoon.UADCtrl:bindHotkeys({
+    activate = {hyper, 'u'}
+})
+
+-- other externals
 launcher        = require('launcher')
 windows         = require('windows')
 reason          = require('reason')

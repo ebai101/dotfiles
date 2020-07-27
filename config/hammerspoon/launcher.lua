@@ -18,7 +18,7 @@ if hs.host.localizedName() == 'mbp' then
     }
 elseif hs.host.localizedName() == 'hackerman' then
     apps = {
-        {'d', 'Reason',             false},
+        {'d', 'com.ableton.live',   false},
         {'e', 'Brave Browser',      false},
         {'r', 'Messages',           true },
         {'f', 'Mail',               false},
