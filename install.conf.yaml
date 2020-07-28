@@ -1,8 +1,9 @@
 - clean: ['~']
 
 - shell:
-  - [touch ~/.hushlogin]
+  - touch ~/.hushlogin
   - [git submodule update --init --recursive, Installing submodules]
+ # - '[ ! command -v starship &> /dev/null ] && (curl -fsSL https://starship.rs/install.sh | bash)'
 
 - link:
     ~/.variables: files/variables

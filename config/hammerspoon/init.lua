@@ -33,15 +33,17 @@ end)
 hs.hotkey.bind(shyper, 'r', hs.reload)
 
 -- uadctrl setup
-print(hs.loadSpoon('UADCtrl'))
-spoon.UADCtrl:showAlerts(true)
-spoon.UADCtrl:bindHotkeys({
-    enter  = { hyper,  'u' },
-    mute   = { {},     'm' },
-    solo   = { {},     's' },
-    mono   = { {},     'o' },
-    pan    = { {},     'p' }
-})
+if hs.host.localizedName() == 'hackerman' then
+    print(hs.loadSpoon('UADCtrl'))
+    spoon.UADCtrl:showAlerts(true)
+    spoon.UADCtrl:bindHotkeys({
+        enter  = { hyper,  'u' },
+        mute   = { {},     'm' },
+        solo   = { {},     's' },
+        mono   = { {},     'o' },
+        pan    = { {},     'p' }
+    })
+end
 
 -- other externals
 launcher        = require('launcher')
