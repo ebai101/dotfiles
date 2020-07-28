@@ -34,8 +34,13 @@ hs.hotkey.bind(shyper, 'r', hs.reload)
 
 -- uadctrl setup
 print(hs.loadSpoon('UADCtrl'))
+spoon.UADCtrl:showAlerts(true)
 spoon.UADCtrl:bindHotkeys({
-    activate = {hyper, 'u'}
+    enter  = { hyper,  'u' },
+    mute   = { {},     'm' },
+    solo   = { {},     's' },
+    mono   = { {},     'o' },
+    pan    = { {},     'p' }
 })
 
 -- other externals
