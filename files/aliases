@@ -4,9 +4,9 @@ alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
 alias t='tmux'
-alias ta='tmux attach'
-alias tk="tmux kill-session"
-alias tls="tmux ls"
+alias ta='tmux attach -t'
+alias tk='tmux kill-session -t'
+alias tls='tmux ls'
 alias g='git'
 alias lg='lazygit'
 
