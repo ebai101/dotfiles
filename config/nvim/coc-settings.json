@@ -5,7 +5,7 @@
     "python.jediEnabled": false,
     "diagnostic-languageserver.filetypes": {
         "vim": "vint",
-        "sh, prof": "shellcheck"
+        "sh": "shellcheck"
     }
 }
 
