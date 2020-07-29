@@ -20,4 +20,4 @@ eval "$(starship init bash)"
 # reload alias
 alias ref='source ~/.bashrc && echo reloaded bashrc'
 
-clear
+# clear
