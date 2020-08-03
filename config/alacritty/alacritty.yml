@@ -7,13 +7,13 @@ font:
     style: Regular
   italic:
     family: MesloLGS NF
-    style: Italic
+    style: Regular
   bold:
     family: MesloLGS NF
-    style: Bold
+    style: Regular
   bold_italic:
     family: MesloLGS NF
-    style: Bold Italic
+    style: Regular
   size: 14
   use_thin_strokes: false
 
