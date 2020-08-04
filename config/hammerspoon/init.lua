@@ -32,6 +32,11 @@ end)
 -- reload
 hs.hotkey.bind(shyper, 'r', hs.reload)
 
+-- spotlight key
+hs.hotkey.bind({}, 'f20', function()
+    hs.eventtap.keyStroke({'ctrl', 'alt', 'cmd'}, 'space')
+end)
+
 -- uadctrl setup
 if hs.host.localizedName() == 'hackerman' then
     print(hs.loadSpoon('UADCtrl'))
