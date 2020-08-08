@@ -2,6 +2,7 @@
 
 autoload -Uz compinit; compinit
 bindkey -e
+disable r
 setopt AUTO_CD
 
 # standard variables
