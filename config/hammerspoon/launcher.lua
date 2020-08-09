@@ -9,21 +9,21 @@ local apps = {}
 -- different apps for different comps
 if hs.host.localizedName() == 'mbp' then
     apps = {
-        {'q', 'Brave Browser',  false},
-        {'w', 'Messages',       true },
-        {'a', 'Alacritty',      false},
-        {'s', 'Mailspring',     true },
-        {'z', 'Spotify',        true },
-        {'x', 'Finder',         true }
+        {'e', 'Brave Browser',  false},
+        {'r', 'Messages',       true },
+        {'d', 'Alacritty',      false},
+        {'f', 'Mailspring',     true },
+        {'c', 'Spotify',        true },
+        {'v', 'Finder',         true }
     }
 elseif hs.host.localizedName() == 'hackerman' then
     apps = {
-        {'q', 'Brave Browser',      false},
-        {'w', 'Messages',           true },
-        {'a', 'com.ableton.live',   false},
-        {'s', 'Mail',               false},
-        {'z', 'com.uaudio.console', true },
-        {'x', 'Finder',             true }
+        {'e', 'Brave Browser',      false},
+        {'r', 'Messages',           true },
+        {'d', 'Reason',             false},
+        {'f', 'Mail',               false},
+        {'c', 'com.uaudio.console', true },
+        {'v', 'Finder',             true }
     }
 end
 
