@@ -4,8 +4,6 @@ alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
 alias t='tmux'
-alias ta='tmux attach -t'
-alias tk='tmux kill-session -t'
 alias tls='tmux ls'
 alias g='git'
 alias lg='lazygit'
@@ -40,6 +38,16 @@ v() {
     tmux send-keys -t "$name:3" "lg" Enter
     tmux select-window -t "$name:1"
     tmux attach -t "$name"
+}
+
+# smart tmux attach
+ta() {
+    if [ -z "$1" ]; then tmux attach; else tmux attach -t $1; fi
+}
+
+# smart tmux kill-session
+tk() {
+    if [ -z "$1" ]; then tmux kill-session; else tmux kill-session -t $1; fi
 }
 
 # load nvm (slow)
