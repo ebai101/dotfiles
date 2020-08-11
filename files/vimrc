@@ -19,6 +19,9 @@ set incsearch
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
+set lazyredraw
+set autoread
+set autochdir
 if has('nvim')
     set noshowmode
     set signcolumn=yes
