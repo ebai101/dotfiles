@@ -36,7 +36,7 @@ bofChooser:showCallback(bofPopulate)
 table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'o', function() bofChooser:show() end))
 
 -- Better create effect - chooser to search the menus for rack units/plugins like Ableton
-local bceChooser = hs.chooser.new(function(choice) reasonApp:selectMenuItem(choice['menuSelector']) end):bgDark(true)
+local bceChooser = hs.chooser.new(function(choice) if choice then reasonApp:selectMenuItem(choice['menuSelector']) end end):bgDark(true)
 
 local function bcePopulate()
     local options = {}
@@ -82,10 +82,9 @@ local function bcePopulate()
     bceChooser:choices(options)
     reasonLog.i('done creating Better Create Effect list')
 end
-
 table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'f', function() bceChooser:show() end))
 
--- app watcher setup
+-- window filter setup
 local function reasonEnableAll()
     for i=1, #reasonHotkeys do reasonHotkeys[i]:enable() end
     bcePopulate()
@@ -95,11 +94,6 @@ local function reasonDisableAll()
     for i=1, #reasonHotkeys do reasonHotkeys[i]:disable() end
 end
 
-local reasonWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
-    if eventType == hs.application.watcher.activated then
-        if appName == 'Reason' then reasonEnableAll() end
-    elseif eventType == hs.application.watcher.deactivated then
-        if appName == 'Reason' then reasonDisableAll() end
-    end
-end)
-reasonWatcher:start()
+local reasonFilter = hs.window.filter.new('Reason')
+reasonFilter:subscribe(hs.window.filter.windowFocused, function() reasonEnableAll() end)
+reasonFilter:subscribe(hs.window.filter.windowUnfocused, function() reasonDisableAll() end)

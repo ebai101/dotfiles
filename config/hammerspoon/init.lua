@@ -21,7 +21,7 @@ spoon.MiroWindowsManager:bindHotkeys({
 -- console stuff
 hs.console.darkMode(true)
 hs.console.toolbar(nil)
-hs.hotkey.bind(shyper, '0', function()
+hs.hotkey.bind(hyper, '0', function()
     if hs.application.frontmostApplication():title() == 'Hammerspoon' then
         hs.window.focusedWindow():application():hide()
     else
@@ -30,7 +30,7 @@ hs.hotkey.bind(shyper, '0', function()
 end)
 
 -- reload
-hs.hotkey.bind(shyper, 'r', hs.reload)
+hs.hotkey.bind(shyper, '0', hs.reload)
 
 -- uadctrl setup
 if hs.host.localizedName() == 'hackerman' then
@@ -49,6 +49,6 @@ end
 launcher        = require('launcher')
 windows         = require('windows')
 reason          = require('reason')
-google          = require('google')
+browser         = require('browser')
 
 hs.alert.show("config loaded")
