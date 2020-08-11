@@ -31,7 +31,8 @@ mouse:
   hide_when_typing: true
 
 key_bindings:
-  - { key: Return,  mods: Command|Alt|Control,  action: SpawnNewInstance    } 
+  - { key: Return,  mods: Command|Alt|Control,  action: SpawnNewInstance    }
+  - { key: M,       mods: Command,              chars:  "m"                 }
   - { key: S,       mods: Command,              chars:  "\x13"              }
   - { key: Key1,    mods: Command,              chars:  "\x131"             }
   - { key: Key2,    mods: Command,              chars:  "\x132"             }
