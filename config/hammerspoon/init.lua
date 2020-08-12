@@ -18,6 +18,11 @@ spoon.MiroWindowsManager:bindHotkeys({
     fullscreen  = {shyper, 'f'}
 })
 
+-- ejectmenu setup
+hs.loadSpoon('EjectMenu')
+spoon.EjectMenu.show_in_menubar = false
+spoon.EjectMenu:bindHotkeys({ejectAll={hyper, 'forwarddelete'}})
+
 -- console stuff
 hs.console.darkMode(true)
 hs.console.toolbar(nil)
