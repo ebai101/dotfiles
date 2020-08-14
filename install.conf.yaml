@@ -26,8 +26,8 @@
       force: true
     ~/.gitconfig: files/gitconfig
     ~/.gitignore: files/gitignore
+    ~/.eslintrc.js: files/eslintrc.js
     ~/.clang-format: files/clang-format
-    ~/.eslintrc: files/eslintrc
     ~/.hammerspoon: config/hammerspoon
     ~/.config/nvim: config/nvim
     ~/.config/karabiner: config/karabiner
