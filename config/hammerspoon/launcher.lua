@@ -20,7 +20,7 @@ elseif hs.host.localizedName() == 'hackerman' then
     apps = {
         {'e', 'Brave Browser',      false},
         {'r', 'Messages',           true },
-        {'d', 'Reason',             false},
+        {'d', 'Reason 11',          false},
         {'f', 'Mail',               false},
         {'c', 'com.uaudio.console', true },
         {'v', 'Finder',             true }
