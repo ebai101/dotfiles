@@ -1,7 +1,8 @@
 {
     "clangd.path": "/usr/local/opt/llvm/bin/clangd",
-    "coc.preferences.formatOnSaveFiletypes": ["cpp", "hpp", "c", "h"],
+    "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "cpp", "hpp", "c", "h"],
     "eslint.autoFixOnSave": true,
+    "eslint.nodePath": "/usr/local/lib/node_modules/",
     "python.jediEnabled": false,
     "diagnostic-languageserver.filetypes": {
         "vim": "vint",

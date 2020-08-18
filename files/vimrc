@@ -34,6 +34,14 @@ let mapleader = " "
 nnoremap <leader>/ :let @/ = ""<CR>
 nnoremap <leader>ws :%s/\s\+$//e<CR>
 
+" auto expanding
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
+
 " netrw boi
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
