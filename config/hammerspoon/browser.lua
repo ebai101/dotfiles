@@ -1,6 +1,5 @@
 -----------------------------------------------
--- Hyper Browser Stuff
--- G: Open Tab in Browser for Search
+-- Hyper Browser
 -----------------------------------------------
 
 local browserHotkeys = {}
@@ -25,4 +24,3 @@ end
 local browserFilter = hs.window.filter.new('Brave Browser')
 browserFilter:subscribe(hs.window.filter.windowFocused, function() browserEnableAll() end)
 browserFilter:subscribe(hs.window.filter.windowUnfocused, function() browserDisableAll() end)
-

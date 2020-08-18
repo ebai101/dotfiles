@@ -39,7 +39,7 @@ hs.hotkey.bind(shyper, '0', hs.reload)
 
 -- uadctrl setup
 if hs.host.localizedName() == 'hackerman' then
-    print(hs.loadSpoon('UADCtrl'))
+    hs.loadSpoon('UADCtrl')
     spoon.UADCtrl:showAlerts(true)
     spoon.UADCtrl:bindHotkeys({
         enter  = { hyper,  'u' },
@@ -51,7 +51,6 @@ if hs.host.localizedName() == 'hackerman' then
 end
 
 -- other externals
-launcher        = require('launcher')
 windows         = require('windows')
 reason          = require('reason')
 browser         = require('browser')

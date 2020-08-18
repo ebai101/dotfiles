@@ -1,7 +1,5 @@
 -----------------------------------------------
 -- Reason Hotkeys
--- CMD-O: Better Open File
--- CMD-F: Better Create Effect
 -----------------------------------------------
 
 local reasonApp = hs.appfinder.appFromName('Reason')

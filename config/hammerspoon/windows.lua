@@ -1,10 +1,29 @@
 -----------------------------------------------
 -- Hyper Windows
--- HJKL: select left, down, up, right
--- I: show hints
--- TB: selects front window on top/bottom (not implemented yet)
--- Shift-TB: moves front window to top/bottom
 -----------------------------------------------
+
+local apps = {}
+
+-- different apps for different comps
+if hs.host.localizedName() == 'mbp' then
+    apps = {
+        {'e', 'Brave Browser',  false},
+        {'r', 'Messages',       true },
+        {'d', 'Alacritty',      false},
+        {'f', 'Mailspring',     true },
+        {'c', 'Spotify',        true },
+        {'v', 'Finder',         true }
+    }
+elseif hs.host.localizedName() == 'hackerman' then
+    apps = {
+        {'e', 'Brave Browser',      false},
+        {'r', 'Messages',           true },
+        {'d', 'Reason 11',          false},
+        {'f', 'Mail',               true },
+        {'c', 'com.uaudio.console', true },
+        {'v', 'Finder',             true }
+    }
+end
 
 local function focuser(direction)
     return function()
@@ -13,11 +32,19 @@ local function focuser(direction)
             hs.alert.show('No active window')
             return
         end
+
         if     direction == 'north' then current:focusWindowNorth()
         elseif direction == 'south' then current:focusWindowSouth()
         elseif direction == 'east'  then current:focusWindowEast()
         elseif direction == 'west'  then current:focusWindowWest()
         end
+
+        for i=1, #apps do
+            if apps[i][2] == current:application():title() and apps[i][3] == true then
+                current:application():hide()
+            end
+        end
+
         hs.mouse.setAbsolutePosition(hs.geometry.rectMidPoint(hs.window.focusedWindow():frame()))
     end
 end
@@ -39,3 +66,21 @@ hs.hotkey.bind(shyper,  '2', moveWindowToDisplay(2))
 hs.hints.style = 'vimperator'
 hs.hints.showTitleThresh = 1
 hs.hotkey.bind(hyper, 'i', hs.hints.windowHints)
+
+local k = hs.hotkey.modal.new(hyper, 'p')
+k:bind({}, 'escape', function() k:exit() end)
+
+for i = 1, #apps do
+    k:bind(hyper, apps[i][1], function()
+        local frontApp = hs.application.frontmostApplication()
+        if frontApp:title() == apps[i][2] or frontApp:bundleID() == apps[i][2] then
+            if apps[i][3] then hs.application.frontmostApplication():hide() end
+        else
+            if not hs.application.launchOrFocus(apps[i][2]) then
+                hs.application.launchOrFocusByBundleID(apps[i][2])
+            end
+        end
+        k:exit()
+    end)
+end
+
