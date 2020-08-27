@@ -27,7 +27,7 @@ end
 
 local function focuser(direction)
     return function()
-        local current = hs.window.focusedWindow() or hs.application.frontmostApplication():allWindows()[1] or hs.window.desktop()
+        local current = hs.window.focusedWindow()
         if not current then
             hs.alert.show('No active window')
             return
@@ -42,6 +42,7 @@ local function focuser(direction)
         for i=1, #apps do
             if apps[i][2] == current:application():title() and apps[i][3] == true then
                 current:application():hide()
+                break
             end
         end
 

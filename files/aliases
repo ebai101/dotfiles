@@ -7,6 +7,7 @@ alias t='tmux'
 alias tls='tmux ls'
 alias g='git'
 alias lg='lazygit'
+alias lights="$HOME/.lights.py"
 
 case $OSTYPE in
     darwin*)
@@ -65,45 +66,7 @@ pyenv_init() {
     eval "$(pyenv virtualenv-init -)"
 }
 
-# mqtt light control
-lights() {
-    [[ -v day_color ]] || day_color="100,0,0,150,255"
-    [[ -v eve_color ]] || eve_color="255,140,50,0,170"
-    [[ -v nite_color ]] || nite_color="170,50,255,0,100"
-
-    case $1 in
-        on)
-            mqtt_cmd_type="power"
-            mqtt_msg="on"
-            ;;
-        off)
-            mqtt_cmd_type="power"
-            mqtt_msg="off"
-            ;;
-        tog)
-            mqtt_cmd_type="power"
-            mqtt_msg="toggle"
-            ;;
-        day)
-            mqtt_cmd_type="color"
-            mqtt_msg=$day_color
-            ;;
-        eve)
-            mqtt_cmd_type="color"
-            mqtt_msg=$eve_color
-            ;;
-        nite)
-            mqtt_cmd_type="color"
-            mqtt_msg=$nite_color
-            ;;
-        *)
-            echo unknown light command
-            return 1
-        esac
-
-    mqtt_ip="172.16.21.96"
-    mqtt_cmd="/usr/local/bin/mqtt pub -t light/cmnd/$mqtt_cmd_type -m $mqtt_msg -h $mqtt_ip -p 1883 -V 3"
-
-    echo "$mqtt_cmd"
-    /bin/bash -c "$mqtt_cmd"
+# get pid of process listening on a port
+pidport() {
+    sudo lsof -n -i4TCP:$1 | grep LISTEN
 }

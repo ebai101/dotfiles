@@ -3,7 +3,6 @@
 - shell:
   - touch ~/.hushlogin
   - [git submodule update --init --recursive, Installing submodules]
- # - '[ ! command -v starship &> /dev/null ] && (curl -fsSL https://starship.rs/install.sh | bash)'
 
 - link:
     ~/.variables: files/variables
@@ -28,6 +27,7 @@
     ~/.gitignore: files/gitignore
     ~/.eslintrc.js: files/eslintrc.js
     ~/.clang-format: files/clang-format
+    ~/.lights.py: files/lights.py
     ~/.hammerspoon: config/hammerspoon
     ~/.config/nvim: config/nvim
     ~/.config/karabiner: config/karabiner
