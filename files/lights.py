@@ -28,4 +28,7 @@ if __name__ == '__main__':
     elif args.command == 'nite':
         msg_arr = [(TOPICS[n] + 'color', PRESETS['nite'][n], 0, False) for n in range(len(TOPICS))]
 
-    publish.multiple(msg_arr, hostname=SERVER, protocol=mqtt.MQTTv311)
+    try:
+        publish.multiple(msg_arr, hostname=SERVER, protocol=mqtt.MQTTv311)
+    except Exception as e:
+        print('light command failed:', e)
