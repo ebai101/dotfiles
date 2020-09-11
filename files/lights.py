@@ -3,38 +3,29 @@ import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import argparse
 
-SERVER='192.168.1.105'
-msg_arr = []
+SERVER = '192.168.1.105'
+TOPICS = ('light/cmnd/back/', 'light/cmnd/left/', 'light/cmnd/right/', 'light/cmnd/bed/')
+PRESETS = {
+    'day':  ( '0,0,0,0,255', '0,0,0,0,255', '0,0,0,0,255', '0,0,0,0,255' ),
+    'eve':  ( '168,67,0,0,0', '255,149,0,0,0', '255,170,0,0,0', '255,31,162,0,0' ),
+    'nite': ( '82,37,189,0,0', '183,0,255,0,0', '165,20,255,0,0', '184,87,7,0,0' )
+}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('command', type=str)
     args = parser.parse_args()
+    msg_arr = []
 
     if args.command == 'on':
-        msg_arr.append({'topic': 'light/cmnd/back/power',   'payload': 'on'})
-        msg_arr.append({'topic': 'light/cmnd/left/power',   'payload': 'on'})
-        msg_arr.append({'topic': 'light/cmnd/right/power',  'payload': 'on'})
-        msg_arr.append({'topic': 'light/cmnd/bed/power',    'payload': 'on'})
+        msg_arr = [(t + 'power', 'on', 0, False) for t in TOPICS]
     elif args.command == 'off':
-        msg_arr.append({'topic': 'light/cmnd/back/power',   'payload': 'off'})
-        msg_arr.append({'topic': 'light/cmnd/left/power',   'payload': 'off'})
-        msg_arr.append({'topic': 'light/cmnd/right/power',  'payload': 'off'})
-        msg_arr.append({'topic': 'light/cmnd/bed/power',    'payload': 'off'})
+        msg_arr = [(t + 'power', 'off', 0, False) for t in TOPICS]
     elif args.command == 'day':
-        msg_arr.append({'topic': 'light/cmnd/back/color',   'payload': '0,0,0,0,255'})
-        msg_arr.append({'topic': 'light/cmnd/left/color',   'payload': '0,0,0,0,255'})
-        msg_arr.append({'topic': 'light/cmnd/right/color',  'payload': '0,0,0,0,255'})
-        msg_arr.append({'topic': 'light/cmnd/bed/color',    'payload': '0,0,0,0,255'})
+        msg_arr = [(TOPICS[n] + 'color', PRESETS['day'][n], 0, False) for n in range(len(TOPICS))]
     elif args.command == 'eve':
-        msg_arr.append({'topic': 'light/cmnd/back/color',   'payload': '168,67,0,0,0'})
-        msg_arr.append({'topic': 'light/cmnd/left/color',   'payload': '255,149,0,0,0'})
-        msg_arr.append({'topic': 'light/cmnd/right/color',  'payload': '255,170,0,0,0'})
-        msg_arr.append({'topic': 'light/cmnd/bed/color',    'payload': '255,0,76,0,0'})
+        msg_arr = [(TOPICS[n] + 'color', PRESETS['eve'][n], 0, False) for n in range(len(TOPICS))]
     elif args.command == 'nite':
-        msg_arr.append({'topic': 'light/cmnd/back/color',   'payload': '170,50,255,0,100'})
-        msg_arr.append({'topic': 'light/cmnd/left/color',   'payload': '170,50,255,0,100'})
-        msg_arr.append({'topic': 'light/cmnd/right/color',  'payload': '170,50,255,0,100'})
-        msg_arr.append({'topic': 'light/cmnd/bed/color',    'payload': '170,50,255,0,100'})
+        msg_arr = [(TOPICS[n] + 'color', PRESETS['nite'][n], 0, False) for n in range(len(TOPICS))]
 
     publish.multiple(msg_arr, hostname=SERVER, protocol=mqtt.MQTTv311)
