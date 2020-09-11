@@ -16,6 +16,7 @@ spoon.MiroWindowsManager:bindHotkeys({
     fullscreen  = {shyper, 'f'}
 })
 
+
 -- ejectmenu setup
 hs.loadSpoon('EjectMenu')
 spoon.EjectMenu.show_in_menubar = false
@@ -32,7 +33,19 @@ hs.hotkey.bind(hyper, '0', function()
     end
 end)
 
--- reload
+-- misc keys
+hs.hotkey.bind(shyper, 'w', function()
+    local state = not hs.wifi.interfaceDetails().power
+    hs.wifi.setPower(state)
+    hs.alert.closeAll()
+    hs.alert.show('wifi ' .. (state and 'on' or 'off'))
+end)
+hs.hotkey.bind(shyper, 'c', function()
+    local state = not hs.caffeinate.get('displayIdle')
+    hs.caffeinate.set('displayIdle', state)
+    hs.alert.closeAll()
+    hs.alert.show('caffeinate ' .. (state and 'on' or 'off'))
+end)
 hs.hotkey.bind(shyper, '0', hs.reload)
 
 -- uadctrl setup
