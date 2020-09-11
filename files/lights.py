@@ -2,6 +2,7 @@
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import argparse
+from sys import exit
 
 SERVER = '192.168.1.105'
 TOPICS = ('light/cmnd/back/', 'light/cmnd/left/', 'light/cmnd/right/', 'light/cmnd/bed/')
@@ -27,6 +28,9 @@ if __name__ == '__main__':
         msg_arr = [(TOPICS[n] + 'color', PRESETS['eve'][n], 0, False) for n in range(len(TOPICS))]
     elif args.command == 'nite':
         msg_arr = [(TOPICS[n] + 'color', PRESETS['nite'][n], 0, False) for n in range(len(TOPICS))]
+    else:
+        print('invalid light command:', args.command)
+        exit(1)
 
     try:
         publish.multiple(msg_arr, hostname=SERVER, protocol=mqtt.MQTTv311)
