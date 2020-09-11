@@ -52,7 +52,7 @@ end
 
 local function moveWindowToDisplay(d)
     return function()
-        hs.window.focusedWindow():moveToScreen(hs.screen.allScreens()[d], false, true)
+        hs.window.focusedWindow():moveToScreen(d, false, true)
         hs.mouse.setAbsolutePosition(hs.geometry.rectMidPoint(hs.window.focusedWindow():frame()))
     end
 end
@@ -61,8 +61,8 @@ hs.hotkey.bind(hyper,   'h', focuser('west'))
 hs.hotkey.bind(hyper,   'j', focuser('south'))
 hs.hotkey.bind(hyper,   'k', focuser('north'))
 hs.hotkey.bind(hyper,   'l', focuser('east'))
-hs.hotkey.bind(shyper,  '1', moveWindowToDisplay(1))
-hs.hotkey.bind(shyper,  '2', moveWindowToDisplay(2))
+hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("R240HY"))
+hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("Display"))
 
 hs.hints.style = 'vimperator'
 hs.hints.showTitleThresh = 1
