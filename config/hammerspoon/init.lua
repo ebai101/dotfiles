@@ -2,8 +2,6 @@
 -- init.lua
 -----------------------------------------------
 
-hsapplication   = require('hs.application')
-hswindow        = require('hs.window')
 hyper           = {'cmd', 'ctrl', 'alt'}
 shyper          = {'shift', 'cmd', 'ctrl', 'alt'}
 
@@ -54,6 +52,5 @@ end
 windows         = require('windows')
 reason          = require('reason')
 browser         = require('browser')
-usb             = require('usb')
 
 hs.alert.show("config loaded")
