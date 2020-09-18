@@ -18,6 +18,7 @@ case $OSTYPE in
         alias l='gls --color=auto -lAh --group-directories-first'
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
+        alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
         alias vim='nvim'
         ;;
     linux*)
@@ -26,6 +27,7 @@ case $OSTYPE in
         alias lt='ls --color=auto -lAtrh --group-directories-first'
         alias l='ls --color=auto -lAh --group-directories-first'
         alias lpo='stat --printf="%A %a %n\n" *'
+        alias fast_sshrs='rsync -aHAXxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
         ;;
 esac
 
