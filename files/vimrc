@@ -21,6 +21,8 @@ set updatetime=300
 set shortmess+=c
 set lazyredraw
 set autoread
+set splitbelow
+set splitright
 if has('nvim')
     set noshowmode
     set signcolumn=yes
