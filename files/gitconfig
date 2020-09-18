@@ -28,3 +28,5 @@
 [merge "workspace"]
 	name = Only merge workspace files (not source files)
 	driver = scripts/workspace-merge.sh %O %A %B
+[pull]
+	rebase = false
