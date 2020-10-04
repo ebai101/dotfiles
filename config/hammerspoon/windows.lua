@@ -62,7 +62,7 @@ hs.hotkey.bind(hyper,   'j', focuser('south'))
 hs.hotkey.bind(hyper,   'k', focuser('north'))
 hs.hotkey.bind(hyper,   'l', focuser('east'))
 hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("R240HY"))
-hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("Display"))
+hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("Acer XFA240"))
 
 hs.hints.style = 'vimperator'
 hs.hints.showTitleThresh = 1
