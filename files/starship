@@ -1,5 +1,5 @@
 add_newline = false
-prompt_order = ["hostname", "directory", "git_branch", "character"]
+format = """$hostname$directory$git_branch$character"""
 
 [directory]
 style = "cyan"
