@@ -1,4 +1,4 @@
-alias c='clear'
+alias c='echo "control L"'
 alias cgb='cargo build'
 alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
