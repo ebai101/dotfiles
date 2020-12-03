@@ -54,6 +54,10 @@ hs.hotkey.bind(shyper, 'r', function()
     hs.screen.find("Acer XFA240"):rotate((state == 0 and 90 or 0))
 end)
 hs.hotkey.bind(shyper, '0', hs.reload)
+-- system preferences
+hs.hotkey.bind(hyper, ',', function()
+    hs.application.launchOrFocus('System Preferences')
+end)
 
 -- uadctrl setup
 if hs.host.localizedName() == 'hackerman' then
