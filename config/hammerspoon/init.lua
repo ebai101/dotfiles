@@ -34,19 +34,30 @@ hs.hotkey.bind(hyper, '0', function()
 end)
 
 -- misc keys
+-- wifi toggle
 hs.hotkey.bind(shyper, 'w', function()
     local state = not hs.wifi.interfaceDetails().power
     hs.wifi.setPower(state)
     hs.alert.closeAll()
     hs.alert.show('wifi ' .. (state and 'on' or 'off'))
 end)
+-- caffeinate toggle
 hs.hotkey.bind(shyper, 'c', function()
     local state = not hs.caffeinate.get('displayIdle')
     hs.caffeinate.set('displayIdle', state)
     hs.alert.closeAll()
     hs.alert.show('caffeinate ' .. (state and 'on' or 'off'))
 end)
+-- display rotate toggle
+hs.hotkey.bind(shyper, 'r', function()
+    local state = hs.screen.find("Acer XFA240"):rotate()
+    hs.screen.find("Acer XFA240"):rotate((state == 0 and 90 or 0))
+end)
 hs.hotkey.bind(shyper, '0', hs.reload)
+-- system preferences
+hs.hotkey.bind(hyper, ',', function()
+    hs.application.launchOrFocus('System Preferences')
+end)
 
 -- uadctrl setup
 if hs.host.localizedName() == 'hackerman' then
