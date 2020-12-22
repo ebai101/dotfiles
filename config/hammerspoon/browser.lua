@@ -21,6 +21,6 @@ local function browserDisableAll()
     for i=1, #browserHotkeys do browserHotkeys[i]:disable() end
 end
 
-local browserFilter = hs.window.filter.new('Brave Browser')
+local browserFilter = hs.window.filter.new('Google Chrome')
 browserFilter:subscribe(hs.window.filter.windowFocused, function() browserEnableAll() end)
 browserFilter:subscribe(hs.window.filter.windowUnfocused, function() browserDisableAll() end)

@@ -16,11 +16,11 @@ if hs.host.localizedName() == 'mbp' then
     }
 elseif hs.host.localizedName() == 'hackerman' then
     apps = {
-        {'e', 'Brave Browser',      false},
+        {'e', 'Google Chrome',      false},
         {'r', 'Messages',           true },
         {'d', 'Alacritty',          false},
         {'f', 'Mail',               true },
-        {'c', 'com.uaudio.console', true },
+        {'c', 'Discord',            false },
         {'v', 'Finder',             true }
     }
 end

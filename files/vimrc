@@ -2,8 +2,8 @@ syntax on
 
 set hidden
 set noerrorbells
-set tabstop=2 softtabstop=2
-set shiftwidth=2
+set tabstop=4 softtabstop=4
+set shiftwidth=4
 set expandtab
 set smartindent
 set autoindent
@@ -37,12 +37,22 @@ nnoremap <leader>/ :let @/ = ""<CR>
 nnoremap <leader>ws :%s/\s\+$//e<CR>
 
 " auto expanding
-inoremap (; (<CR>);<C-c>O
-inoremap (, (<CR>),<C-c>O
-inoremap {; {<CR>};<C-c>O
-inoremap {, {<CR>},<C-c>O
-inoremap [; [<CR>];<C-c>O
-inoremap [, [<CR>],<C-c>O
+" inoremap (; (<CR>);<C-c>O
+" inoremap (, (<CR>),<C-c>O
+" inoremap {; {<CR>};<C-c>O
+" inoremap {, {<CR>},<C-c>O
+" inoremap [; [<CR>];<C-c>O
+" inoremap [, [<CR>],<C-c>O
+
+" visual range macro
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+" ctrl-y by word
+inoremap <expr> <c-y> pumvisible() ? "\<c-y>" : matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
 " netrw boi
 let g:netrw_banner = 0
@@ -72,6 +82,16 @@ nnoremap <leader>, :e ~/.vimrc<CR>
 autocmd BufNewFile,BufRead *aliases set syntax=sh
 autocmd BufNewFile,BufRead *variables set syntax=sh
 
+" readline keybinds in command mode (from rsi.vim)
+cnoremap <C-A> <Home>
+cnoremap <C-B> <Left>
+cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
+silent! exe "set <S-Left>=\<Esc>b"
+silent! exe "set <S-Right>=\<Esc>f"
+
 " auto-install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -88,6 +108,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-obsession'
 
 " use locally
 if has('nvim')
@@ -98,6 +119,8 @@ if has('nvim')
     Plug 'sheerun/vim-polyglot'
     Plug 'gko/vim-coloresque'
     Plug 'mbbill/undotree'
+    Plug 'puremourning/vimspector'
+    Plug 'szw/vim-maximizer'
 endif
 
 call plug#end()
@@ -130,14 +153,21 @@ if has('nvim')
     set makeprg=ninja\ -Cbuild
     nnoremap <leader>5 :make<CR>
 
+    " vimspector
+    let g:vimspector_enable_mappings = 'HUMAN'
+
     " undotree
     nnoremap <leader>u :UndotreeShow<CR>
 
     " lsp
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    imap <silent> <C-p> <Plug>(completion_trigger)
+
     set completeopt=menuone,noinsert,noselect
     let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-    autocmd BufEnter * lua require'completion'.on_attach()
 
-    lua require'lspconfig'.flow.setup{}
-    lua require'lspconfig'.sumneko_lua.setup{}
+    lua require'lspconfig'.flow.setup{on_attach=require'completion'.on_attach}
+    lua require'lspconfig'.sumneko_lua.setup{on_attach=require'completion'.on_attach}
+    lua require'lspconfig'.pyls_ms.setup{on_attach=require'completion'.on_attach}
 endif

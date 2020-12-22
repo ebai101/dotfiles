@@ -30,3 +30,5 @@
 	driver = scripts/workspace-merge.sh %O %A %B
 [pull]
 	rebase = false
+[url "git@www.github.com:"]
+	insteadOf = "https://github.com/"

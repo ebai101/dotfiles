@@ -1,4 +1,4 @@
-# shellcheck shell=bash
+# vim: syntax=zsh
 
 autoload -Uz compinit; compinit
 bindkey -e
@@ -20,7 +20,8 @@ source ~/.aliases
 # load theme
 eval "$(starship init zsh)"
 
-# reload alias
-alias ref='source ~/.zshrc && echo reloaded zshrc'
+# reload aliases
+alias ref='source ~/.zshrc && echo reloaded shell'
+alias href='exec $SHELL'
 
 clear
