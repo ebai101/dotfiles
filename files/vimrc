@@ -109,6 +109,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
 
 " use locally
 if has('nvim')

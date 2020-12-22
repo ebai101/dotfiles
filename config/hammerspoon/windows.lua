@@ -7,7 +7,7 @@ local apps = {}
 -- different apps for different comps
 if hs.host.localizedName() == 'mbp' then
     apps = {
-        {'e', 'Brave Browser',  false},
+        {'e', 'Google Chrome',  false},
         {'r', 'Messages',       true },
         {'d', 'Alacritty',      false},
         {'f', 'Mailspring',     true },
