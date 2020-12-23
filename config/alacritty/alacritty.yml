@@ -31,6 +31,7 @@ mouse:
   hide_when_typing: true
 
 key_bindings:
+  - { key: W,       mods: Command,              chars:  "w"                 }
   - { key: M,       mods: Command,              chars:  "m"                 }
   - { key: S,       mods: Command,              chars:  "\x13"              }
   - { key: Key1,    mods: Command,              chars:  "\x131"             }

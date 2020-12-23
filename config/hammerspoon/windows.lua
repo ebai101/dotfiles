@@ -88,11 +88,7 @@ end
 -- vimwiki
 k:bind(hyper, 'w', function()
     local frontWindow = hs.window.frontmostWindow()
-    local vimWikiWindow = (function()
-        local w = hs.window('Vimwiki')
-        if not w then return nil end
-        if w:application():name() == 'alacritty' then return w else return nil end
-    end)()
+    local vimWikiWindow = hs.window('vimwiki alacritty')
 
     if vimWikiWindow == nil then
         hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/vimwiki.yml'}):start()

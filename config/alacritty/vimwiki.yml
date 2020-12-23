@@ -23,7 +23,7 @@ window:
   padding:
     x: 5
     y: 5
-  title: Vimwiki
+  title: 'vimwiki alacritty'
 
 mouse:
   hide_when_typing: true
@@ -35,7 +35,8 @@ shell:
     - '/usr/local/bin/nvim -u "~/.config/nvim/light.vim" -c "VimwikiIndex"'
 
 key_bindings:
-  - { key: M,       mods: Command,              chars:  "m"                 }
+  - { key: W, mods: Command, chars:  "w" }
+  - { key: M, mods: Command, chars:  "m" }
 
 # GRUVBOX BABY
 colors:
