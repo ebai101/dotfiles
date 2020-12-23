@@ -115,7 +115,6 @@ if has('nvim')
     Plug 'gko/vim-coloresque'
     Plug 'mbbill/undotree'
     Plug 'vimwiki/vimwiki'
-    Plug 'mattn/calendar-vim'
 endif
 
 call plug#end()
@@ -154,22 +153,6 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 let g:vimwiki_global_ext = 0
 au FileType vimwiki set wm=2 tw=104 wrap linebreak
 au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
-
-" calendar
-function! ToggleCalendar()
-  execute ":CalendarH"
-  if exists("g:calendar_open")
-    if g:calendar_open == 1
-      execute "q"
-      unlet g:calendar_open
-    else
-      g:calendar_open = 1
-    end
-  else
-    let g:calendar_open = 1
-  end
-endfunction
-nnoremap <leader>wc :call ToggleCalendar()<CR>
 
 " nvim specific
 if has('nvim')
