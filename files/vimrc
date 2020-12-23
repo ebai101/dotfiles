@@ -136,16 +136,12 @@ endif
 set background=dark
 set t_Co=256
 
-" fzf
-nnoremap <leader>pg :GFiles<CR>
-nnoremap <leader>pf :Files<CR>
-
 " vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 " vimwiki
 let _wiki = {}
-let _wiki.path = '~/Library/Mobile\ Documents/com~apple~CloudDocs/NOTES'
+let _wiki.path = '~/vimwiki'
 let _wiki.syntax = 'markdown'
 let _wiki.ext = '.md'
 let g:vimwiki_list = [_wiki]
@@ -153,6 +149,17 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 let g:vimwiki_global_ext = 0
 au FileType vimwiki set wm=2 tw=104 wrap linebreak
 au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+command! -bang -nargs=* RgWiki
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, {'dir': _wiki.path}, <bang>0)
+command! -bang -nargs=* FWiki
+    \ call fzf#vim#files(_wiki.path)
+
+" fzf
+nnoremap <leader>pg :GFiles<CR>
+nnoremap <leader>pf :Files<CR>
+nnoremap <leader>prf :Rg<CR>
+nnoremap <leader>pw :FWiki<CR>
+nnoremap <leader>prw :RgWiki<CR>
 
 " nvim specific
 if has('nvim')
