@@ -87,13 +87,10 @@ end
 
 -- vimwiki
 hs.hotkey.bind(hyper, 'w', function()
-    if hs.window.frontmostWindow():title() == 'Vimwiki' then
-        hs.application.frontmostApplication():hide()
+    local frontApp = hs.window.frontmostWindow() or nil
+    if not hs.window('Vimwiki') then
+        hs.task.new('/usr/local/bin/alacritty', function(exit, stdout, stderr) print(exit, stdout, stderr) end, {'--config-file', os.getenv('HOME')..'/.config/alacritty/vimwiki.yml'}):start()
     else
-        if not hs.window('Vimwiki') then
-            hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', '/Users/ethan/.config/alacritty/vimwiki.yml'}):start()
-        else
-            hs.window('Vimwiki'):focus()
-        end
+        hs.window('Vimwiki'):focus()
     end
 end)
