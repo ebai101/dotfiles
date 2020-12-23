@@ -14,7 +14,7 @@ font:
   bold_italic:
     family: MesloLGS NF
     style: Bold Italic
-  size: 14
+  size: 12
   use_thin_strokes: false
 
 scrolling:
@@ -31,7 +31,6 @@ mouse:
   hide_when_typing: true
 
 key_bindings:
-  - { key: Return,  mods: Command|Alt|Control,  action: SpawnNewInstance    }
   - { key: M,       mods: Command,              chars:  "m"                 }
   - { key: S,       mods: Command,              chars:  "\x13"              }
   - { key: Key1,    mods: Command,              chars:  "\x131"             }

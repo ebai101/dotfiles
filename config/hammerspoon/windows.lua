@@ -57,6 +57,12 @@ local function moveWindowToDisplay(d)
     end
 end
 
+-- vimwiki bind
+hs.hotkey.bind(hyper, 'w', function()
+    hs.execute('alacritty --config-file ~/.config/alacritty/vimwiki.yml', true)
+end)
+
+-- focuser binds
 hs.hotkey.bind(hyper,   'h', focuser('west'))
 hs.hotkey.bind(hyper,   'j', focuser('south'))
 hs.hotkey.bind(hyper,   'k', focuser('north'))
@@ -64,13 +70,9 @@ hs.hotkey.bind(hyper,   'l', focuser('east'))
 hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("R240HY"))
 hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("Acer XFA240"))
 
-hs.hints.style = 'vimperator'
-hs.hints.showTitleThresh = 1
-hs.hotkey.bind(hyper, 'i', hs.hints.windowHints)
-
+-- app launcher binds
 local k = hs.hotkey.modal.new(hyper, 'p')
 k:bind({}, 'escape', function() k:exit() end)
-
 for i = 1, #apps do
     k:bind(hyper, apps[i][1], function()
         local frontApp = hs.application.frontmostApplication()
