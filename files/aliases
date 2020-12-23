@@ -1,3 +1,5 @@
+# vim: set syntax=sh:
+
 alias c='echo "control L"'
 alias cgb='cargo build'
 alias cgr='cargo run -q'
