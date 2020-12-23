@@ -11,8 +11,8 @@ if hs.host.localizedName() == 'mbp' then
         {'r', 'Messages',       true },
         {'d', 'Alacritty',      false},
         {'f', 'Mailspring',     true },
-        {'c', 'Spotify',        true },
-        {'v', 'Finder',         true }
+        {'c', 'Discord',        true },
+        {'v', 'Finder',         true },
     }
 elseif hs.host.localizedName() == 'hackerman' then
     apps = {
@@ -57,11 +57,6 @@ local function moveWindowToDisplay(d)
     end
 end
 
--- vimwiki bind
-hs.hotkey.bind(hyper, 'w', function()
-    hs.execute('alacritty --config-file ~/.config/alacritty/vimwiki.yml', true)
-end)
-
 -- focuser binds
 hs.hotkey.bind(hyper,   'h', focuser('west'))
 hs.hotkey.bind(hyper,   'j', focuser('south'))
@@ -73,17 +68,32 @@ hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("Acer XFA240"))
 -- app launcher binds
 local k = hs.hotkey.modal.new(hyper, 'p')
 k:bind({}, 'escape', function() k:exit() end)
+
 for i = 1, #apps do
-    k:bind(hyper, apps[i][1], function()
+    local appHotkey = apps[i][1]
+    local appName = apps[i][2]
+    local appFloat = apps[i][3]
+
+    k:bind(hyper, appHotkey, function()
         local frontApp = hs.application.frontmostApplication()
-        if frontApp:title() == apps[i][2] or frontApp:bundleID() == apps[i][2] then
-            if apps[i][3] then hs.application.frontmostApplication():hide() end
+        if frontApp:title() == appName then
+            if appFloat then frontApp:hide() end
         else
-            if not hs.application.launchOrFocus(apps[i][2]) then
-                hs.application.launchOrFocusByBundleID(apps[i][2])
-            end
+            hs.application.launchOrFocus(appName)
         end
         k:exit()
     end)
 end
 
+-- vimwiki
+hs.hotkey.bind(hyper, 'w', function()
+    if hs.window.frontmostWindow():title() == 'Vimwiki' then
+        hs.application.frontmostApplication():hide()
+    else
+        if not hs.window('Vimwiki') then
+            hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', '/Users/ethan/.config/alacritty/vimwiki.yml'}):start()
+        else
+            hs.window('Vimwiki'):focus()
+        end
+    end
+end)
