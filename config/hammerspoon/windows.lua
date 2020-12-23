@@ -86,7 +86,7 @@ for i = 1, #apps do
 end
 
 -- vimwiki
-hs.hotkey.bind(hyper, 'w', function()
+k:bind(hyper, 'w', function()
     local frontWindow = hs.window.frontmostWindow()
     local vimWikiWindow = (function()
         local w = hs.window('Vimwiki')
@@ -101,4 +101,5 @@ hs.hotkey.bind(hyper, 'w', function()
     elseif vimWikiWindow == frontWindow then
         vimWikiWindow:application():hide()
     end
+    k:exit()
 end)

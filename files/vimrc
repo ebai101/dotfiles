@@ -36,7 +36,7 @@ let mapleader = " "
 
 " clear stuff
 nnoremap <leader>/ :let @/ = ""<CR>
-nnoremap <leader>ws :%s/\s\+$//e<CR>
+nnoremap <leader>dws :%s/\s\+$//e<CR>
 
 " visual range macro
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
