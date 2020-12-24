@@ -96,6 +96,12 @@ g['netrw_altv'] = 1
 g['netrw_winsize'] = 20
 g['mapleader'] = ' '
 
+-- macro over visual range (needs lua rewrite)
+-- local function macroOverVisualRange()
+--     cmd [[echo "@".getcmdline()]]
+--     cmd [[execute ":'<,'>normal @".nr2char(getchar())]]
+-- end
+
 -- autocmds
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'   -- highlight on yank
 cmd 'au FileType c,cpp,cs,java setlocal commentstring=//\\ %s'          -- proper vim-commentary comments
@@ -120,7 +126,7 @@ map('n', '<leader>o', 'm`o<Esc>``')         -- newline in normal mode
 map('n', '<C-l>', ':noh<cr>')               -- clear search
 map('v', 'J', ":m '>+1<CR>gv=gv")           -- move line down with indentation
 map('v', 'K', ":m '<-2<CR>gv=gv")           -- move line up with indentation
-map('x', '@', '<C-u>call ExecuteMacroOverVisualRange()<cr>')
+-- map('x', '@', macroOverVisualRange())
 
 -- fzf
 map('n', '<leader>pf', ':Files<cr>')

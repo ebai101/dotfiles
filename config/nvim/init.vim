@@ -7,10 +7,3 @@ if empty(glob('~/.local/share/nvim/site/pack/paqs/opt/paq-nvim'))
 endif
 
 lua require('init')
-
-" visual range macro
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-function! ExecuteMacroOverVisualRange()
-    echo "@".getcmdline()
-    execute ":'<,'>normal @".nr2char(getchar())
-endfunction
