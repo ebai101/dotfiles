@@ -2,6 +2,7 @@
 
 local cmd, fn, g = vim.cmd, vim.fn, vim.g
 local scopes = { o = vim.o, b = vim.bo, w = vim.wo }
+local home = os.getenv('HOME')
 
 local function opt(scope, key, value)
     scopes[scope][key] = value
@@ -12,6 +13,10 @@ local function map(mode, lhs, rhs, opts)
     local options = {noremap= true}
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+for i = 1, #scopes['b'] do
+    print(scopes['b'])
 end
 
 
@@ -69,16 +74,17 @@ opt('o', 'splitbelow', true)
 opt('o', 'splitright', true)
 opt('o', 'backup', false)
 opt('o', 'writebackup', false)
-opt('o', 'undodir', '~/.config/nvim/undodir')
+opt('o', 'undodir', home..'/.config/nvim/undodir')
 opt('o', 'incsearch', true)
 opt('o', 'cmdheight', 2)
 opt('o', 'shortmess', 'filnxtToOFc')
 opt('o', 'lazyredraw', true)
 opt('o', 'autoread', true)
 opt('o', 'mouse', 'a')
-opt('o', 'showmode', false)
+-- opt('o', 'showmode', false)
 opt('o', 'inccommand', 'split')
-opt('o', 'makeprg', 'ninja\\ -Cbuild')
+opt('o', 'makeprg', 'ninja -Cbuild')
+opt('o', 'termguicolors', true)
 
 -- window scoped
 opt('w', 'number', true)
@@ -110,14 +116,14 @@ map('n', '<leader>pv', ':Lexplore<cr>')
 map('n', '<leader>=', ':vertical resize +5<cr>')
 map('n', '<leader>-', ':vertical resize -5<cr>')
 map('n', '<leader>6', '<C-^>')
-map('n', '<leader>', ':e ~/.config/nvim/lua/init.lua')
+map('n', '<leader>', ':e ~/.config/nvim/lua/init.lua<cr>')
+map('n', '<leader><', ':so ~/.config/nvim/init.vim<cr>')
 
 -- text management
 map('n', '<leader>o', 'm`o<Esc>``')         -- newline in normal mode
 map('n', '<C-l>', ':noh<cr>')               -- clear search
-map('n', '<leader>dws', ":%s/\\s\\+$//e<cr>") -- delete white space
-map('n', 'J', ":m '>+1<CR>gv=gv")           -- move line down with indentation
-map('n', 'K', ":m '<-2<CR>gv=gv")           -- move line up with indentation
+map('v', 'J', ":m '>+1<CR>gv=gv")           -- move line down with indentation
+map('v', 'K', ":m '<-2<CR>gv=gv")           -- move line up with indentation
 map('x', '@', '<C-u>call ExecuteMacroOverVisualRange()<cr>')
 
 -- fzf
@@ -152,8 +158,8 @@ lsp.sumneko_lua.setup { on_attach = require'completion'.on_attach,
 }
 lspfuzzy.setup {}
 
-opt('g', 'completeopt', 'menuone,noinsert,noselect')
-g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
+opt('o', 'completeopt', 'menuone,noinsert,noselect')
+g['completion_matching_strategy_list'] = { 'exact', 'substring', 'fuzzy' }
 
 -- maps
 map('i', '<S-Ta>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
@@ -171,7 +177,6 @@ cmd 'colorscheme gruvbox'
 g['gruvbox_contrast_dark'] = 'hard'
 g['gruvbox_contrast_light'] = 'light'
 g['gruvbox_invert_selection'] = '0'
-g['lightline'] = {}
-g['lightline.colorscheme'] = 'gruvbox'
+g['lightline'] = { colorscheme = 'gruvbox' }
 cmd 'highlight Normal ctermbg=NONE guibg=NONE'
 opt('o', 'background', 'dark')
