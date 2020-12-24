@@ -1,5 +1,7 @@
 " vimrc - basic vim defaults
 
+let g:mapleader = " "
+
 set hidden
 set noerrorbells
 set tabstop=4 softtabstop=4
@@ -25,23 +27,6 @@ set splitbelow
 set splitright
 set mouse=a
 
-" leader boi
-let mapleader = " "
-
-" clear stuff
-nnoremap <leader>/ :let @/ = ""<CR>
-nnoremap <leader>dws :%s/\s\+$//e<CR>
-
-" visual range macro
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-function! ExecuteMacroOverVisualRange()
-  echo "@".getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-" ctrl-y by word
-inoremap <expr> <c-y> pumvisible() ? "\<c-y>" : matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
-
 " netrw boi
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -49,7 +34,7 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 
-" window stuff
+nnoremap <C-l> :noh<cr>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -58,20 +43,14 @@ nnoremap <leader>pv :Lexplore<CR>
 nnoremap <leader>= :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>6 <C-^>
-
-" move stuff around
+nnoremap <leader>, :e ~/.vimrc<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" preferences
-nnoremap <leader>, :e ~/.vimrc<CR>
+" macro over visual range
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
-" readline keybinds in command mode (from rsi.vim)
-cnoremap <C-A> <Home>
-cnoremap <C-B> <Left>
-cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
-cnoremap <M-b> <S-Left>
-cnoremap <M-f> <S-Right>
-silent! exe "set <S-Left>=\<Esc>b"
-silent! exe "set <S-Right>=\<Esc>f"

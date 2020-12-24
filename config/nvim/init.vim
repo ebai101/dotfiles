@@ -6,7 +6,7 @@ if empty(glob('~/.local/share/nvim/site/pack/paqs/opt/paq-nvim'))
     au VimEnter * PaqInstall
 endif
 
-luafile ~/.config/nvim/lua/init.lua
+lua require('init')
 
 " visual range macro
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>

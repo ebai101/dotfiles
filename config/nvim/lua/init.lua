@@ -189,5 +189,7 @@ g['vimwiki_list'] = {{
 g['vimwiki_global_ext'] = 0
 cmd 'au FileType vimwiki set wm=2 tw=104 wrap linebreak'
 cmd 'au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab'
+
+-- todo: rewrite these in lua
 cmd "command! -bang -nargs=* RgWiki call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, {'dir': '~/vimwiki'}, <bang>0)"
 cmd "command! -bang -nargs=* FWiki call fzf#vim#files('~/vimwiki')"
