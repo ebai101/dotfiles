@@ -15,10 +15,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-for i = 1, #scopes['b'] do
-    print(scopes['b'])
-end
-
 
 ---------- PLUGINS ----------
 
@@ -130,6 +126,8 @@ map('x', '@', '<C-u>call ExecuteMacroOverVisualRange()<cr>')
 map('n', '<leader>pf', ':Files<cr>')
 map('n', '<leader>pg', ':GFiles<cr>')
 map('n', '<leader>prf', ':Rg<cr>')
+map('n', '<leader>pw', ':FWiki<cr>')
+map('n', '<leader>prw', ':RgWiki<cr>')
 
 -- misc
 map('n', '<leader>5', ':make<cr>')
@@ -180,3 +178,16 @@ g['gruvbox_invert_selection'] = '0'
 g['lightline'] = { colorscheme = 'gruvbox' }
 cmd 'highlight Normal ctermbg=NONE guibg=NONE'
 opt('o', 'background', 'dark')
+
+
+---------- VIMWIKI ----------
+g['vimwiki_list'] = {{
+    path = '~/vimwiki',
+    syntax = 'markdown',
+    ext = '.md'
+}}
+g['vimwiki_global_ext'] = 0
+cmd 'au FileType vimwiki set wm=2 tw=104 wrap linebreak'
+cmd 'au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab'
+cmd "command! -bang -nargs=* RgWiki call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, {'dir': '~/vimwiki'}, <bang>0)"
+cmd "command! -bang -nargs=* FWiki call fzf#vim#files('~/vimwiki')"

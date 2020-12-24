@@ -1,5 +1,7 @@
 config/karabiner/automatic_backups
 config/hammerspoon/Spoons/UADCtrl.spoon
+
 config/nvim/undodir
-config/nvim/plugged
+config/nvim/.netrwhist
+
 craftedcart/
