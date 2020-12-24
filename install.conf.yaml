@@ -9,7 +9,9 @@
     ~/.aliases: files/aliases
     ~/.starship: files/starship
     ~/.tmux.conf: files/tmux.conf
-    ~/.vimrc: files/vimrc
+    ~/.vimrc:
+      path: files/vimrc
+      if: '! command -v nvim'
 
 # OSX
 - defaults:

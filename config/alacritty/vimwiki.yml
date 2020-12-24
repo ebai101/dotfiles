@@ -32,7 +32,7 @@ shell:
   program: /bin/zsh
   args:
     - -c
-    - '/usr/local/bin/nvim -u "~/.config/nvim/light.vim" -c "VimwikiIndex"'
+    - '/usr/local/bin/nvim -u "~/.config/nvim/vimwiki.vim" -c "VimwikiIndex"'
 
 key_bindings:
   - { key: W, mods: Command, chars:  "w" }
