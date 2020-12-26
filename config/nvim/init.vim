@@ -6,4 +6,10 @@ if empty(glob('~/.local/share/nvim/site/pack/paqs/opt/paq-nvim'))
     au VimEnter * PaqInstall
 endif
 
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
 lua require('init')

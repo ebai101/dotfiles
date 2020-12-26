@@ -1,6 +1,6 @@
 ---------- INIT.LUA ----------
 
-local cmd, fn, g = vim.cmd, vim.fn, vim.g
+local cmd, g = vim.cmd, vim.g
 local scopes = { o = vim.o, b = vim.bo, w = vim.wo }
 local home = os.getenv('HOME')
 
@@ -26,7 +26,6 @@ paq { 'savq/paq-nvim', opt = true }
 paq { 'gruvbox-community/gruvbox' }
 paq { 'itchyny/lightline.vim' }
 paq { 'shinchu/lightline-gruvbox.vim' }
-paq { 'svermeulen/vimpeccable' }
 
 -- enhancements
 paq { 'tpope/vim-commentary' }
@@ -35,7 +34,7 @@ paq { 'tpope/vim-obsession' }
 paq { 'tpope/vim-repeat' }
 paq { 'gko/vim-coloresque' }
 paq { 'mbbill/undotree' }
-paq { 'junegunn/fzf', hook = fn['fzf#install()'] }
+paq { 'junegunn/fzf' }
 paq { 'junegunn/fzf.vim' }
 
 -- lsp/completion
@@ -96,12 +95,6 @@ g['netrw_altv'] = 1
 g['netrw_winsize'] = 20
 g['mapleader'] = ' '
 
--- macro over visual range (needs lua rewrite)
--- local function macroOverVisualRange()
---     cmd [[echo "@".getcmdline()]]
---     cmd [[execute ":'<,'>normal @".nr2char(getchar())]]
--- end
-
 -- autocmds
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'   -- highlight on yank
 cmd 'au FileType c,cpp,cs,java setlocal commentstring=//\\ %s'          -- proper vim-commentary comments
@@ -126,7 +119,6 @@ map('n', '<leader>o', 'm`o<Esc>``')         -- newline in normal mode
 map('n', '<C-l>', ':noh<cr>')               -- clear search
 map('v', 'J', ":m '>+1<CR>gv=gv")           -- move line down with indentation
 map('v', 'K', ":m '<-2<CR>gv=gv")           -- move line up with indentation
--- map('x', '@', macroOverVisualRange())
 
 -- fzf
 map('n', '<leader>pf', ':Files<cr>')
@@ -169,7 +161,14 @@ g['completion_matching_strategy_list'] = { 'exact', 'substring', 'fuzzy' }
 map('i', '<S-Ta>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('i', '<silent> <C-p>', '<Plug>(completion_trigger)')
-
+map('n', '<leader>vd', ':lua vim.lsp.buf.definition()<CR>')
+map('n', '<leader>vi', ':lua vim.lsp.buf.implementation()<CR>')
+map('n', '<leader>vsh', ':lua vim.lsp.buf.signature_help()<CR>')
+map('n', '<leader>vrr', ':lua vim.lsp.buf.references()<CR>')
+map('n', '<leader>vrn', ':lua vim.lsp.buf.rename()<CR>')
+map('n', '<leader>vh', ':lua vim.lsp.buf.hover()<CR>')
+map('n', '<leader>vca', ':lua vim.lsp.buf.code_action()<CR>')
+map('n', '<leader>vsd', ':lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>')
 
 -- tree-sitter
 local ts = require 'nvim-treesitter.configs'

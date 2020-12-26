@@ -3,6 +3,7 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export STARSHIP_CONFIG=~/.starship
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 case $OSTYPE in
     darwin*)

@@ -62,11 +62,12 @@ ta() {
 # smart tmux kill-session
 tk() {
     if [ -z "$1" ]; then tmux kill-session; else tmux kill-session -t $1; fi
+        if command -v deactivate &> /dev/null; then deactivate; fi
 }
 
 # source virtualenv
 sv() {
-    source venv/bin/activate &&
+    source venv/bin/activate
     tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
 }
 
