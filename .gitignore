@@ -3,3 +3,5 @@ config/hammerspoon/Spoons/UADCtrl.spoon
 config/nvim/undodir
 config/nvim/plugged
 craftedcart/
+
+config/nvim/.netrwhist
