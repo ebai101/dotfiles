@@ -38,6 +38,12 @@ let mapleader = " "
 nnoremap <C-l> :noh<CR>
 nnoremap <leader>dws :%s/\s\+$//e<CR>
 
+" yank to system clipboard with leader
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>y "+y
+nnoremap <leader>yy "+yy
+
 " visual range macro
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 function! ExecuteMacroOverVisualRange()
@@ -120,7 +126,7 @@ call plug#end()
 " colors
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'light'
+let g:gruvbox_contrast_light = 'soft'
 let g:gruvbox_invert_selection = '0'
 let g:gruvbox_italic = 1
 let g:lightline = {}
@@ -143,16 +149,15 @@ au BufWritePre *.py :call Yapf()
 
 " vimwiki
 let _wiki = {}
-let _wiki.path = '~/vimwiki'
+let _wiki.path = $HOME.'/vimwiki'
 let _wiki.syntax = 'markdown'
 let _wiki.ext = '.md'
 let _wiki.auto_tags = 1
 let _wiki.auto_generate_links = 1
 let _wiki.auto_diary_index = 1
+let g:vimwiki_list = [_wiki]
 let g:vimwiki_auto_header = 1
 let g:vimwiki_auto_chdir = 1
-
-let g:vimwiki_list = [_wiki]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_global_ext = 0
 au FileType vimwiki set wm=2 tw=104 wrap linebreak
