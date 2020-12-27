@@ -35,7 +35,7 @@ endif
 let mapleader = " "
 
 " clear stuff
-nnoremap <leader>/ :let @/ = ""<CR>
+nnoremap <C-l> :noh<CR>
 nnoremap <leader>dws :%s/\s\+$//e<CR>
 
 " visual range macro
@@ -72,10 +72,6 @@ vnoremap K :m '<-2<CR>gv=gv
 " preferences
 nnoremap <leader>, :e ~/.vimrc<CR>
 
-" syntax for dotfiles
-autocmd BufNewFile,BufRead *aliases set syntax=sh
-autocmd BufNewFile,BufRead *variables set syntax=sh
-
 " readline keybinds in command mode (from rsi.vim)
 cnoremap <C-A> <Home>
 cnoremap <C-B> <Left>
@@ -108,7 +104,9 @@ Plug 'tpope/vim-repeat'
 " use locally
 if has('nvim')
     Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/completion-nvim'
+    Plug 'ebai101/vim-yapf'
     Plug 'itchyny/lightline.vim'
     Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'sheerun/vim-polyglot'
@@ -139,11 +137,21 @@ set t_Co=256
 " vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
+" vim-yapf
+let g:yapf_style = 'google'
+au BufWritePre *.py :call Yapf()
+
 " vimwiki
 let _wiki = {}
 let _wiki.path = '~/vimwiki'
 let _wiki.syntax = 'markdown'
 let _wiki.ext = '.md'
+let _wiki.auto_tags = 1
+let _wiki.auto_generate_links = 1
+let _wiki.auto_diary_index = 1
+let g:vimwiki_auto_header = 1
+let g:vimwiki_auto_chdir = 1
+
 let g:vimwiki_list = [_wiki]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_global_ext = 0
@@ -153,6 +161,7 @@ command! -bang -nargs=* RgWiki
     \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, {'dir': _wiki.path}, <bang>0)
 command! -bang -nargs=* FWiki
     \ call fzf#vim#files(_wiki.path)
+
 
 " fzf
 nnoremap <leader>pg :GFiles<CR>
@@ -178,7 +187,7 @@ if has('nvim')
     set completeopt=menuone,noinsert,noselect
     let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-    lua require'lspconfig'.flow.setup{on_attach=require'completion'.on_attach}
-    lua require'lspconfig'.sumneko_lua.setup{on_attach=require'completion'.on_attach}
-    lua require'lspconfig'.pyls_ms.setup{on_attach=require'completion'.on_attach}
+    lua require('lspconfigs')
 endif
+
+au TextYankPost * silent! lua vim.highlight.on_yank()
