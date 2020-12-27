@@ -13,6 +13,7 @@ if hs.host.localizedName() == 'mbp' then
         {'f', 'Mailspring',     true },
         {'c', 'Discord',        true },
         {'v', 'Finder',         true },
+        {'x', 'Spotify',        true },
     }
 elseif hs.host.localizedName() == 'hackerman' then
     apps = {
@@ -20,8 +21,9 @@ elseif hs.host.localizedName() == 'hackerman' then
         {'r', 'Messages',           true },
         {'d', 'Alacritty',          false},
         {'f', 'Mail',               true },
-        {'c', 'Discord',            false },
-        {'v', 'Finder',             true }
+        {'c', 'Discord',            false},
+        {'v', 'Finder',             true },
+        {'x', 'Spotify',            true }
     }
 end
 
