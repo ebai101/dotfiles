@@ -14,4 +14,5 @@ lsp.sumneko_lua.setup{ on_attach = require'completion'.on_attach, settings = {
     },
 }}
 lsp.pyright.setup{ on_attach = require'completion'.on_attach }
+lsp.vimls.setup{ on_attach = require'completion'.on_attach }
 ts.setup { highlight = { enable = true } }
