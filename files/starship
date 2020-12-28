@@ -12,7 +12,7 @@ style = "blue"
 ssh_only = true
 
 [python]
-format = '[${version}( \($virtualenv\))]($style) '
+format = '[(\($virtualenv\) )]($style)'
 style = "green bold"
 python_binary = "python3"
 scan_for_pyfiles = false
