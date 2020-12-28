@@ -8,6 +8,7 @@ case $OSTYPE in
     darwin*)
         export EDITOR=/usr/local/bin/nvim
         export HOMEBREW_NO_ANALYTICS=1
+        export HOMEBREW_VERBOSE=1
         ;;
     linux*)
         export EDITOR=vim
