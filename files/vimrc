@@ -125,6 +125,8 @@ if has('nvim')
     Plug 'sheerun/vim-polyglot'
     Plug 'gko/vim-coloresque'
     Plug 'mbbill/undotree'
+    Plug 'AndrewRadev/splitjoin.vim'
+    Plug 'tommcdo/vim-lion'
     Plug 'vimwiki/vimwiki'
 endif
 
