@@ -5,6 +5,7 @@ set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
+set smarttab
 set smartindent
 set autoindent
 set nu rnu
@@ -77,6 +78,9 @@ vnoremap K :m '<-2<CR>gv=gv
 " preferences
 nnoremap <leader>, :e ~/.vimrc<CR>
 
+" exit terminal mode
+tnoremap <leader><Esc> <C-\><C-n>
+
 " readline keybinds in command mode (from rsi.vim)
 cnoremap <C-A> <Home>
 cnoremap <C-B> <Left>
@@ -86,6 +90,9 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 silent! exe "set <S-Left>=\<Esc>b"
 silent! exe "set <S-Right>=\<Esc>f"
+
+" python3 executable
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " auto-install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
