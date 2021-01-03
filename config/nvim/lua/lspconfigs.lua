@@ -23,7 +23,6 @@ lsp.sumneko_lua.setup{ on_attach = require'completion'.on_attach, settings = {
             },
         },
 }}
-cmd 'au Filetype lua setlocal omnifunc=v:lua.vim.lsp.omnifunc'
 
 -- python
 lsp.pyright.setup{ on_attach = require'completion'.on_attach, settings = {
@@ -35,8 +34,6 @@ lsp.pyright.setup{ on_attach = require'completion'.on_attach, settings = {
             },
         },
 }}
-cmd 'au Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc'
 
 -- viml
 lsp.vimls.setup{ on_attach = require'completion'.on_attach }
-cmd 'au Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc'
