@@ -116,16 +116,22 @@ Plug 'tpope/vim-dispatch'
 
 " use locally
 if has('nvim')
+    " lsp
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/completion-nvim'
     Plug 'ebai101/vim-yapf'
+    Plug 'sheerun/vim-polyglot'
+    " theming
     Plug 'itchyny/lightline.vim'
     Plug 'shinchu/lightline-gruvbox.vim'
-    Plug 'sheerun/vim-polyglot'
     Plug 'gko/vim-coloresque'
+    " vimwiki
+    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+    Plug 'tools-life/taskwiki'
+    Plug 'powerman/vim-plugin-AnsiEsc'
+    " misc
     Plug 'mbbill/undotree'
-    Plug 'vimwiki/vimwiki'
     Plug 'dbeniamine/cheat.sh-vim'
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'godlygeek/tabular'
@@ -174,7 +180,9 @@ command! -bang -nargs=* RgWiki
     \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, {'dir': _wiki.path}, <bang>0)
 command! -bang -nargs=* FWiki
     \ call fzf#vim#files(_wiki.path)
-
+" todolist commands
+command! Tdy :r !date +'\%m-\%d-\%y'
+command! Tmo :r !date -v+1d +'\%m-\%d-\%y'
 
 " fzf
 nnoremap <leader>pg :GFiles<CR>

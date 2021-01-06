@@ -1,4 +1,4 @@
-# vim: set syntax=sh:
+# vim: syntax=zsh
 
 alias c='echo "control L"'
 alias cgb='cargo build'
