@@ -128,8 +128,6 @@ if has('nvim')
     Plug 'gko/vim-coloresque'
     " vimwiki
     Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-    Plug 'tools-life/taskwiki'
-    Plug 'powerman/vim-plugin-AnsiEsc'
     " misc
     Plug 'mbbill/undotree'
     Plug 'dbeniamine/cheat.sh-vim'

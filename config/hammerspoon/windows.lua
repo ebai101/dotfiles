@@ -20,7 +20,7 @@ elseif hs.host.localizedName() == 'hackerman' then
         {'e', 'Google Chrome',      false},
         {'r', 'Messages',           true },
         {'d', 'Alacritty',          false},
-        {'f', 'Mail',               true },
+        {'f', 'Mailspring',         true },
         {'c', 'Discord',            false},
         {'v', 'Finder',             true },
         {'x', 'Spotify',            true }
