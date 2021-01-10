@@ -1,87 +1,88 @@
-filetype plugin on
-
-set hidden
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-set smartindent
-set autoindent
-set nu rnu
-set nowrap
-set smartcase
-set noswapfile
-set nobackup
-set nowritebackup
-set undodir=~/.vim/undodir
-set undofile
-set incsearch
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-set lazyredraw
-set autoread
-set splitbelow
-set splitright
-set mouse=a
+call plug#begin('~/.vim/plugged')
+Plug 'gruvbox-community/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+Plug 'mbbill/undotree'
 if has('nvim')
-    set noshowmode
-    set signcolumn=yes
-    set inccommand=split
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'ebai101/vim-yapf'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'itchyny/lightline.vim'
+    Plug 'shinchu/lightline-gruvbox.vim'
+    Plug 'gko/vim-coloresque'
+    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+    Plug 'dbeniamine/cheat.sh-vim'
+    Plug 'AndrewRadev/splitjoin.vim'
+    Plug 'godlygeek/tabular'
+endif
+call plug#end()
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" leader boi
+
+" our glorious leader
 let mapleader = " "
 
-" clear stuff
-nnoremap <C-l> :noh<CR>
-nnoremap <leader>dws :%s/\s\+$//e<CR>
 
-" yank to system clipboard with leader
+" removes trailing whitespaces
+" run with an au BufWritePre
+func! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfunc
+
+" runs a macro for each line in a v-line selection
+function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" clear search highlight
+nnoremap <C-l> :noh<CR>
+
+" yank to system clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+yg_
 nnoremap <leader>y "+y
 nnoremap <leader>yy "+yy
 
-" visual range macro
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-function! ExecuteMacroOverVisualRange()
-  echo "@".getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-" ctrl-y by word
+" ctrl-y by word instead of by character
 inoremap <expr> <c-y> pumvisible() ? "\<c-y>" : matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
-" netrw boi
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
-
-" window stuff
+" window manipulation
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>pv :Lexplore<CR>
 nnoremap <leader>= :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>6 <C-^>
 
-" move stuff around
+" move lines up and down in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" preferences
+" open undotree
+nnoremap <leader>u :UndotreeShow<CR>
+
+" open vimrc
 nnoremap <leader>, :e ~/.vimrc<CR>
 
-" exit terminal mode
+" readline binds in command mode
 tnoremap <leader><Esc> <C-\><C-n>
-
-" readline keybinds in command mode (from rsi.vim)
 cnoremap <C-A> <Home>
 cnoremap <C-B> <Left>
 cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
@@ -91,134 +92,10 @@ cnoremap <M-f> <S-Right>
 silent! exe "set <S-Left>=\<Esc>b"
 silent! exe "set <S-Right>=\<Esc>f"
 
-" python3 executable
-let g:python3_host_prog = '/usr/local/bin/python3'
 
-" auto-install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" plug list
-call plug#begin('~/.vim/plugged')
-
-" use everywhere
-Plug 'gruvbox-community/gruvbox'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
-
-" use locally
-if has('nvim')
-    " lsp
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'ebai101/vim-yapf'
-    Plug 'sheerun/vim-polyglot'
-    " theming
-    Plug 'itchyny/lightline.vim'
-    Plug 'shinchu/lightline-gruvbox.vim'
-    Plug 'gko/vim-coloresque'
-    " vimwiki
-    Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-    " misc
-    Plug 'mbbill/undotree'
-    Plug 'dbeniamine/cheat.sh-vim'
-    Plug 'AndrewRadev/splitjoin.vim'
-    Plug 'godlygeek/tabular'
-endif
-
-call plug#end()
-
-" colors
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'soft'
-let g:gruvbox_invert_selection = '0'
-let g:gruvbox_italic = 1
-let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox'
-highlight Normal ctermbg=NONE guibg=NONE
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    set tgc
-endif
-set background=dark
-set t_Co=256
-
-" vim-commentary
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
-
-" vim-yapf
-let g:yapf_style = 'google'
-au BufWritePre *.py :call Yapf()
-
-" vimwiki
-let _wiki = {}
-let _wiki.path = $HOME.'/vimwiki'
-let _wiki.syntax = 'markdown'
-let _wiki.ext = '.md'
-let _wiki.auto_diary_index = 1
-let g:vimwiki_list = [_wiki]
-let g:vimwiki_auto_header = 1
-let g:vimwiki_auto_chdir = 1
-let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_global_ext = 0
-au FileType vimwiki set wm=2 tw=104 wrap linebreak
-au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
-command! -bang -nargs=* RgWiki
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, {'dir': _wiki.path}, <bang>0)
-command! -bang -nargs=* FWiki
-    \ call fzf#vim#files(_wiki.path)
-" todolist commands
-command! Tdy :r !date +'\%m-\%d-\%y'
-command! Tmo :r !date -v+1d +'\%m-\%d-\%y'
-
-" fzf
-nnoremap <leader>pg :GFiles<CR>
-nnoremap <leader>pf :Files<CR>
-nnoremap <leader>prf :Rg<CR>
-nnoremap <leader>pw :FWiki<CR>
-nnoremap <leader>prw :RgWiki<CR>
-
-" nvim specific
-if has('nvim')
-    " make
-    set makeprg=ninja\ -Cbuild
-    nnoremap <leader>5 :make<CR>
-
-    " undotree
-    nnoremap <leader>u :UndotreeShow<CR>
-
-    " lsp
-    imap <tab> <Plug>(completion_smart_tab)
-    imap <s-tab> <Plug>(completion_smart_s_tab)
-    nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
-    nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
-    nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
-    nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
-    nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
-    nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
-    nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
-
-    set completeopt=menuone,noinsert,noselect
-    let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
-    func! LspReloadFunc()
-        lua vim.lsp.stop_client(vim.lsp.get_active_clients())
-        edit
-    endfunc
-    command LspReload call LspReloadFunc()
-
-    lua require('lspconfigs')
-endif
-
-au TextYankPost * silent! lua vim.highlight.on_yank()
+aug GROUPY_MCGROUPSON
+    au!
+    au FileType c,cpp,cs,java setlocal commentstring=//\ %s
+    au TextYankPost * silent! lua vim.highlight.on_yank()
+    au BufWritePre * :call TrimWhitespace()
+aug END
