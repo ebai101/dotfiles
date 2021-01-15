@@ -10,6 +10,16 @@
     ~/.starship: files/starship
     ~/.tmux.conf: files/tmux.conf
     ~/.vimrc: files/vimrc
+    ~/.zshrc:
+      path: files/zshrc
+      force: true
+    ~/.gitconfig: files/gitconfig
+    ~/.gitignore: files/gitignore
+    ~/.eslintrc.js: files/eslintrc.js
+    ~/.clang-format: files/clang-format
+    ~/.lights.py: files/lights.py
+    ~/.config/alacritty: config/alacritty
+    ~/.config/nvim: config/nvim
 
 # OSX
 - defaults:
@@ -20,18 +30,8 @@
       if: '[[ $OSTYPE == darwin* ]]'
 
 - link:
-    ~/.zshrc:
-      path: files/zshrc
-      force: true
-    ~/.gitconfig: files/gitconfig
-    ~/.gitignore: files/gitignore
-    ~/.eslintrc.js: files/eslintrc.js
-    ~/.clang-format: files/clang-format
-    ~/.lights.py: files/lights.py
     ~/.hammerspoon: config/hammerspoon
-    ~/.config/nvim: config/nvim
     ~/.config/karabiner: config/karabiner
-    ~/.config/alacritty: config/alacritty
 
 - create:
     - ~/.vim/undodir
@@ -40,9 +40,9 @@
 - defaults:
     link:
       relink: true
-      if: '[[ $OSTYPE == linux* ]]'
+      if: '[[ $HOSTNAME == linux* ]]'
     create:
-      if: '[[ $OSTYPE == linux* ]]'
+      if: '[[ $HOSTNAME == linux* ]]'
 
 - link:
     ~/.bash_profile:
