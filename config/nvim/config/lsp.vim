@@ -12,6 +12,7 @@ if has('nvim')
     let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
     let g:python3_host_prog = '/usr/local/bin/python3'
     let g:yapf_style = 'google'
+    set omnifunc=v:lua.vim.lsp.omnifunc
 
     func! LspReloadFunc()
         lua vim.lsp.stop_client(vim.lsp.get_active_clients())

@@ -4,9 +4,6 @@ local ts = require 'nvim-treesitter.configs'
 -- treesitter
 ts.setup { ensure_installed = 'maintained', highlight = { enable = true } }
 
--- js
-lsp.flow.setup{ on_attach = require'completion'.on_attach }
-
 -- lua
 local sumneko_root_path = '/Volumes/FilesHDD/CODE/lua-language-server'
 local sumneko_binary = sumneko_root_path..'/bin/macOS'..'/lua-language-server'
@@ -41,3 +38,39 @@ lsp.pyright.setup{ on_attach = require'completion'.on_attach, settings = {
 
 -- viml
 lsp.vimls.setup{ on_attach = require'completion'.on_attach }
+
+-- gopls
+lsp.gopls.setup{
+    cmd = {'gopls', 'serve'},
+    filetypes = {'go', 'gomod'},
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true
+            },
+            staticcheck = true
+        },
+    },
+}
+
+-- organize on save like goimports does
+function lsp.organize_go_imports(timeoutms)
+    local context = { source = { organizeImports = true } }
+    vim.validate { context = { context, "t", true } }
+
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+
+    local method = "textDocument/codeAction"
+    local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+    if resp and resp[1] then
+        local result = resp[1].result
+        if result and result[1] then
+            local edit = result[1].edit
+            vim.lsp.util.apply_workspace_edit(edit)
+        end
+    end
+
+    vim.lsp.buf.formatting()
+end
+vim.cmd('au BufWritePre *.go lua require"lspconfig".organize_go_imports(1000)')
