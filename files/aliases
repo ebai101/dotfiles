@@ -7,6 +7,7 @@ alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
 alias t='tmux'
 alias tls='tmux ls'
+alias vim='nvim'
 alias g='git'
 alias lg='lazygit'
 alias lights="$HOME/.lights.py"
@@ -15,21 +16,21 @@ case $OSTYPE in
     darwin*)
         alias f='open -a Finder ./' # opens cd in finder
         alias ls='gls --color=auto -h --group-directories-first'
-        alias ll='gls --color=auto -lh --group-directories-first'
         alias lt='gls --color=auto -lAtrh --group-directories-first'
-        alias l='gls --color=auto -lAh --group-directories-first'
+        alias la='gls --color=auto -lAh --group-directories-first'
+        alias l='gls --color=auto -lh --group-directories-first'
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
-        alias vim='nvim'
         ;;
     linux*)
         alias ls='ls --color=auto -h --group-directories-first'
-        alias ll='ls --color=auto -lh --group-directories-first'
         alias lt='ls --color=auto -lAtrh --group-directories-first'
-        alias l='ls --color=auto -lAh --group-directories-first'
+        alias la='ls --color=auto -lAh --group-directories-first'
+        alias l='ls --color=auto -lh --group-directories-first'
         alias lpo='stat --printf="%A %a %n\n" *'
         alias fast_sshrs='rsync -aHAXxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+        alias hostname='cat /etc/hostname'
         ;;
 esac
 

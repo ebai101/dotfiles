@@ -13,7 +13,6 @@
     ~/.zshrc:
       path: files/zshrc
       force: true
-    ~/.gitconfig: files/gitconfig
     ~/.gitignore: files/gitignore
     ~/.eslintrc.js: files/eslintrc.js
     ~/.clang-format: files/clang-format
@@ -30,6 +29,7 @@
       if: '[[ $OSTYPE == darwin* ]]'
 
 - link:
+    ~/.gitconfig: files/gitconfig-osx
     ~/.hammerspoon: config/hammerspoon
     ~/.config/karabiner: config/karabiner
 
@@ -40,11 +40,13 @@
 - defaults:
     link:
       relink: true
-      if: '[[ $HOSTNAME == linux* ]]'
+      if: '[[ $OSTYPE == linux* ]]'
     create:
-      if: '[[ $HOSTNAME == linux* ]]'
+      if: '[[ $OSTYPE == linux* ]]'
 
 - link:
+    ~/.gitconfig: files/gitconfig-linux
+    ~/.config/i3: config/i3
     ~/.bash_profile:
       path: files/bash_profile
       force: true

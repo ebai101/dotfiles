@@ -1,0 +1,33 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Ethan Bailey
+	email = ebailey256@gmail.com
+	username = ebai101
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = osxkeychain
+[credential "https://github.com"]
+	username = ebai101
+[core]
+	excludesfile = /Users/ethan/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[merge "ours"]
+	driver = true
+[merge "workspace"]
+	name = Only merge workspace files (not source files)
+	driver = scripts/workspace-merge.sh %O %A %B
+[pull]
+	rebase = false
+[url "git@www.github.com:"]
+	insteadOf = "https://github.com/"
