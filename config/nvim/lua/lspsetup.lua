@@ -5,8 +5,8 @@ local ts = require 'nvim-treesitter.configs'
 ts.setup { ensure_installed = 'maintained', highlight = { enable = true } }
 
 -- lua
-local sumneko_root_path = '/Volumes/FilesHDD/CODE/lua-language-server'
-local sumneko_binary = sumneko_root_path..'/bin/macOS'..'/lua-language-server'
+local sumneko_root_path = '~/dev/lua-language-server'
+local sumneko_binary = sumneko_root_path..'/bin/Linux'..'/lua-language-server'
 
 lsp.sumneko_lua.setup{ on_attach = require'completion'.on_attach,
     cmd = {sumneko_binary, '-E', sumneko_root_path..'/main.lua'},

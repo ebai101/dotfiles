@@ -3,19 +3,19 @@ env:
 
 font:
   normal:
-    family: Inconsolata
+    family: MesloLGS NF
     style: Regular
   italic:
-    family: Inconsolata
+    family: MesloLGS NF
     style: Italic
   bold:
-    family: Inconsolata
+    family: MesloLGS NF
     style: Bold
   bold_italic:
-    family: Inconsolata
+    family: MesloLGS NF
     style: Bold Italic
-  size: 12
-  use_thin_strokes: false
+  size: 10
+  use_thin_strokes: true
 
 scrolling:
   history: 10000
@@ -31,22 +31,22 @@ mouse:
   hide_when_typing: true
 
 key_bindings:
-  - { key: W,       mods: Super,              chars:  "w"                 }
-  - { key: M,       mods: Super,              chars:  "m"                 }
-  - { key: S,       mods: Super,              chars:  "\x13"              }
-  - { key: Key1,    mods: Super,              chars:  "\x131"             }
-  - { key: Key2,    mods: Super,              chars:  "\x132"             }
-  - { key: Key3,    mods: Super,              chars:  "\x133"             }
-  - { key: Key4,    mods: Super,              chars:  "\x134"             }
-  - { key: Key5,    mods: Super,              chars:  "\x135"             }
-  - { key: Key6,    mods: Super,              chars:  "\x136"             }
-  - { key: Key7,    mods: Super,              chars:  "\x137"             }
-  - { key: Key8,    mods: Super,              chars:  "\x138"             }
-  - { key: Key9,    mods: Super,              chars:  "\x139"             }
-  - { key: H,       mods: Super,              chars:  "\x13h"             }
-  - { key: J,       mods: Super,              chars:  "\x13j"             }
-  - { key: K,       mods: Super,              chars:  "\x13k"             }
-  - { key: L,       mods: Super,              chars:  "\x13l"             }
+  - { key: M,       mods: Command,              chars:  "m"                 }
+  - { key: W,       mods: Command,              chars:  "w"                 }
+  - { key: S,       mods: Command,              chars:  "\x13"              }
+  - { key: Key1,    mods: Command,              chars:  "\x131"             }
+  - { key: Key2,    mods: Command,              chars:  "\x132"             }
+  - { key: Key3,    mods: Command,              chars:  "\x133"             }
+  - { key: Key4,    mods: Command,              chars:  "\x134"             }
+  - { key: Key5,    mods: Command,              chars:  "\x135"             }
+  - { key: Key6,    mods: Command,              chars:  "\x136"             }
+  - { key: Key7,    mods: Command,              chars:  "\x137"             }
+  - { key: Key8,    mods: Command,              chars:  "\x138"             }
+  - { key: Key9,    mods: Command,              chars:  "\x139"             }
+  - { key: H,       mods: Command,              chars:  "\x13h"             }
+  - { key: J,       mods: Command,              chars:  "\x13j"             }
+  - { key: K,       mods: Command,              chars:  "\x13k"             }
+  - { key: L,       mods: Command,              chars:  "\x13l"             }
 
 # GRUVBOX BABY
 colors:
