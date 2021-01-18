@@ -22,8 +22,5 @@ if has('nvim')
 
     lua require('lspsetup')
 
-    aug GROUPY_MCGROUPSON
-        au!
-        au BufWritePre *.py :call Yapf()
-    aug END
+    au BufWritePre *.py :call Yapf()
 endif

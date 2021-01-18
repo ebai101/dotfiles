@@ -94,9 +94,7 @@ silent! exe "set <S-Left>=\<Esc>b"
 silent! exe "set <S-Right>=\<Esc>f"
 
 
-aug GROUPY_MCGROUPSON
-    au!
-    au FileType c,cpp,cs,java setlocal commentstring=//\ %s
-    au TextYankPost * silent! lua vim.highlight.on_yank()
-    au BufWritePre * :call TrimWhitespace()
-aug END
+" aucmds
+au FileType c,cpp,cs,java setlocal commentstring=//\ %s
+au TextYankPost * silent! lua vim.highlight.on_yank()
+au BufWritePre * :call TrimWhitespace()

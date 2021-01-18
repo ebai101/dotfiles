@@ -13,8 +13,5 @@ let g:vimwiki_global_ext = 0
 command! Tdy :r !date +'\%m-\%d-\%y'
 command! Tmo :r !date -v+1d +'\%m-\%d-\%y'
 
-aug GROUPY_MCGROUPSON
-    au!
-    au FileType vimwiki set wm=2 tw=104 wrap linebreak
-    au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
-aug END
+au FileType vimwiki set wm=2 tw=104 wrap linebreak
+au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
