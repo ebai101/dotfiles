@@ -34,6 +34,11 @@ hs.hotkey.bind(hyper, '0', function()
 end)
 
 -- misc keys
+hs.hotkey.bind(shyper, '0', hs.reload)
+hs.hotkey.bind({}, 'f19', function()
+    hs.eventtap.keyStroke(hyper, 'space')
+end)
+
 -- wifi toggle
 hs.hotkey.bind(shyper, 'w', function()
     local state = not hs.wifi.interfaceDetails().power
@@ -53,7 +58,6 @@ hs.hotkey.bind(shyper, 'r', function()
     local state = hs.screen.find("R240HY"):rotate()
     hs.screen.find("R240HY"):rotate((state == 0 and 270 or 0))
 end)
-hs.hotkey.bind(shyper, '0', hs.reload)
 -- system preferences
 hs.hotkey.bind(hyper, ',', function()
     hs.application.launchOrFocus('System Preferences')
