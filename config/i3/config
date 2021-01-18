@@ -18,6 +18,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier Mod3
 
+# window floating settings
+for_window [title="vimwiki alacritty"] floating enable
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -133,6 +136,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     status_command i3status -c ~/.config/i3/status
+    separator_symbol " | "
     colors {
         background #1a1a1a
         statusline #cccccc

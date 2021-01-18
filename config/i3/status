@@ -1,3 +1,5 @@
+# vim: ft=i3config
+
 general {
     output_format = "i3bar"
     colors = false
@@ -7,31 +9,42 @@ general {
 
 order += "memory"
 order += "disk /home"
+order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "ethernet enp0s31f6"
 order += "tztime local"
 
-cpu_temperature 0 {
-    format = "T: %degrees °C"
-    path = "/sys/class/thermal/thermal_zone0/temp"
+memory {
+    format = "<span color='#636363'>M:</span> %used"
+    threshold_degraded = "10%"
+    format_degraded = "<span color='#900000'>MEMORY: %free</span>"
 }
 
 disk "/home" {
-    format = "D: %free"
+    format = "<span color='#636363'>D:</span> %avail"
+    low_threshold = "5"
+    format_below_threshold = "<span color='#900000'>DISK: %avail</span>"
 }
 
-memory {
-    format = "M: %used"
-    threshold_degraded = "10%"
-    format_degraded = "MEMORY: %free"
+cpu_usage {
+    format = "<span color='#636363'>C:</span> %usage"
+    max_threshold = "75"
+    format_above_threshold = "<span color='#900000'>CPU: %usage</span>"
 }
+
+cpu_temperature 0 {
+    format = "<span color='#636363'>T:</span> %degrees °C"
+    path = "/sys/class/thermal/thermal_zone0/temp"
+    format_above_threshold = "<span color='#900000'>TEMP: %degrees °C</span>"
+}
+
 
 tztime local {
-    format = "%time"
+    format = "<span color='#C5C8C6'>%time</span>"
     format_time = "%a %-d %b %r "
 }
 
 ethernet enp0s31f6 {
-    format_up = "%ip"
-    format_down = "disconnected"
+    format_up = "<span color='#636363'>I:</span> %ip"
+    format_down = "<span color='#900000'>I: disconnected</span>"
 }
