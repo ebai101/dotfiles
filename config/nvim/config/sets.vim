@@ -23,6 +23,7 @@ set lazyredraw
 set autoread
 set splitbelow
 set splitright
+set nowrapscan
 set mouse=a
 
 if has('nvim')
