@@ -14,7 +14,6 @@
       path: files/zshrc
       force: true
     ~/.gitignore: files/gitignore
-    ~/.eslintrc.js: files/eslintrc.js
     ~/.clang-format: files/clang-format
     ~/.lights.py: files/lights.py
     ~/.config/alacritty: config/alacritty
@@ -47,6 +46,7 @@
 - link:
     ~/.gitconfig: files/gitconfig-linux
     ~/.config/i3: config/i3
+    ~/.config/picom: config/picom
     ~/.bash_profile:
       path: files/bash_profile
       force: true
