@@ -3,15 +3,30 @@ let g:gruvbox_contrast_light = 'soft'
 let g:gruvbox_invert_selection = '0'
 let g:gruvbox_italic = 1
 
+function! LspStatus() abort
+    if luaeval('#vim.lsp.buf_get_clients() > 0')
+        return luaeval("require('lsp-status').status()")
+    endif
+
+    return ''
+endfunction
+
 if has('nvim')
-    let g:lightline = {}
-    let g:lightline.colorscheme = 'gruvbox'
+    let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'lsp' ] ]
+      \ },
+      \ 'component_function': {
+      \   'lsp': 'LspStatus'
+      \ },
+      \ }
 endif
 
 highlight Normal ctermbg=NONE guibg=NONE
 if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set tgc
 endif
 

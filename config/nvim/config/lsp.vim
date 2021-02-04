@@ -22,12 +22,11 @@ if has('nvim')
     lua require('lspsetup')
 
     au BufWritePre *.go lua require'lspconfig'.organize_go_imports(1000)
-    au FileType javascript,javascriptreact,typescript,typescriptreact,css,scss au BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
 
     augroup autoformat_settings
-        autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+        autocmd FileType c,cpp,arduino AutoFormatBuffer clang-format
+        autocmd FileType javascript,typescript AutoFormatBuffer prettier
         autocmd FileType go AutoFormatBuffer gofmt
         autocmd FileType python AutoFormatBuffer yapf
-        autocmd FileType rust AutoFormatBuffer rustfmt
     augroup END
 endif

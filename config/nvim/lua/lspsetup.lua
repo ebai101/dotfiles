@@ -1,18 +1,26 @@
 local lsp = require 'lspconfig'
 local ts = require 'nvim-treesitter.configs'
+local status = require 'lsp-status'
+local completion = require 'completion'
 
--- treesitter
+-- init --
 ts.setup { ensure_installed = 'maintained', highlight = { enable = true } }
+status.register_progress()
+
+local function on_attach_all(client)
+    status.on_attach(client)
+    completion.on_attach(client)
+end
 
 -- clangd
 lsp.clangd.setup{ on_attach = require'completion'.on_attach }
 
 -- lua
-local sumneko_root = '~/dev/lua-language-server'
+local sumneko_root = vim.env.HOME..'/dev/lua-language-server'
 local sumneko_binary = sumneko_root..'/bin/Linux/lua-language-server'
 
 lsp.sumneko_lua.setup{
-    on_attach = require'completion'.on_attach,
+    on_attach = on_attach_all,
     cmd = {sumneko_binary, '-E', sumneko_root..'/main.lua'},
     settings = {
         Lua = {
@@ -30,7 +38,7 @@ lsp.sumneko_lua.setup{
 }}
 
 -- python
-lsp.pyright.setup{ on_attach = require'completion'.on_attach, settings = {
+lsp.pyright.setup{ on_attach = on_attach_all, settings = {
         python = {
             analysis = {
                 autoSearchPaths = true,
@@ -41,17 +49,14 @@ lsp.pyright.setup{ on_attach = require'completion'.on_attach, settings = {
 }}
 
 -- viml
-lsp.vimls.setup{ on_attach = require'completion'.on_attach }
-
--- tsserver
-lsp.tsserver.setup{ on_attach = require'completion'.on_attach }
+lsp.vimls.setup{ on_attach = on_attach_all }
 
 -- rust
-lsp.rls.setup{ on_attach = require'completion'.on_attach }
+lsp.rls.setup{ on_attach = on_attach_all }
 
 -- diagnosticls
 lsp.diagnosticls.setup{
-    on_attach = require'completion'.on_attach,
+    on_attach = on_attach_all,
     filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
     init_options = {
         linters = {
