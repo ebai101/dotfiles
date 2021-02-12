@@ -76,7 +76,7 @@ for i = 1, #apps do
     local appName = apps[i][2]
     local appFloat = apps[i][3]
 
-    k:bind(hyper, appHotkey, function()
+    k:bind({}, appHotkey, function()
         local frontApp = hs.application.frontmostApplication()
         if frontApp:title() == appName then
             if appFloat then frontApp:hide() end
