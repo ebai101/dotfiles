@@ -16,8 +16,16 @@ end
 lsp.clangd.setup{ on_attach = require'completion'.on_attach }
 
 -- lua
+local system_name
+if vim.fn.has("mac") == 1 then
+    system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+    system_name = "Linux"
+end
+
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local sumneko_root = vim.env.HOME..'/dev/lua-language-server'
-local sumneko_binary = sumneko_root..'/bin/Linux/lua-language-server'
+local sumneko_binary = sumneko_root.."/bin/"..system_name.."/lua-language-server"
 
 lsp.sumneko_lua.setup{
     on_attach = on_attach_all,
