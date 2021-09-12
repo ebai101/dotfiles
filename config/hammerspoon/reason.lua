@@ -2,45 +2,22 @@
 -- Reason Hotkeys
 -----------------------------------------------
 
-local reasonApp = hs.appfinder.appFromName('Reason')
-local reasonLog = hs.logger.new('reason', 'info')
-local reasonHotkeys = {}
-
--- Better open file - searches songs directory for reason files
-local bofChooser = hs.chooser.new(function(choice) hs.open(choice['subText']) end)
-    :searchSubText(true)
-    :bgDark(true)
-
-local function bofPopulate()
-    local options = {}
-    reasonLog.i('creating Better Open File list')
-    hs.task.new('/usr/bin/find', function(task, out, err)
-        for path in out:gmatch("[^\r\n]+") do
-            table.insert(options, {
-                    ['text'] = string.match(path, ".*/(.+)%..+$"),
-                    ['subText'] = path,
-                    ['modified'] = hs.fs.attributes(path).modification
-                })
-        end
-        table.sort(options, function(a, b)
-            return a['modified'] > b['modified']
-        end)
-        bofChooser:choices(options)
-        reasonLog.i('done creating Better Open File list')
-    end, { '/Volumes/FilesHDD/SONGS', '-name', '*.reason' }):start()
-end
-bofChooser:showCallback(bofPopulate)
-
-table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'o', function() bofChooser:show() end))
+reasonApp = hs.appfinder.appFromName('Reason')
+reasonLog = hs.logger.new('reason', 'info')
+reasonHotkeys = {}
 
 -- Better create effect - chooser to search the menus for rack units/plugins like Ableton
-local bceChooser = hs.chooser.new(function(choice) if choice then reasonApp:selectMenuItem(choice['menuSelector']) end end):bgDark(true)
+bceChooser = hs.chooser.new(function(choice) if choice then reasonApp:selectMenuItem(choice['menuSelector']) end end)
+bceChooser:bgDark(false)
 
-local function bcePopulate()
+function bcePopulate()
     local options = {}
-    reasonLog.i('creating Better Create Effect list')
 
+    reasonApp = hs.appfinder.appFromName('Reason')
+    if reasonApp:getMenuItems() == nil then return end
     local menus = reasonApp:getMenuItems()[4]['AXChildren'][1]
+
+    -- reasonLog.i('instruments, effects, utilities')
     for i=7, 9 do
         for j=11, #menus[i]['AXChildren'][1] do
             for k=1, #menus[i]['AXChildren'][1][j]['AXChildren'][1] do
@@ -63,6 +40,7 @@ local function bcePopulate()
             end
         end
     end
+    -- reasonLog.i('players')
     for i=1, #menus[10]['AXChildren'][1] do
         if not menus[10]['AXChildren'][1][i]['AXTitle'] == '' then
             reasonLog.d(menus[10]['AXChildren'][1][i]['AXTitle'])
@@ -77,21 +55,44 @@ local function bcePopulate()
         end
     end
 
+    -- write json cache
+    hs.json.write(options, 'reason_bce_data.json', false, true)
     bceChooser:choices(options)
-    reasonLog.i('done creating Better Create Effect list')
+    hs.alert('reloaded')
 end
-table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'f', function() bceChooser:show() end))
+table.insert(reasonHotkeys, hs.hotkey.new('cmd', 'f', function()
+    if bceChooser:isVisible() then
+        bcePopulate()
+    else
+        bceChooser:choices(hs.json.read('reason_bce_data.json'))
+    end
+    bceChooser:show()
+end))
 
 -- window filter setup
-local function reasonEnableAll()
+-- reasonFilter = hs.window.filter.new('Reason')
+-- reasonFilter:subscribe(hs.window.filter.windowFocused, function() reasonEnableAll() end)
+-- reasonFilter:subscribe(hs.window.filter.windowUnfocused, function() reasonDisableAll() end)
+
+function reasonEnableAll()
     for i=1, #reasonHotkeys do reasonHotkeys[i]:enable() end
-    bcePopulate()
 end
 
-local function reasonDisableAll()
+function reasonDisableAll()
     for i=1, #reasonHotkeys do reasonHotkeys[i]:disable() end
 end
 
-local reasonFilter = hs.window.filter.new('Reason')
-reasonFilter:subscribe(hs.window.filter.windowFocused, function() reasonEnableAll() end)
-reasonFilter:subscribe(hs.window.filter.windowUnfocused, function() reasonDisableAll() end)
+function reasonWatcherCallback(appName, eventType, app)
+    if appName == 'Reason' then
+        if eventType == hs.application.watcher.activated then
+            reasonLog.i('reason activated')
+            reasonEnableAll()
+        elseif eventType == hs.application.watcher.deactivated then
+            reasonLog.i('reason deactivated')
+            reasonDisableAll()
+        end
+    end
+end
+
+reasonWatcher = hs.application.watcher.new(reasonWatcherCallback)
+reasonWatcher:start()
