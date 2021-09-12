@@ -25,6 +25,7 @@ if has('nvim')
     Plug 'dbeniamine/cheat.sh-vim'
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'godlygeek/tabular'
+    Plug 'gfontenot/vim-xcode', { 'branch': 'main' }
 endif
 call plug#end()
 
