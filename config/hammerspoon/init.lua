@@ -34,7 +34,9 @@ hs.hotkey.bind(hyper, '0', function()
 end)
 
 -- misc keys
-hs.hotkey.bind(shyper, '0', hs.reload)
+hs.hotkey.bind(shyper, '0', function()
+    hs.reload()
+end)
 hs.hotkey.bind({}, 'f19', function()
     hs.eventtap.keyStroke(hyper, 'space')
 end)
@@ -80,5 +82,7 @@ end
 windows         = require('windows')
 reason          = require('reason')
 browser         = require('browser')
+tagging         = require('quicktags')
+scroll          = require('scroll')
 
 hs.alert.show("config loaded")
