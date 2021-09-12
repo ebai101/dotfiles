@@ -5,3 +5,4 @@ config/nvim/plugged
 craftedcart/
 
 config/nvim/.netrwhist
+config/hammerspoon/reason_bce_data.json
