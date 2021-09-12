@@ -22,6 +22,7 @@ case $OSTYPE in
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+        alias yta='youtube-dl -x --audio-format wav'
         ;;
     linux*)
         alias ls='ls --color=auto -h --group-directories-first'
