@@ -64,8 +64,8 @@ hs.hotkey.bind(hyper,   'h', focuser('west'))
 hs.hotkey.bind(hyper,   'j', focuser('south'))
 hs.hotkey.bind(hyper,   'k', focuser('north'))
 hs.hotkey.bind(hyper,   'l', focuser('east'))
-hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("R240HY"))
-hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("Acer XFA240"))
+-- hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("Acer XFA240"))
+-- hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("R240HY"))
 
 -- app launcher binds
 local k = hs.hotkey.modal.new(hyper, 'p')
@@ -88,7 +88,7 @@ for i = 1, #apps do
 end
 
 -- vimwiki
-k:bind(hyper, 'w', function()
+k:bind({}, 'w', function()
     local frontWindow = hs.window.frontmostWindow()
     local vimWikiWindow = hs.window('vimwiki alacritty')
 
