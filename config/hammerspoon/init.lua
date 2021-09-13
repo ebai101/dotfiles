@@ -35,8 +35,10 @@ end)
 
 -- misc keys
 hs.hotkey.bind(shyper, '0', function()
+    -- Reason.reasonWatcher:stop()
     hs.reload()
 end)
+
 hs.hotkey.bind({}, 'f19', function()
     hs.eventtap.keyStroke(hyper, 'space')
 end)
@@ -48,6 +50,7 @@ hs.hotkey.bind(shyper, 'w', function()
     hs.alert.closeAll()
     hs.alert.show('wifi ' .. (state and 'on' or 'off'))
 end)
+
 -- caffeinate toggle
 hs.hotkey.bind(shyper, 'c', function()
     local state = not hs.caffeinate.get('displayIdle')
@@ -55,11 +58,13 @@ hs.hotkey.bind(shyper, 'c', function()
     hs.alert.closeAll()
     hs.alert.show('caffeinate ' .. (state and 'on' or 'off'))
 end)
--- display rotate toggle
-hs.hotkey.bind(shyper, 'r', function()
-    local state = hs.screen.find("R240HY"):rotate()
-    hs.screen.find("R240HY"):rotate((state == 0 and 270 or 0))
-end)
+
+-- -- display rotate toggle
+-- hs.hotkey.bind(shyper, 'r', function()
+--     local state = hs.screen.find("R240HY"):rotate()
+--     hs.screen.find("R240HY"):rotate((state == 0 and 270 or 0))
+-- end)
+
 -- system preferences
 hs.hotkey.bind(hyper, ',', function()
     hs.application.launchOrFocus('System Preferences')
@@ -78,11 +83,16 @@ if hs.host.localizedName() == 'hackerman' then
     })
 end
 
+-- reason setup
+hs.loadSpoon('Reason')
+spoon.Reason:bindHotkeys({
+    bce = { 'cmd', 'f' }
+})
+
 -- other externals
 windows         = require('windows')
-reason          = require('reason')
 browser         = require('browser')
 tagging         = require('quicktags')
 scroll          = require('scroll')
 
-hs.alert.show("config loaded")
+hs.alert.show("💯😎👌")
