@@ -86,8 +86,9 @@ end
 -- reason setup
 hs.loadSpoon('Reason')
 spoon.Reason:bindHotkeys({
-    bce = { 'cmd', 'f' }
+    bce = { {'cmd'}, 'f' }
 })
+spoon.Reason:start()
 
 -- other externals
 windows         = require('windows')
