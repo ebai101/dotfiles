@@ -2,9 +2,7 @@ config/karabiner/automatic_backups
 config/hammerspoon/Spoons/UADCtrl.spoon
 config/nvim/undodir
 config/nvim/plugged
-craftedcart/
 
 config/nvim/.netrwhist
-config/hammerspoon/reason_bce_data.json
 config/hammerspoon/bce_freq.json
 config/hammerspoon/bce_data.json
