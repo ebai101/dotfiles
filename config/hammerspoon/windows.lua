@@ -69,7 +69,30 @@ hs.hotkey.bind(hyper,   'l', focuser('east'))
 
 -- app launcher binds
 local k = hs.hotkey.modal.new(hyper, 'p')
-k:bind({}, 'escape', function() k:exit() end)
+local kActive = false
+
+k:bind({}, 'escape', function()
+    k:exit()
+    hs.alert.closeAll()
+    hs.alert('🙅')
+end)
+
+function k:entered()
+    kActive = true
+    hs.timer.doAfter(1, function()
+        if kActive then
+            k:exit()
+            hs.alert.closeAll()
+            hs.alert('🙅', hs.alert.defaultStyle, hs.screen.mainScreen(), 0.5)
+        end
+    end)
+    hs.alert.closeAll()
+    hs.alert('🤔')
+end
+
+function k:exited()
+    kActive = false
+end
 
 for i = 1, #apps do
     local appHotkey = apps[i][1]
@@ -77,6 +100,7 @@ for i = 1, #apps do
     local appFloat = apps[i][3]
 
     k:bind({}, appHotkey, function()
+        hs.alert.closeAll()
         local frontApp = hs.application.frontmostApplication()
         if frontApp:title() == appName then
             if appFloat then frontApp:hide() end
