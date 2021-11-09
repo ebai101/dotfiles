@@ -33,11 +33,11 @@ hs.hotkey.bind(hyper, '0', function()
     end
 end)
 
--- misc keys
-hs.hotkey.bind(shyper, '0', function()
-    -- Reason.reasonWatcher:stop()
-    hs.reload()
-end)
+-- -- misc keys
+-- hs.hotkey.bind(shyper, '0', function()
+--     -- Reason.reasonWatcher:stop()
+--     hs.reload()
+-- end)
 
 hs.hotkey.bind({}, 'f19', function()
     hs.eventtap.keyStroke(hyper, 'space')
