@@ -22,7 +22,6 @@ case $OSTYPE in
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
-        alias yta='youtube-dl -x --audio-format wav'
         ;;
     linux*)
         alias ls='ls --color=auto -h --group-directories-first'
@@ -34,6 +33,17 @@ case $OSTYPE in
         alias hostname='cat /etc/hostname'
         ;;
 esac
+
+yta() {
+    url="$1"
+    youtube-dl -x --audio-format wav "$url"
+}
+
+ytd() {
+    url="$1"
+    youtube-dl -x --audio-format wav -o "%(id)s.%(ext)s" "$url" && open -a "Reason 11" output.wav
+}
+
 
 # vim tmux session
 v() {
