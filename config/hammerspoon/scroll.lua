@@ -31,7 +31,7 @@ overrideOtherMouseUp = hs.eventtap.new({ hs.eventtap.event.types.otherMouseUp },
 end)
 
 local oldmousepos = {}
-local scrollmult = -2   -- negative multiplier makes mouse work like traditional scrollwheel
+local scrollmult = 1   -- negative multiplier makes mouse work like traditional scrollwheel
 
 dragOtherToScroll = hs.eventtap.new({ hs.eventtap.event.types.otherMouseDragged }, function(e)
     local pressedMouseButton = e:getProperty(hs.eventtap.event.properties['mouseEventButtonNumber'])
