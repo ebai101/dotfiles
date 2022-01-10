@@ -60,10 +60,10 @@ local function moveWindowToDisplay(d)
 end
 
 -- focuser binds
-hs.hotkey.bind(hyper,   'h', focuser('west'))
-hs.hotkey.bind(hyper,   'j', focuser('south'))
-hs.hotkey.bind(hyper,   'k', focuser('north'))
-hs.hotkey.bind(hyper,   'l', focuser('east'))
+-- hs.hotkey.bind(hyper,   'h', focuser('west'))
+-- hs.hotkey.bind(hyper,   'j', focuser('south'))
+-- hs.hotkey.bind(hyper,   'k', focuser('north'))
+-- hs.hotkey.bind(hyper,   'l', focuser('east'))
 -- hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("Acer XFA240"))
 -- hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("R240HY"))
 
