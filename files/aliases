@@ -36,12 +36,12 @@ esac
 
 yta() {
     url="$1"
-    youtube-dl -x --audio-format wav "$url"
+    yt-dlp -x --audio-format wav "$url"
 }
 
 ytd() {
     url="$1"
-    youtube-dl -x --audio-format wav -o "%(id)s.%(ext)s" "$url" && open -a "Reason 11" output.wav
+    yt-dlp -x --audio-format wav -o "%(id)s.%(ext)s" "$url" && open -a "Reason 11" output.wav
 }
 
 
