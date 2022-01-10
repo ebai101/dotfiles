@@ -92,8 +92,8 @@ spoon.Reason:start()
 
 -- other externals
 windows         = require('windows')
-browser         = require('browser')
+-- browser         = require('browser')
 -- tagging         = require('quicktags')
-scroll          = require('scroll')
+-- scroll          = require('scroll')
 
 hs.alert.show("💯😎👌")
