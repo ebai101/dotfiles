@@ -1,0 +1,69 @@
+env:
+  TERM: xterm-256color
+
+font:
+  normal:
+    family: MesloLGS NF
+    style: Regular
+  italic:
+    family: MesloLGS NF
+    style: Italic
+  bold:
+    family: MesloLGS NF
+    style: Bold
+  bold_italic:
+    family: MesloLGS NF
+    style: Bold Italic
+  size: 14
+  use_thin_strokes: false
+
+window:
+  decorations: none
+  startup_mode: Windowed
+  padding:
+    x: 5
+    y: 5
+  title: 'reason open file'
+
+mouse:
+  hide_when_typing: true
+
+shell:
+  program: /bin/zsh
+  args:
+    - -c
+    - "mdfind 'kMDItemDisplayName == *.reason' -0 | xargs -0 ls -1ltr | tail -r | sed -e '1,3d' | sed '/^$/d' | cut -c 46- | fzf +s | cut -c 14- | sed 's/ /\\\ /g'| xargs -I {} open \"{}\""
+
+key_bindings:
+  - { key: W, mods: Command, chars:  "w" }
+  - { key: M, mods: Command, chars:  "m" }
+
+# GRUVBOX BABY
+colors:
+  primary:
+    background: '#1d2021' # hard contrast
+    # background: '#282828' # normal contrast
+    # background: '#32302f' # soft contrast
+    foreground: '#ebdbb2'
+
+  # Normal colors
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+
+  # Bright colors
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
