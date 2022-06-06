@@ -66,7 +66,7 @@ end)
 -- end)
 
 -- system preferences
-hs.hotkey.bind(hyper, ',', function()
+hs.hotkey.bind(shyper, 'Space', function()
     hs.application.launchOrFocus('System Preferences')
 end)
 

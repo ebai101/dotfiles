@@ -4,7 +4,7 @@ local status = require 'lsp-status'
 local completion = require 'completion'
 
 -- init --
-ts.setup { ensure_installed = 'maintained', highlight = { enable = true } }
+ts.setup { ensure_installed = 'all', highlight = { enable = true } }
 status.register_progress()
 
 local function on_attach_all(client)
