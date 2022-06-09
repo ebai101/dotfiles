@@ -1,8 +1,8 @@
 {
-    "title": "personal config new",
+    "title": "personal configs",
     "rules": [
         {
-            "description": "personal config new",
+            "description": "personal config macbook",
             "manipulators": [
                 {
                     "from": {
@@ -72,6 +72,36 @@
                     "to": [
                         {
                             "key_code": "f19"
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "description": "personal config desktop",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "caps_lock",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_command",
+                            "modifiers": [
+                                "right_control",
+                                "right_option"
+                            ]
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "key_code": "escape"
                         }
                     ],
                     "type": "basic"
