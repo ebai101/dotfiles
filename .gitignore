@@ -1,4 +1,5 @@
 config/karabiner/automatic_backups
+config/karabiner/karabiner.json
 config/hammerspoon/Spoons/UADCtrl.spoon
 config/nvim/undodir
 config/nvim/plugged
