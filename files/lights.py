@@ -8,7 +8,12 @@ if __name__ == '__main__':
     parser.add_argument('command', type=str)
     args = parser.parse_args()
     base_url = 'http://192.168.1.105:3000/'
-    r = requests.post(base_url + '?preset=' + args.command)
-    if r.status_code == 404:
-        print('invalid light command:', args.command)
-        exit(1)
+
+    if args.command == 'get':
+        r = requests.get(base_url)
+        print(r.text)
+    else:
+        r = requests.post(base_url + '?' + args.command)
+        if r.status_code == 404:
+            print('invalid light command:', args.command)
+            exit(1)
