@@ -35,6 +35,7 @@ function k:entered()
 end
 
 function k:exited()
+    hs.alert.closeAll()
     kActive = false
 end
 
@@ -49,7 +50,7 @@ end
 
 local apps = {
     {'e', function()
-        focus('Google Chrome', false)
+        focus('Firefox', false)
     end},
     {'r', function()
         focus('Messages', true)
@@ -59,7 +60,7 @@ local apps = {
     end},
     {'f', function()
         -- open gmail in browser
-        hs.execute('/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome "chrome-extension://oeopbcgkkoapgobdbedcemjljbihmemj/popup.html"')
+        hs.execute('/Applications/Firefox.app/Contents/MacOS/firefox "moz-extension://ee3aa2fe-31e3-4c81-8494-673ef5917644/popup.html"')
     end},
     {'c', function()
         focus('Discord', false)
@@ -83,17 +84,32 @@ for i = 1, #apps do
     end)
 end
 
--- vimwiki
+-- journal
 k:bind({}, 'w', function()
     local frontWindow = hs.window.frontmostWindow()
-    local vimWikiWindow = hs.window('vimwiki alacritty')
+    local journalWindow = hs.window('vim journal')
 
-    if vimWikiWindow == nil then
-        hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/vimwiki.yml'}):start()
-    elseif vimWikiWindow ~= frontWindow then
-        vimWikiWindow:focus()
-    elseif vimWikiWindow == frontWindow then
-        vimWikiWindow:application():hide()
+    if journalWindow == nil then
+        hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/journal.yml'}):start()
+    elseif journalWindow ~= frontWindow then
+        journalWindow:focus()
+    elseif journalWindow == frontWindow then
+        journalWindow:application():hide()
     end
     k:exit()
 end)
+
+-- old vimwiki function
+-- k:bind({}, 'w', function()
+--     local frontWindow = hs.window.frontmostWindow()
+--     local vimWikiWindow = hs.window('vimwiki alacritty')
+
+--     if vimWikiWindow == nil then
+--         hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/vimwiki.yml'}):start()
+--     elseif vimWikiWindow ~= frontWindow then
+--         vimWikiWindow:focus()
+--     elseif vimWikiWindow == frontWindow then
+--         vimWikiWindow:application():hide()
+--     end
+--     k:exit()
+-- end)
