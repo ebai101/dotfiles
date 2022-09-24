@@ -32,7 +32,7 @@ shell:
   program: /bin/zsh
   args:
     - -c
-    - "mdfind 'kMDItemDisplayName == *.reason' -0 | xargs -0 ls -1ltr | tail -r | sed -e '1,3d' | sed '/^$/d' | cut -c 46- | fzf +s | cut -c 14- | sed 's/ /\\\ /g'| xargs -I {} open \"{}\""
+    - "mdfind 'kMDItemDisplayName == *.reason' -0 | xargs -0 ls -1ltr | tail -r | sed -e '1,3d' | sed '/^$/d' | cut -c 46- | /usr/local/bin/fzf +s | cut -c 14- | sed 's/ /\\\ /g'| xargs -I {} open \"{}\""
 
 key_bindings:
   - { key: W, mods: Command, chars:  "w" }
