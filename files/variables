@@ -7,7 +7,7 @@ export EDITOR=/usr/local/bin/nvim
 case $OSTYPE in
     darwin*)
         export HOMEBREW_NO_ANALYTICS=1
-        export HOMEBREW_VERBOSE=1
+        export HOMEBREW_VERBOSE=0
         ;;
     linux*)
         source /usr/share/fzf/key-bindings.zsh
