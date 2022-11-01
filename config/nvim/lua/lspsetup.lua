@@ -1,19 +1,61 @@
 local lsp = require 'lspconfig'
 local ts = require 'nvim-treesitter.configs'
 local status = require 'lsp-status'
-local completion = require 'completion'
+local cmp = require'cmp'
 
 -- init --
 ts.setup { ensure_installed = 'all', highlight = { enable = true } }
 status.register_progress()
 
-local function on_attach_all(client)
-    status.on_attach(client)
-    completion.on_attach(client)
-end
+-- local function on_attach_all(client)
+--     status.on_attach(client)
+--     cmp.on_attach(client)
+-- end
 
--- clangd
-lsp.clangd.setup{ on_attach = require'completion'.on_attach }
+cmp.setup({
+        snippet = {
+            expand = function(args)
+                vim.fn["vsnip#anonymous"](args.body)
+            end,
+        },
+        window = {
+            completion = cmp.config.window.bordered(),
+        },
+        mapping = cmp.mapping.preset.insert({
+                ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.abort(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            }),
+        sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                { name = 'vsnip' },
+            }, {
+                { name = 'buffer' },
+            })
+    })
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+            { name = 'buffer' }
+        }
+    })
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            })
+    })
+
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- lua
 local system_name
@@ -23,11 +65,11 @@ elseif vim.fn.has("unix") == 1 then
     system_name = "Linux"
 end
 
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local sumneko_root = vim.env.HOME..'/dev/lua-language-server'
 local sumneko_binary = sumneko_root.."/bin/"..system_name.."/lua-language-server"
 
 lsp.sumneko_lua.setup{
+    capabilities = capabilities,
     on_attach = on_attach_all,
     cmd = {sumneko_binary, '-E', sumneko_root..'/main.lua'},
     settings = {
@@ -46,7 +88,10 @@ lsp.sumneko_lua.setup{
 }}
 
 -- python
-lsp.pyright.setup{ on_attach = on_attach_all, settings = {
+lsp.pyright.setup{
+    capabilities = capabilities,
+    on_attach = on_attach_all,
+    settings = {
         python = {
             analysis = {
                 autoSearchPaths = true,
@@ -55,12 +100,6 @@ lsp.pyright.setup{ on_attach = on_attach_all, settings = {
             },
         },
 }}
-
--- viml
-lsp.vimls.setup{ on_attach = on_attach_all }
-
--- rust
-lsp.rls.setup{ on_attach = on_attach_all }
 
 -- diagnosticls
 lsp.diagnosticls.setup{
@@ -116,38 +155,3 @@ lsp.diagnosticls.setup{
         }
     }
 }
-
--- gopls
-lsp.gopls.setup{
-    cmd = {'gopls', 'serve'},
-    filetypes = {'go', 'gomod'},
-    settings = {
-        gopls = {
-            analyses = {
-                unusedparams = true
-            },
-            staticcheck = true
-        },
-    },
-}
-
--- organize on save like goimports does
-function lsp.organize_go_imports(timeoutms)
-    local context = { source = { organizeImports = true } }
-    vim.validate { context = { context, "t", true } }
-
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
-
-    local method = "textDocument/codeAction"
-    local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
-    if resp and resp[1] then
-        local result = resp[1].result
-        if result and result[1] then
-            local edit = result[1].edit
-            vim.lsp.util.apply_workspace_edit(edit)
-        end
-    end
-
-    vim.lsp.buf.formatting()
-end

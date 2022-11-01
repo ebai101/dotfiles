@@ -7,7 +7,7 @@ shyper          = {'shift', 'cmd', 'ctrl', 'alt'}
 
 -- miro setup
 hs.loadSpoon('MiroWindowsManager')
-hs.window.animationDuration = 0.0
+hs.window.animationDuration = 0
 spoon.MiroWindowsManager:bindHotkeys({
     up          = {shyper, 'k'},
     right       = {shyper, 'l'},
@@ -15,6 +15,13 @@ spoon.MiroWindowsManager:bindHotkeys({
     left        = {shyper, 'h'},
     fullscreen  = {shyper, 'f'}
 })
+
+-- move to other screen
+hs.hotkey.bind(shyper, ';', function()
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
+end)
 
 -- console stuff
 hs.console.darkMode(true)
@@ -26,17 +33,6 @@ hs.hotkey.bind(hyper, '0', function()
         hs.openConsole()
     end
 end)
-
--- misc keys
-hs.hotkey.bind({}, 'f19', function()
-    hs.eventtap.keyStroke(hyper, 'space')
-end)
-
--- emojis
-hs.loadSpoon('Emojis')
-spoon.Emojis:bindHotkeys({
-    toggle = { hyper, 'e' }
-})
 
 -- hold to quit
 hs.loadSpoon('HoldToQuit')

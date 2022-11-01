@@ -15,7 +15,6 @@ font:
     family: MesloLGS NF
     style: Bold Italic
   size: 14
-  use_thin_strokes: true
 
 scrolling:
   history: 10000

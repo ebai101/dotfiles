@@ -1,6 +1,6 @@
 if has('nvim')
-    imap <tab> <Plug>(completion_smart_tab)
-    imap <s-tab> <Plug>(completion_smart_s_tab)
+    " imap <tab> <Plug>(completion_smart_tab)
+    " imap <s-tab> <Plug>(completion_smart_s_tab)
     nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
     nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
     nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
@@ -21,12 +21,12 @@ if has('nvim')
 
     lua require('lspsetup')
 
-    au BufWritePre *.go lua require'lspconfig'.organize_go_imports(1000)
+"     au BufWritePre *.go lua require'lspconfig'.organize_go_imports(1000)
 
-    augroup autoformat_settings
-        autocmd FileType c,cpp,arduino AutoFormatBuffer clang-format
-        autocmd FileType javascript,typescript AutoFormatBuffer prettier
-        autocmd FileType go AutoFormatBuffer gofmt
-        autocmd FileType python AutoFormatBuffer yapf
-    augroup END
+"     augroup autoformat_settings
+"         autocmd FileType c,cpp,arduino AutoFormatBuffer clang-format
+"         autocmd FileType javascript,typescript AutoFormatBuffer prettier
+"         autocmd FileType go AutoFormatBuffer gofmt
+"         autocmd FileType python AutoFormatBuffer yapf
+"     augroup END
 endif

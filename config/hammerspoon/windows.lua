@@ -60,7 +60,8 @@ local apps = {
     end},
     {'f', function()
         -- open gmail in browser
-        hs.execute('/Applications/Firefox.app/Contents/MacOS/firefox "moz-extension://ee3aa2fe-31e3-4c81-8494-673ef5917644/popup.html"')
+        hs.execute('/Applications/Firefox.app/Contents/MacOS/firefox "moz-extension://0c23bdf9-fd8b-4d51-8aa8-4152533017f4/popup.html"')
+
     end},
     {'c', function()
         focus('Discord', false)
@@ -90,7 +91,7 @@ k:bind({}, 'w', function()
     local journalWindow = hs.window('vim journal')
 
     if journalWindow == nil then
-        hs.task.new('/usr/local/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/journal.yml'}):start()
+        hs.task.new('/opt/homebrew/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/journal.yml'}):start()
     elseif journalWindow ~= frontWindow then
         journalWindow:focus()
     elseif journalWindow == frontWindow then

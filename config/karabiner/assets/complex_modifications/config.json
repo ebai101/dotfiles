@@ -47,7 +47,7 @@
                 },
                 {
                     "from": {
-                        "key_code": "right_command",
+                        "key_code": "right_option",
                         "modifiers": {
                             "optional": [
                                 "any"
@@ -61,47 +61,6 @@
                                 "right_control",
                                 "left_option"
                             ]
-                        }
-                    ],
-                    "type": "basic"
-                },
-                {
-                    "from": {
-                        "key_code": "right_option"
-                    },
-                    "to": [
-                        {
-                            "key_code": "f19"
-                        }
-                    ],
-                    "type": "basic"
-                }
-            ]
-        },
-        {
-            "description": "personal config desktop",
-            "manipulators": [
-                {
-                    "from": {
-                        "key_code": "caps_lock",
-                        "modifiers": {
-                            "optional": [
-                                "any"
-                            ]
-                        }
-                    },
-                    "to": [
-                        {
-                            "key_code": "right_command",
-                            "modifiers": [
-                                "right_control",
-                                "right_option"
-                            ]
-                        }
-                    ],
-                    "to_if_alone": [
-                        {
-                            "key_code": "escape"
                         }
                     ],
                     "type": "basic"
