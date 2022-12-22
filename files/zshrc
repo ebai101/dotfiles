@@ -1,5 +1,3 @@
-# vim: syntax=zsh
-
 autoload -Uz compinit; compinit
 bindkey -e
 disable r
