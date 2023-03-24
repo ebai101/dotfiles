@@ -1,1 +1,1 @@
-require("ethan")
+require('ethan')

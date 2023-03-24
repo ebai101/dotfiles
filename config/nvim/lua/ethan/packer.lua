@@ -10,14 +10,7 @@ return require('packer').startup(function(use)
 
 	use ({
 		'ellisonleao/gruvbox.nvim',
-		as = 'gruvbox',
-		config = function()
-			vim.o.background = 'dark'
-			vim.cmd('colorscheme gruvbox')
-			vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-			vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-		end
-
+		as = 'gruvbox'
 	})
 
 	use('nvim-treesitter/nvim-treesitter', {run  = ':TSUpdate'})
