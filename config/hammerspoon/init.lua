@@ -16,13 +16,6 @@ spoon.MiroWindowsManager:bindHotkeys({
     fullscreen  = {shyper, 'f'}
 })
 
--- move to other screen
-hs.hotkey.bind(shyper, ';', function()
-    local win = hs.window.focusedWindow()
-    local screen = win:screen()
-    win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
-end)
-
 -- console stuff
 hs.console.darkMode(true)
 hs.console.toolbar(nil)

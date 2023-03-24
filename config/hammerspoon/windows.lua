@@ -2,14 +2,13 @@
 -- Hyper Windows
 -----------------------------------------------
 
--- hs.hotkey.bind(shyper,  '1', moveWindowToDisplay("Acer XFA240"))
--- hs.hotkey.bind(shyper,  '2', moveWindowToDisplay("R240HY"))
--- local function moveWindowToDisplay(d)
---     return function()
---         hs.window.focusedWindow():moveToScreen(d, false, true)
---         hs.mouse.setAbsolutePosition(hs.geometry.rectMidPoint(hs.window.focusedWindow():frame()))
---     end
--- end
+-- move to other screen
+hs.hotkey.bind(shyper, ';', function()
+    local win = hs.window.focusedWindow()
+    local screen = win:screen()
+    win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
+end)
+
 
 -- app launcher binds
 local k = hs.hotkey.modal.new(hyper, 'p')
