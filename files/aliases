@@ -8,7 +8,7 @@ alias tls='tmux ls'
 alias vim='nvim'
 alias g='git'
 alias lg='lazygit'
-alias lights="$HOME/.lights.py"
+alias lights="$HOME/go/bin/lights"
 
 case $OSTYPE in
     darwin*)
