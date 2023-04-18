@@ -2,18 +2,20 @@
 -- init.lua
 -----------------------------------------------
 
-hyper           = {'cmd', 'ctrl', 'alt'}
-shyper          = {'shift', 'cmd', 'ctrl', 'alt'}
+require('hs.ipc')
+
+hyper  = { 'cmd', 'ctrl', 'alt' }
+shyper = { 'shift', 'cmd', 'ctrl', 'alt' }
 
 -- miro setup
 hs.loadSpoon('MiroWindowsManager')
 hs.window.animationDuration = 0
 spoon.MiroWindowsManager:bindHotkeys({
-    up          = {shyper, 'k'},
-    right       = {shyper, 'l'},
-    down        = {shyper, 'j'},
-    left        = {shyper, 'h'},
-    fullscreen  = {shyper, 'f'}
+    up         = { shyper, 'k' },
+    right      = { shyper, 'l' },
+    down       = { shyper, 'j' },
+    left       = { shyper, 'h' },
+    fullscreen = { shyper, 'f' }
 })
 
 -- console stuff
@@ -26,6 +28,7 @@ hs.hotkey.bind(hyper, '0', function()
         hs.openConsole()
     end
 end)
+hs.hotkey.bind(shyper, '0', hs.reload)
 
 -- hold to quit
 hs.loadSpoon('HoldToQuit')
@@ -37,23 +40,22 @@ spoon.HoldToQuit:start()
 hs.loadSpoon('UADCtrl')
 spoon.UADCtrl:showAlerts(true)
 spoon.UADCtrl:bindHotkeys({
-    enter  = { hyper,  'u' },
-    mute   = { {},     'm' },
-    solo   = { {},     's' },
-    mono   = { {},     'o' },
-    pan    = { {},     'p' }
+    enter = { hyper, 'u' },
+    mute  = { {}, 'm' },
+    solo  = { {}, 's' },
+    mono  = { {}, 'o' },
+    pan   = { {}, 'p' }
 })
 
 -- reason setup
 hs.loadSpoon('Reason')
 spoon.Reason:bindHotkeys({
-    bce = { {'cmd'}, 'f' },
-    open = { hyper, 'o' }
+    bce = { { 'cmd' }, 'f' }
 })
 spoon.Reason:start()
 
 -- other externals
-windows         = require('windows')
+windows = require('windows')
 -- browser         = require('browser')
 -- tagging         = require('quicktags')
 -- scroll          = require('scroll')
