@@ -1,111 +1,36 @@
-call plug#begin('~/.vim/plugged')
-Plug 'gruvbox-community/gruvbox'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
-Plug 'mbbill/undotree'
-if has('nvim')
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-cmdline'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-vsnip'
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'nvim-lua/lsp-status.nvim'
-    " Plug 'google/vim-maktaba'
-    " Plug 'google/vim-codefmt'
-    " Plug 'google/vim-glaive'
-    Plug 'sheerun/vim-polyglot'
-    " Plug 'mboughaba/i3config.vim'
-    Plug 'itchyny/lightline.vim'
-    Plug 'shinchu/lightline-gruvbox.vim'
-    Plug 'gko/vim-coloresque'
-    " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-    " Plug 'dbeniamine/cheat.sh-vim'
-    " Plug 'AndrewRadev/splitjoin.vim'
-    " Plug 'godlygeek/tabular'
-    " Plug 'gfontenot/vim-xcode', { 'branch': 'main' }
-endif
-call plug#end()
+set nocompatible
+set autoread
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+set viminfo='0,:0,<0,@0,f0
+set noswapfile
+set nobackup
+set nowritebackup
 
+set number
+set relativenumber
 
-" our glorious leader
-let mapleader = " "
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
 
+set scrolloff=8
+set cmdheight=2
+set splitbelow
+set splitright
+set nowrapscan
 
-" removes trailing whitespaces
-" run with an au BufWritePre
-func! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfunc
+let mapleader=" "
 
-" runs a macro for each line in a v-line selection
-function! ExecuteMacroOverVisualRange()
-    echo "@".getcmdline()
-    execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-" ctrl-y by word instead of by character
-inoremap <expr> <c-y> pumvisible() ? "\<c-y>" : matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
-
-
-" clear search highlight
 nnoremap <C-l> :noh<CR>
 
-" yank to system clipboard
-vnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
-nnoremap <leader>y "+y
-nnoremap <leader>yy "+yy
-
-" window manipulation
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>= :vertical resize +5<CR>
-nnoremap <leader>- :vertical resize -5<CR>
-nnoremap <leader>6 <C-^>
-
-" move lines up and down in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" open undotree
-nnoremap <leader>u :UndotreeShow<CR>
-
-" open vimrc
-nnoremap <leader>, :e ~/.vimrc<CR>
-
-" readline binds in command mode
-tnoremap <leader><Esc> <C-\><C-n>
-cnoremap <C-A> <Home>
-cnoremap <C-B> <Left>
-cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
-cnoremap <M-b> <S-Left>
-cnoremap <M-f> <S-Right>
-silent! exe "set <S-Left>=\<Esc>b"
-silent! exe "set <S-Right>=\<Esc>f"
-
-
-" aucmds
-au FileType c,cpp,cs,java setlocal commentstring=//\ %s
-au TextYankPost * silent! lua vim.highlight.on_yank()
-au BufWritePre * :call TrimWhitespace()
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
