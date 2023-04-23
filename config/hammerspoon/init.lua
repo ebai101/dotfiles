@@ -29,7 +29,6 @@ hs.hotkey.bind(hyper, '0', function()
     end
 end)
 hs.hotkey.bind(shyper, '0', hs.reload)
-local hsWatcher = hs.pathwatcher.new(os.getenv('HOME') .. '/.hammerspoon/', hs.reload):start()
 
 -- hold to quit
 hs.loadSpoon('HoldToQuit')
@@ -50,6 +49,11 @@ spoon.UADCtrl:bindHotkeys({
 
 -- reason setup
 hs.loadSpoon('Reason')
+spoon.Reason:setPresetCommand([[ /opt/homebrew/bin/fd -tf . \
+    /Users/ethan/My\ Drive/PATCHES/EFFECTS \
+    /Users/ethan/My\ Drive/PATCHES/INSTRUMENTS \
+    /Users/ethan/My\ Drive/PATCHES/VOCALS \
+    -E "*.wav" -E "*.asd" -E "*RM-20*" -E "*.fxp" ]])
 spoon.Reason:bindHotkeys()
 spoon.Reason:start()
 
