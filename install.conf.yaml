@@ -18,6 +18,7 @@
     ~/.lights.py: files/lights.py
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: config/nvim
+    # ~/.config/nvim/lua/user: config/astro
 
 # OSX
 - defaults:
