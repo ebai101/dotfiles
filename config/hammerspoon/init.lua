@@ -59,5 +59,6 @@ spoon.Reason:start()
 
 -- other externals
 windows = require('windows')
+reasonopen = require('reasonopen')
 
 hs.alert.show('💯😎👌')
