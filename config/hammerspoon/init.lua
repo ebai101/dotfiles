@@ -28,7 +28,10 @@ hs.hotkey.bind(hyper, '0', function()
         hs.openConsole()
     end
 end)
-hs.hotkey.bind(shyper, '0', hs.reload)
+hs.hotkey.bind(shyper, '0', function()
+    hs.console.clearConsole()
+    hs.reload()
+end)
 
 -- hold to quit
 hs.loadSpoon('HoldToQuit')
@@ -37,15 +40,15 @@ spoon.HoldToQuit:init()
 spoon.HoldToQuit:start()
 
 -- uadctrl
-hs.loadSpoon('UADCtrl')
-spoon.UADCtrl:showAlerts(true)
-spoon.UADCtrl:bindHotkeys({
-    enter = { hyper, 'u' },
-    mute  = { {}, 'm' },
-    solo  = { {}, 's' },
-    mono  = { {}, 'o' },
-    pan   = { {}, 'p' }
-})
+-- hs.loadSpoon('UADCtrl')
+-- spoon.UADCtrl:showAlerts(true)
+-- spoon.UADCtrl:bindHotkeys({
+--     enter = { hyper, 'u' },
+--     mute  = { {}, 'm' },
+--     solo  = { {}, 's' },
+--     mono  = { {}, 'o' },
+--     pan   = { {}, 'p' }
+-- })
 
 -- reason setup
 hs.loadSpoon('Reason')
@@ -59,6 +62,6 @@ spoon.Reason:start()
 
 -- other externals
 windows = require('windows')
-reasonopen = require('reasonopen')
+reasonMisc = require('reason_misc')
 
 hs.alert.show('💯😎👌')
