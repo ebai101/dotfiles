@@ -17,7 +17,7 @@ local kActive = false
 k:bind({}, 'escape', function()
     k:exit()
     hs.alert.closeAll()
-    hs.alert('🙅')
+    hs.alert('🙅', hs.alert.defaultStyle, hs.screen.mainScreen(), 0.5)
 end)
 
 function k:entered()
@@ -48,29 +48,29 @@ local function focus(appName, appFloat)
 end
 
 local apps = {
-    {'e', function()
-        focus('Firefox', false)
-    end},
-    {'r', function()
+    { 'e', function()
+        focus('Arc', false)
+    end },
+    { 'r', function()
         focus('Messages', true)
-    end},
-    {'d', function()
+    end },
+    { 'd', function()
         focus('Alacritty', false)
-    end},
-    {'f', function()
+    end },
+    { 'f', function()
         -- open gmail in browser
-        hs.execute('/Applications/Firefox.app/Contents/MacOS/firefox "moz-extension://0c23bdf9-fd8b-4d51-8aa8-4152533017f4/popup.html"')
-
-    end},
-    {'c', function()
+        hs.execute(
+            'open -a "Arc" "chrome-extension://oeopbcgkkoapgobdbedcemjljbihmemj/popup.html"')
+    end },
+    { 'c', function()
         focus('Discord', false)
-    end},
-    {'v', function()
+    end },
+    { 'v', function()
         focus('Finder', true)
-    end},
-    {'x', function()
+    end },
+    { 'x', function()
         focus('Calendar', true)
-    end}
+    end }
 }
 
 for i = 1, #apps do
@@ -90,7 +90,8 @@ k:bind({}, 'w', function()
     local journalWindow = hs.window('vim journal')
 
     if journalWindow == nil then
-        hs.task.new('/opt/homebrew/bin/alacritty', nil, {'--config-file', os.getenv('HOME')..'/.config/alacritty/journal.yml'}):start()
+        hs.task.new('/opt/homebrew/bin/alacritty', nil,
+            { '--config-file', os.getenv('HOME') .. '/.config/alacritty/journal.yml' }):start()
     elseif journalWindow ~= frontWindow then
         journalWindow:focus()
     elseif journalWindow == frontWindow then
