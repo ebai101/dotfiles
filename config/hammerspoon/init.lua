@@ -52,16 +52,22 @@ spoon.HoldToQuit:start()
 
 -- reason setup
 hs.loadSpoon('Reason')
-spoon.Reason:setPresetCommand([[ /opt/homebrew/bin/fd -tf . \
-    /Users/ethan/My\ Drive/PATCHES/EFFECTS \
-    /Users/ethan/My\ Drive/PATCHES/INSTRUMENTS \
-    /Users/ethan/My\ Drive/PATCHES/VOCALS \
-    -E "*.wav" -E "*.asd" -E "*RM-20*" -E "*.fxp" ]])
+-- spoon.Reason:setPresetCommand([[ /opt/homebrew/bin/fd -tf . \
+--     /Users/ethan/My\ Drive/PATCHES/EFFECTS \
+--     /Users/ethan/My\ Drive/PATCHES/INSTRUMENTS \
+--     /Users/ethan/My\ Drive/PATCHES/VOCALS \
+--     -E "*.wav" -E "*.asd" -E "*RM-20*" -E "*.fxp" ]])
+spoon.Reason:setPresetFolders({
+    '/Users/ethan/My Drive/PATCHES/EFFECTS',
+    '/Users/ethan/My Drive/PATCHES/INSTRUMENTS',
+    '/Users/ethan/My Drive/PATCHES/VOCALS',
+})
 spoon.Reason:bindHotkeys()
 spoon.Reason:start()
 
 -- other externals
 windows = require('windows')
 reasonMisc = require('reason_misc')
+dvdmenu = require('dvdmenu')
 
 hs.alert.show('💯😎👌')
