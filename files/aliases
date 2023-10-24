@@ -115,3 +115,17 @@ d() {
     cd /Users/ethan/dev/$1;
 }
 compctl -W /Users/ethan/dev/ -/ d
+
+# ffmpeg flat convert
+ffc() {
+    filename=$(basename -- "$1")
+    filename="${filename%.*}"
+    ffmpeg -i "$1" -b:a 320k "${filename}.mp4"
+}
+
+# ffmpeg twitter convert
+fftw() {
+    filename=$(basename -- "$1")
+    filename="${filename%.*}"
+    ffmpeg -i "$1" -c:v libx264 -crf 20 -preset slow -vf format=yuv420p -c:a aac -movflags +faststart "${filename}.mp4"
+}
