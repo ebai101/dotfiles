@@ -6,7 +6,9 @@
 hs.hotkey.bind(shyper, ';', function()
     local win = hs.window.focusedWindow()
     local screen = win:screen()
-    win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
+    local unit = win:frame():toUnitRect(screen:frame())
+    win:moveToScreen(screen:next(), false, true)
+    win:moveToUnit(unit)
 end)
 
 
