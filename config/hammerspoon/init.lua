@@ -65,9 +65,15 @@ spoon.Reason:setPresetFolders({
 spoon.Reason:bindHotkeys()
 spoon.Reason:start()
 
+-- ableton setup
+hs.loadSpoon('Ableton')
+spoon.Ableton:bindHotkeys()
+spoon.Ableton:start()
+
 -- other externals
 windows = require('windows')
 reasonMisc = require('reason_misc')
-dvdmenu = require('dvdmenu')
+-- dvdmenu = require('dvdmenu')
+-- crosshair = require('crosshair')
 
 hs.alert.show('💯😎👌')

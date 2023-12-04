@@ -1,7 +1,6 @@
 dvdmenu = {}
 
--- change this bool to enable or disable the menubar
-dvdmenu.menubar = hs.menubar.new(false, 'dvdmenu')
+dvdmenu.menubar = hs.menubar.new(true, 'dvdmenu')
 dvdmenu.menubar:setTitle('dvd')
 dvdmenu.menubar:setMenu({
     {
