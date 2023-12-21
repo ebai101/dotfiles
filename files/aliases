@@ -8,6 +8,9 @@ alias tls='tmux ls'
 alias g='git'
 alias lg='lazygit'
 alias lights="$HOME/go/bin/lights"
+alias dup="docker compose up"
+alias dup="docker compose down --remove-orphans"
+alias dlg="docker logs -f"
 
 case $OSTYPE in
     darwin*)
@@ -20,6 +23,11 @@ case $OSTYPE in
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+
+        d() {
+            cd /Users/ethan/dev/$1;
+        }
+        compctl -W /Users/ethan/dev/ -/ d
         ;;
     linux*)
         alias ls='ls --color=auto -h --group-directories-first'
@@ -120,12 +128,6 @@ capture() {
         }
     '
 }
-
-# dev directory
-d() {
-    cd /Users/ethan/dev/$1;
-}
-compctl -W /Users/ethan/dev/ -/ d
 
 # ffmpeg flat convert
 ffc() {
