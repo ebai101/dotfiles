@@ -14,11 +14,6 @@
       path: files/zshrc
       force: true
     ~/.gitignore: files/gitignore
-    ~/.clang-format: files/clang-format
-    ~/.lights.py: files/lights.py
-    ~/.config/alacritty: config/alacritty
-    ~/.config/nvim: config/nvim
-    # ~/.config/nvim/lua/user: config/astro
 
 # OSX
 - defaults:
@@ -32,6 +27,11 @@
     ~/.gitconfig: files/gitconfig-osx
     ~/.hammerspoon: config/hammerspoon
     ~/.config/karabiner: config/karabiner
+    ~/.clang-format: files/clang-format
+    ~/.lights.py: files/lights.py
+    ~/.config/alacritty: config/alacritty
+    ~/.config/nvim: config/nvim
+    # ~/.config/nvim/lua/user: config/astro
 
 - create:
     - ~/.vim/undodir

@@ -16,15 +16,25 @@ set expandtab
 set smartindent
 set nowrap
 
+set noswf
+set nobk
+set nowb
+set undodir=~/.vim/undodir
+set undofile
+
 set scrolloff=8
 set cmdheight=2
 set splitbelow
 set splitright
 set nowrapscan
+set mouse="a"
+
+set incsearch
 
 let mapleader=" "
 
 nnoremap <C-l> :noh<CR>
+nnoremap <leader>6 <C-^>
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -34,6 +44,19 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+call plug#end()
 
 function! FZF() abort
     let l:tempname = tempname()
@@ -49,4 +72,3 @@ endfunction
 
 command! -nargs=* Files call FZF()
 nnoremap <leader>pf :Files<cr>
-

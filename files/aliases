@@ -5,13 +5,13 @@ alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
 alias t='tmux'
 alias tls='tmux ls'
-alias vim='nvim'
 alias g='git'
 alias lg='lazygit'
 alias lights="$HOME/go/bin/lights"
 
 case $OSTYPE in
     darwin*)
+        alias vim='nvim'
         alias f='open -a Finder ./' # opens cd in finder
         alias ls='gls --color=auto -h --group-directories-first'
         alias lt='gls --color=auto -lAtrh --group-directories-first'
@@ -31,6 +31,17 @@ case $OSTYPE in
         alias hostname='cat /etc/hostname'
         ;;
 esac
+
+sshl() {
+    local dest="$1"
+    shift
+    local ports="$@"
+    for port in $(echo $ports); do
+        local portstring=$(printf "$portstring -L $port\:localhost:$port" | sed 's/\\//g')
+    done
+    command=$(printf "ssh$portstring $dest")
+    eval $command
+}
 
 yta() {
     url="$1"
