@@ -9,7 +9,7 @@ alias g='git'
 alias lg='lazygit'
 alias lights="$HOME/go/bin/lights"
 alias dup="docker compose up"
-alias dup="docker compose down --remove-orphans"
+alias ddn="docker compose down --remove-orphans"
 alias dlg="docker logs -f"
 
 case $OSTYPE in
