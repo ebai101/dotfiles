@@ -27,11 +27,9 @@
     ~/.gitconfig: files/gitconfig-osx
     ~/.hammerspoon: config/hammerspoon
     ~/.config/karabiner: config/karabiner
-    ~/.clang-format: files/clang-format
     ~/.lights.py: files/lights.py
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: config/nvim
-    # ~/.config/nvim/lua/user: config/astro
 
 - create:
     - ~/.vim/undodir
@@ -46,8 +44,6 @@
 
 - link:
     ~/.gitconfig: files/gitconfig-linux
-    ~/.config/i3: config/i3
-    ~/.config/picom: config/picom
     ~/.bash_profile:
       path: files/bash_profile
       force: true
