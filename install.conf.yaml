@@ -18,6 +18,7 @@
       path: files/zshrc
       force: true
     ~/.gitignore: files/gitignore
+    ~/.prompt: files/prompt
 
 # OSX
 - defaults:

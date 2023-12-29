@@ -16,7 +16,8 @@ source ~/.aliases
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local
 
 # load theme
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+source ~/.prompt
 
 # reload aliases
 alias ref='source ~/.zshrc && echo reloaded shell'
