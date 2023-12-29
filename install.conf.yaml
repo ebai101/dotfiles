@@ -4,6 +4,10 @@
   - touch ~/.hushlogin
   - [git submodule update --init --recursive, Installing submodules]
 
+- create:
+    - ~/.vim/undodir
+    - ~/.config
+
 - link:
     ~/.variables: files/variables
     ~/.aliases: files/aliases
@@ -30,9 +34,6 @@
     ~/.lights.py: files/lights.py
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: config/nvim
-
-- create:
-    - ~/.vim/undodir
 
 # Linux
 - defaults:
