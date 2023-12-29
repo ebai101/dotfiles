@@ -52,6 +52,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -72,3 +73,11 @@ endfunction
 
 command! -nargs=* Files call FZF()
 nnoremap <leader>pf :Files<cr>
+
+colorscheme gruvbox
+set bg=dark
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+hi Normal guibg=NONE
+hi NormalFloat guibg=NONE
