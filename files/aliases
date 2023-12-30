@@ -11,6 +11,7 @@ alias lights="$HOME/go/bin/lights"
 alias dup="docker compose up --remove-orphans"
 alias ddn="docker compose down --remove-orphans"
 alias dlg="docker logs -f"
+alias drs="docker compose restart"
 
 case $OSTYPE in
     darwin*)
