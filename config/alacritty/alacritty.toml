@@ -104,26 +104,6 @@ chars = "\u00139"
 key = "Key9"
 mods = "Command"
 
-[[keyboard.bindings]]
-chars = "\u0013h"
-key = "H"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0013j"
-key = "J"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0013k"
-key = "K"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0013l"
-key = "L"
-mods = "Command"
-
 [mouse]
 hide_when_typing = true
 
