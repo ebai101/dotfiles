@@ -9,8 +9,8 @@
     - ~/.config
 
 - link:
-    ~/.variables: files/variables
-    ~/.aliases: files/aliases
+    ~/.variables.sh: files/variables.sh
+    ~/.aliases.sh: files/aliases.sh
     ~/.starship: files/starship
     ~/.tmux.conf: files/tmux.conf
     ~/.vimrc: files/vimrc
@@ -18,7 +18,7 @@
       path: files/zshrc
       force: true
     ~/.gitignore: files/gitignore
-    ~/.prompt: files/prompt
+    ~/.prompt.sh: files/prompt.sh
 
 # OSX
 - defaults:
@@ -32,9 +32,9 @@
     ~/.gitconfig: files/gitconfig-osx
     ~/.hammerspoon: config/hammerspoon
     ~/.config/karabiner: config/karabiner
-    ~/.lights.py: files/lights.py
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: config/nvim
+    ~/.lights.py: files/lights.py
 
 # Linux
 - defaults:

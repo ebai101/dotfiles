@@ -1,5 +1,3 @@
-# vim: syntax=bash
-
 function remote_hostname() {
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         echo "$(tput setaf 4)🌐 $(hostname)$(tput sgr0) in "
