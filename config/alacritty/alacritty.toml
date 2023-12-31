@@ -54,6 +54,8 @@ chars = "w"
 key = "W"
 mods = "Command"
 
+# for tmux stuff, Ctrl-s is \u0013
+
 [[keyboard.bindings]]
 chars = "\u0013"
 key = "S"
@@ -102,6 +104,16 @@ mods = "Command"
 [[keyboard.bindings]]
 chars = "\u00139"
 key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00139"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013d"
+key = "D"
 mods = "Command"
 
 [mouse]
