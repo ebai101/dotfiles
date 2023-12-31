@@ -41,35 +41,35 @@ case $OSTYPE in
         ;;
 esac
 
+# ssh w/ port forwarding from args
+# e.g. `ssh 8080 9000` forwards 8080 and 9000 to localhost
 sshl() {
-    local dest="$1"
+    local dest ports portstring command
+
+    dest="$1"
     shift
-    local ports="$@"
+    ports="$@"
     for port in $(echo $ports); do
-        local portstring=$(printf "$portstring -L $port\:localhost:$port" | sed 's/\\//g')
+        portstring=$(printf "$portstring -L $port\:localhost:$port" | sed 's/\\//g')
     done
     command=$(printf "ssh$portstring $dest")
     eval $command
 }
 
+# youtube-dl audio as wav
 yta() {
-    url="$1"
+    local url="$1"
     yt-dlp -x --audio-format wav "$url"
 }
 
-ytd() {
-    url="$1"
-    yt-dlp -x --audio-format wav -o "%(id)s.%(ext)s" "$url" && open -a "Reason 11" output.wav
-}
-
-
-# vim tmux session
+# create vim tmux session
+# vim tab 1, shell tab 2, lazygit tab 3
 v() {
     # auto-source python venv
     [ -d "venv" ] && . venv/bin/activate
 
     # start session
-    name="vim-$(basename "${PWD##*/.}")"
+    local name="vim-$(basename "${PWD##*/.}")"
     tmux new-session -Ads "$name"
     tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
     tmux new-window -t "$name:2"
@@ -130,8 +130,9 @@ capture() {
     '
 }
 
-# ffmpeg flat convert
+# ffmpeg basic convert
 ffc() {
+    local filename
     filename=$(basename -- "$1")
     filename="${filename%.*}"
     ffmpeg -i "$1" -b:a 320k "${filename}.mp4"
@@ -139,6 +140,7 @@ ffc() {
 
 # ffmpeg twitter convert
 fftw() {
+    local filename
     filename=$(basename -- "$1")
     filename="${filename%.*}"
     ffmpeg -i "$1" -c:v libx264 -crf 20 -preset slow -vf format=yuv420p -c:a aac -movflags +faststart "${filename}.mp4"
