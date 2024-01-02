@@ -21,6 +21,7 @@ case $OSTYPE in
         if [ $SHELL = "/bin/zsh" ]; then
             source /usr/share/doc/fzf/examples/key-bindings.zsh
             source /usr/share/doc/fzf/examples/completion.zsh
+            [ -f ~/.fzf.bash ] && source ~/.fzf.bash
         fi
         ;;
 esac
