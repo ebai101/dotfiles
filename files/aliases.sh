@@ -25,10 +25,12 @@ case $OSTYPE in
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
 
-        d() {
-            cd /Users/ethan/dev/$1;
-        }
-        compctl -W /Users/ethan/dev/ -/ d
+        if [ -n "$ZSH_VERSION" ]; then
+            d() {
+                cd /Users/ethan/dev/$1;
+            }
+            compctl -W /Users/ethan/dev/ -/ d
+        fi
         ;;
     linux*)
         alias ls='ls --color=auto -h --group-directories-first'
@@ -40,6 +42,7 @@ case $OSTYPE in
         alias hostname='cat /etc/hostname'
         ;;
 esac
+
 
 # ssh w/ port forwarding from args
 # e.g. `ssh 8080 9000` forwards 8080 and 9000 to localhost
