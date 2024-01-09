@@ -1,4 +1,3 @@
-alias c='echo "control L"'
 alias cgb='cargo build'
 alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
@@ -9,12 +8,14 @@ alias g='git'
 alias lg='lazygit'
 alias lights="$HOME/go/bin/lights"
 alias dup="docker compose up --remove-orphans"
+alias dupd="docker compose up --remove-orphans -d && docker compose logs -f"
 alias ddn="docker compose down --remove-orphans"
 alias dlg="docker logs -f"
 alias drs="docker compose restart"
 
 case $OSTYPE in
     darwin*)
+        alias c='code .'
         alias vim='nvim'
         alias f='open -a Finder ./' # opens cd in finder
         alias ls='gls --color=auto -h --group-directories-first'
