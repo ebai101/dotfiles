@@ -74,6 +74,6 @@ spoon.Ableton:start()
 windows = require('windows')
 reasonMisc = require('reason_misc')
 -- dvdmenu = require('dvdmenu')
--- crosshair = require('crosshair')
+crosshair = require('crosshair')
 
 hs.alert.show('💯😎👌')

@@ -2,6 +2,8 @@
 -- Hyper Windows
 -----------------------------------------------
 
+sb = require('silverbullet')
+
 -- move to other screen
 hs.hotkey.bind(shyper, ';', function()
     local win = hs.window.focusedWindow()
@@ -72,7 +74,11 @@ local apps = {
     end },
     { 'x', function()
         focus('Calendar', true)
-    end }
+    end },
+    { 'w', function()
+        journal()
+        -- sb:open()
+    end },
 }
 
 for i = 1, #apps do
@@ -86,8 +92,8 @@ for i = 1, #apps do
     end)
 end
 
--- journal
-k:bind({}, 'w', function()
+-- old journal function
+function journal()
     local frontWindow = hs.window.frontmostWindow()
     local journalWindow = hs.window('vim journal')
 
@@ -100,7 +106,7 @@ k:bind({}, 'w', function()
         journalWindow:application():hide()
     end
     k:exit()
-end)
+end
 
 -- old vimwiki function
 -- k:bind({}, 'w', function()
