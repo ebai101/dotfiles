@@ -15,7 +15,7 @@ alias drs="docker compose restart"
 
 case $OSTYPE in
     darwin*)
-        alias c='code .'
+        alias c='arr=(`find ./ -maxdepth 1 -name "*.code-workspace"`); if [ ${#arr[@]} -gt 0 ]; then open ${arr[1]}; else; code .; fi'
         alias vim='nvim'
         alias f='open -a Finder ./' # opens cd in finder
         alias ls='gls --color=auto -h --group-directories-first'
@@ -25,6 +25,7 @@ case $OSTYPE in
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+
 
         if [ -n "$ZSH_VERSION" ]; then
             d() {
