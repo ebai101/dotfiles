@@ -10,8 +10,9 @@ alias lights="$HOME/go/bin/lights"
 alias dup="docker compose up --remove-orphans"
 alias dupd="docker compose up --remove-orphans -d && docker compose logs -f"
 alias ddn="docker compose down --remove-orphans"
-alias dlg="docker logs -f"
+alias dlg="docker compose logs -f || docker logs -f"
 alias drs="docker compose restart"
+alias dcp="docker compose pull"
 
 case $OSTYPE in
     darwin*)
@@ -25,6 +26,7 @@ case $OSTYPE in
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
         alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+        alias openports='sudo lsof -PiTCP -sTCP:LISTEN'
 
 
         if [ -n "$ZSH_VERSION" ]; then
