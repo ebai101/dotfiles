@@ -39,16 +39,9 @@ spoon.HoldToQuit.duration = 0.3
 spoon.HoldToQuit:init()
 spoon.HoldToQuit:start()
 
--- uadctrl
--- hs.loadSpoon('UADCtrl')
--- spoon.UADCtrl:showAlerts(true)
--- spoon.UADCtrl:bindHotkeys({
---     enter = { hyper, 'u' },
---     mute  = { {}, 'm' },
---     solo  = { {}, 's' },
---     mono  = { {}, 'o' },
---     pan   = { {}, 'p' }
--- })
+-- ejectmenu
+hs.loadSpoon('EjectMenu')
+spoon.EjectMenu:start()
 
 -- reason setup
 hs.loadSpoon('Reason')
