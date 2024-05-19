@@ -18,11 +18,11 @@
                             "key_code": "right_control"
                         }
                     ],
-                    "to_if_alone": [
-                        {
-                            "key_code": "escape"
-                        }
-                    ],
+                    // "to_if_alone": [
+                    //     {
+                    //         "key_code": "escape"
+                    // ],
+                    //     }
                     "type": "basic"
                 },
                 {
