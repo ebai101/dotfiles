@@ -18,7 +18,7 @@ crosshair.menubar:setMenu({
     {
         title = 'bigcross',
         fn = function()
-            crosshair:show('crosshairs/bigcross.png')
+            crosshair:show('crosshairs/bigcross.png', 0, -11)
         end
     },
     {
@@ -29,13 +29,15 @@ crosshair.menubar:setMenu({
     }
 })
 
-function crosshair:show(filename)
+function crosshair:show(filename, xOffset, yOffset)
     -- crosshair images are from https://crosshair.themeta.gg/
+    xOffset = xOffset or 0
+    yOffset = yOffset or 19
     crosshair:hide()
-    local frame = hs.screen('Acer XFA240'):frame()
+    local frame = hs.screen.primaryScreen():frame()
     local img = hs.image.imageFromPath(filename):size()
-    local x = frame.x + (frame.w / 2) - (img.w / 2)
-    local y = frame.y + (frame.h / 2) - ((img.h / 2) - 11)
+    local x = frame.x + (frame.w / 2) - ((img.w / 2) + xOffset)
+    local y = frame.y + (frame.h / 2) - ((img.h / 2) + yOffset)
     crosshair.image = hs.drawing.image(hs.geometry.rect(x, y, img.w, img.h), filename)
     crosshair.image:show()
     print('showed ' .. filename)
