@@ -6,7 +6,6 @@ alias t='tmux'
 alias tls='tmux ls'
 alias g='git'
 alias lg='lazygit'
-alias lights="$HOME/go/bin/lights"
 alias dup="docker compose up --remove-orphans"
 alias dupd="docker compose up --remove-orphans -d && docker compose logs -f"
 alias ddn="docker compose down --remove-orphans"
@@ -19,14 +18,14 @@ case $OSTYPE in
     darwin*)
         alias c='arr=(`find ./ -maxdepth 1 -name "*.code-workspace"`); if [ ${#arr[@]} -gt 0 ]; then open ${arr[1]}; else; code .; fi'
         alias vim='nvim'
-        alias f='open -a Finder ./' # opens cd in finder
+        alias f='open -a Finder ./'
         alias ls='gls --color=auto -h --group-directories-first'
         alias lt='gls --color=auto -lAtrh --group-directories-first'
         alias la='gls --color=auto -lAh --group-directories-first'
         alias l='gls --color=auto -lh --group-directories-first'
         alias lpo='gstat --printf="%A %a %n\n" *'
         alias nuke-dsstore='find . -name '.DS_Store' -type f -exec rm -vf {} \;'
-        alias fast_sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+        alias fast-sshrs='rsync -aHxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
 
 
         if [ -n "$ZSH_VERSION" ]; then
@@ -42,7 +41,7 @@ case $OSTYPE in
         alias la='ls --color=auto -lAh --group-directories-first'
         alias l='ls --color=auto -lh --group-directories-first'
         alias lpo='stat --printf="%A %a %n\n" *'
-        alias fast_sshrs='rsync -aHAXxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
+        alias fast-sshrs='rsync -aHAXxv --numeric-ids --delete --progress -e "ssh -T -o Compression=no -x"'
         alias hostname='cat /etc/hostname'
         ;;
 esac
