@@ -34,7 +34,6 @@
     ~/.config/karabiner: config/karabiner
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: config/nvim
-    ~/.lights.py: files/lights.py
 
 # Linux
 - defaults:
