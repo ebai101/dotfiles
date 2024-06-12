@@ -3,7 +3,7 @@ local log = hs.logger.new('reasonopen', 'debug')
 local function openFile(choice)
 	if not choice then return end
 	local openFilename = choice['subText']
-	local openCommand = string.format('open -a Reason\\ 12 "%s"', openFilename)
+	local openCommand = string.format('open -a Reason\\ 12\\ Beta_R13\\ Logging "%s"', openFilename)
 	hs.execute(openCommand)
 end
 

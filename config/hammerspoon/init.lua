@@ -2,7 +2,7 @@
 -- init.lua
 -----------------------------------------------
 
-require('hs.ipc')
+-- require('hs.ipc')
 
 hyper  = { 'cmd', 'ctrl', 'alt' }
 shyper = { 'shift', 'cmd', 'ctrl', 'alt' }
@@ -68,6 +68,6 @@ axhf = require('axhotfix')
 windows = require('windows')
 reasonMisc = require('reason_misc')
 -- dvdmenu = require('dvdmenu')
-crosshair = require('crosshair')
+-- crosshair = require('crosshair')
 
 hs.alert.show('💯😎👌')
