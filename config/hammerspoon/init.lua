@@ -64,6 +64,7 @@ spoon.Ableton:bindHotkeys()
 spoon.Ableton:start()
 
 -- other externals
+axhf = require('axhotfix')
 windows = require('windows')
 reasonMisc = require('reason_misc')
 -- dvdmenu = require('dvdmenu')
