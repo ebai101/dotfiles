@@ -11,3 +11,6 @@ config/hammerspoon/bce_data.json
 
 .DS_Store
 config/nvim/lazy-lock.json
+config/journal/nvim/lazy
+config/journal/nvim/.netrwhist
+config/journal/nvim/lazy-lock.json

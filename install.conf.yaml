@@ -34,6 +34,7 @@
     ~/.config/karabiner: config/karabiner
     ~/.config/alacritty: config/alacritty
     ~/.config/nvim: config/nvim
+    ~/.config/journal: config/journal
 
 # Linux
 - defaults:

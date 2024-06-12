@@ -99,7 +99,7 @@ function journal()
 
     if journalWindow == nil then
         hs.task.new('/opt/homebrew/bin/alacritty', nil,
-            { '--config-file', os.getenv('HOME') .. '/.config/alacritty/journal.toml' }):start()
+            { '--config-file', os.getenv('HOME') .. '/.config/journal/alacritty.toml' }):start()
     elseif journalWindow ~= frontWindow then
         journalWindow:focus()
     elseif journalWindow == frontWindow then
