@@ -1,3 +1,3 @@
 require('ethan.remap')
 require('ethan.set')
-require('ethan.packer')
+require('ethan.lazy')
