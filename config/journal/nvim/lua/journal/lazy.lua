@@ -29,4 +29,11 @@ require('lazy').setup({
     'preservim/vim-pencil',
     'godlygeek/tabular',
     'preservim/vim-markdown',
+    {
+        'https://git.sr.ht/~swaits/thethethe.nvim',
+        lazy = true,
+        event = 'VeryLazy',
+        opts = {},
+    },
+    'Apeiros-46B/qalc.nvim'
 })
