@@ -57,7 +57,7 @@ mods = "Command"
 [mouse]
 hide_when_typing = true
 
-[shell]
+[terminal.shell]
 args = ["-c", "~/.config/journal/journal.sh"]
 program = "/bin/zsh"
 
