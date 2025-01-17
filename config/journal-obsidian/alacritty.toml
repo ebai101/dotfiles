@@ -1,0 +1,71 @@
+[colors.bright]
+black = "#928374"
+blue = "#076678"
+cyan = "#427b58"
+green = "#79740e"
+magenta = "#8f3f71"
+red = "#9d0006"
+white = "#3c3836"
+yellow = "#b57614"
+
+[colors.normal]
+black = "#fbf1c7"
+blue = "#458588"
+cyan = "#689d6a"
+green = "#98971a"
+magenta = "#b16286"
+red = "#cc241d"
+white = "#7c6f64"
+yellow = "#d79921"
+
+[colors.primary]
+background = "#f2e5bc"
+foreground = "#3c3836"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12
+
+[font.bold]
+family = "MesloLGS NF"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGS NF"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGS NF"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGS NF"
+style = "Regular"
+
+[[keyboard.bindings]]
+chars = "w"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "m"
+key = "M"
+mods = "Command"
+
+[mouse]
+hide_when_typing = true
+
+[terminal.shell]
+args = ["-c", "~/.config/journal/journal.sh"]
+program = "/bin/zsh"
+
+[window]
+decorations = "none"
+startup_mode = "Windowed"
+title = "vim journal"
+
+[window.padding]
+x = 20
+y = 20
