@@ -5,7 +5,7 @@ export STARSHIP_CONFIG=~/.starship
 case $OSTYPE in
     darwin*)
         export HOMEBREW_NO_ANALYTICS=1
-        export HOMEBREW_VERBOSE=0
+        export HOMEBREW_VERBOSE=1
         export EDITOR=/opt/homebrew/bin/nvim
 
         # add system library to path (big sur broke this)
