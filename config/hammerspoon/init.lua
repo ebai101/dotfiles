@@ -40,8 +40,8 @@ spoon.HoldToQuit:init()
 spoon.HoldToQuit:start()
 
 -- ejectmenu
-hs.loadSpoon('EjectMenu')
-spoon.EjectMenu:start()
+-- hs.loadSpoon('EjectMenu')
+-- spoon.EjectMenu:start()
 
 -- reason setup
 hs.loadSpoon('Reason')
