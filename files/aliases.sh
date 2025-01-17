@@ -3,6 +3,7 @@ alias cgr='cargo run -q'
 alias cmc='cmake -Bbuild -H. -GNinja'
 alias cmb='ninja -Cbuild'
 alias t='tmux'
+alias td='tmux detach'
 alias tls='tmux ls'
 alias g='git'
 alias lg='lazygit'
@@ -102,8 +103,38 @@ tk() {
 
 # source virtualenv
 sv() {
-    source venv/bin/activate &&
-    tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+    local venv_dirs=("venv" ".venv" "env" ".env" ".python-venv")
+    local found=0
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        echo "Already in virtual environment: $VIRTUAL_ENV"
+        return 0
+    fi
+    for vdir in "${venv_dirs[@]}"; do
+        if [[ -f "./$vdir/bin/activate" ]]; then
+            source "./$vdir/bin/activate"
+            tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+            found=1
+            break
+        fi
+    done
+    if [[ $found -eq 0 ]]; then
+        local current_dir="$PWD"
+        while [[ "$current_dir" != "/" ]]; do
+            for vdir in "${venv_dirs[@]}"; do
+                if [[ -f "$current_dir/$vdir/bin/activate" ]]; then
+                    source "$current_dir/$vdir/bin/activate"
+                    tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+                    found=1
+                    break 2
+                fi
+            done
+            current_dir=$(dirname "$current_dir")
+        done
+    fi
+    if [[ $found -eq 0 ]]; then
+        echo "No virtual environment found"
+        return 1
+    fi
 }
 
 # load nvm (slow)
