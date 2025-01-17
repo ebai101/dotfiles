@@ -13,3 +13,7 @@
 	rebase = false
 [url "git@www.github.com:"]
 	insteadOf = "https://github.com/"
+[init]
+	defaultBranch = main
+[alias]
+    pushpr = "!f() { git push;git commit --allow-empty -m 'push to execute post-receive';git push; }; f"
