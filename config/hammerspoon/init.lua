@@ -7,6 +7,8 @@
 hyper  = { 'cmd', 'ctrl', 'alt' }
 shyper = { 'shift', 'cmd', 'ctrl', 'alt' }
 
+hs.loadSpoon('EmmyLua')
+
 -- miro setup
 hs.loadSpoon('MiroWindowsManager')
 hs.window.animationDuration = 0
@@ -27,10 +29,6 @@ hs.hotkey.bind(hyper, '0', function()
     else
         hs.openConsole()
     end
-end)
-hs.hotkey.bind(shyper, '0', function()
-    hs.console.clearConsole()
-    hs.reload()
 end)
 
 -- hold to quit
@@ -69,5 +67,11 @@ windows = require('windows')
 reasonMisc = require('reason_misc')
 -- dvdmenu = require('dvdmenu')
 -- crosshair = require('crosshair')
+
+hs.hotkey.bind(shyper, '0', function()
+    spoon.Ableton:stop()
+    hs.console.clearConsole()
+    hs.reload()
+end)
 
 hs.alert.show('💯😎👌')
