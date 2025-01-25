@@ -35,6 +35,7 @@ return {
         -- lua = { 'stylua' },
         -- sql = { 'sql_formatter' },
         python = { 'isort', 'black' },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true }
       },
     },
   },

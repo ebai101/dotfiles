@@ -29,12 +29,9 @@ vim.o.wrapscan = false
 vim.o.mouse = 'a'
 vim.o.showmode = false
 vim.o.signcolumn = 'yes'
-vim.o.inccommand = 'split'
 vim.o.termguicolors = true
 
 vim.o.cursorline = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.timeoutlen = 300
-
--- vim: ts=2 sts=2 sw=2 et

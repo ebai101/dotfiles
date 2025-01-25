@@ -4,7 +4,7 @@ require('lazy').setup({
   require 'plugins.telescope',
   require 'plugins.lspconfig',
   require 'plugins.conform',
-  -- require 'plugins.cmp',
+  require 'plugins.harpoon',
   require 'plugins.blink',
   require 'plugins.tokyonight',
   require 'plugins.mini',
