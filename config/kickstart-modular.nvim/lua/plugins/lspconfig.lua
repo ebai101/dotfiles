@@ -48,11 +48,11 @@ return {
           map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          map('[d', vim.diagnostic.goto_prev, 'Previous Diagnostic')
-          map(']d', vim.diagnostic.goto_next, 'Next Diagnostic')
+          map('[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, 'Previous Diagnostic')
+          map(']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, 'Next Diagnostic')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -75,7 +75,7 @@ return {
             })
           end
 
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
@@ -159,13 +159,6 @@ return {
           end,
         },
       }
-
-      -- godot setup
-      require('lspconfig').gdscript.setup {}
-      local pipepath = vim.fn.stdpath('cache') .. '/server.pipe'
-      if not vim.loop.fs_stat(pipepath) then
-        vim.fn.serverstart(pipepath)
-      end
     end,
   },
 }
