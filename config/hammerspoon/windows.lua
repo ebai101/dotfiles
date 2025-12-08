@@ -54,7 +54,7 @@ local apps = {
 	{
 		'e',
 		function()
-			focus('Arc', false)
+			focus('Zen', false)
 		end,
 	},
 	{
@@ -73,7 +73,7 @@ local apps = {
 		'f',
 		function()
 			-- open gmail in browser
-			hs.execute('open -a "Arc" "chrome-extension://oeopbcgkkoapgobdbedcemjljbihmemj/popup.html"')
+			hs.execute('open -a "Zen" "moz-extension://e16bcafd-a5e6-4a79-bba7-ee12be26e501/popup.html"')
 		end,
 	},
 	{
