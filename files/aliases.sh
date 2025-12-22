@@ -8,6 +8,7 @@ alias g='git'
 alias lg='lazygit'
 alias dup="docker compose up --remove-orphans"
 alias dupd="docker compose up --remove-orphans -d && docker compose logs -f"
+alias drc="docker compose up -d --remove-orphans --force-recreate"
 alias ddn="docker compose down --remove-orphans"
 alias dlg="docker logs -f"
 alias drs="docker compose restart"
