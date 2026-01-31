@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Ethan Bailey
+	email = ebailey256@gmail.com
+	username = ebai101
+[push]
+	default = simple
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
