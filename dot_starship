@@ -1,0 +1,18 @@
+add_newline = false
+scan_timeout = 500
+format = """$python$hostname$directory$git_branch$character"""
+
+[directory]
+style = "cyan"
+
+[git_branch]
+style = "purple"
+
+[hostname]
+style = "blue"
+ssh_only = true
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
+style = "green bold"
+python_binary = "python3"

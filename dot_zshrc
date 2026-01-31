@@ -1,0 +1,31 @@
+autoload -Uz compinit; compinit
+bindkey -e
+bindkey "^F" forward-word
+bindkey "^B" backward-word
+disable r
+setopt AUTO_CD
+
+# standard variables
+source ~/.variables.sh
+
+# standard aliases
+source ~/.aliases.sh
+
+# ssh aliases (not in the git repo for obvious reasons)
+[ -f ~/.ssh-aliases ] && source ~/.ssh-aliases
+
+# local config
+[ -f ~/.zshrc-local ] && source ~/.zshrc-local
+
+# load theme
+eval "$(starship init zsh)"
+# source ~/.prompt.sh
+
+# reload aliases
+alias ref='source ~/.zshrc && echo reloaded shell'
+alias href='exec $SHELL'
+
+# clear
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,0 +1,131 @@
+[colors.bright]
+black = "#444b6a"
+blue = "#7da6ff"
+cyan = "#0db9d7"
+green = "#b9f27c"
+magenta = "#bb9af7"
+red = "#ff7a93"
+white = "#acb0d0"
+yellow = "#ff9e64"
+
+[colors.normal]
+black = "#32344a"
+blue = "#7aa2f7"
+cyan = "#449dab"
+green = "#9ece6a"
+magenta = "#ad8ee6"
+red = "#f7768e"
+white = "#787c99"
+yellow = "#e0af68"
+
+[colors.primary]
+background = "#1a1b26"
+foreground = "#a9b1d6"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14
+
+[font.bold]
+family = "MesloLGS Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGS Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGS Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGS Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+chars = "m"
+key = "M"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "w"
+key = "W"
+mods = "Command"
+
+# for tmux stuff, Ctrl-s is \u0013
+
+[[keyboard.bindings]]
+chars = "\u0013"
+key = "S"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00131"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00132"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00133"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00134"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00135"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00136"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00137"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00138"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00139"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00139"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0013d"
+key = "D"
+mods = "Command"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 10000
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 5
+y = 5

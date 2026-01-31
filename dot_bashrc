@@ -1,0 +1,26 @@
+shopt -s autocd
+bind "\C-b":backward-word
+bind "\C-f":forward-word
+
+# standard variables
+source ~/.variables.sh
+
+# standard aliases
+source ~/.aliases.sh
+
+# ssh aliases (not in the git repo for obvious reasons)
+[ -f ~/.ssh-aliases ] && source ~/.ssh-aliases
+
+# local config
+[ -f ~/.bashrc-local ] && source ~/.bashrc-local
+
+# load theme
+# eval "$(starship init bash)"
+source ~/.prompt.sh
+
+# reload alias
+alias ref='source ~/.bashrc && echo reloaded bashrc'
+
+# clear
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

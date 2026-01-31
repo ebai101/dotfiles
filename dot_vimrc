@@ -1,0 +1,72 @@
+set nocompatible
+set autoread
+
+set viminfo='0,:0,<0,@0,f0
+set noswapfile
+set nobackup
+set nowritebackup
+
+set number
+set relativenumber
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
+
+set noswf
+set nobk
+set nowb
+set undodir=~/.vim/undodir
+set undofile
+
+set scrolloff=8
+set cmdheight=2
+set splitbelow
+set splitright
+set nowrapscan
+set mouse="a"
+
+set incsearch
+
+let mapleader=" "
+
+nnoremap <C-l> :noh<CR>
+nnoremap <leader>6 <C-^>
+
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
+nnoremap <leader>pf :Files<cr>
+nnoremap <leader>pg :Rg<cr>
+
+colorscheme gruvbox
+set bg=dark
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+hi Normal guibg=NONE
+hi NormalFloat guibg=NONE
