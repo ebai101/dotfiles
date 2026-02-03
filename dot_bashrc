@@ -15,8 +15,8 @@ source ~/.aliases.sh
 [ -f ~/.bashrc-local ] && source ~/.bashrc-local
 
 # load theme
-# eval "$(starship init bash)"
-source ~/.prompt.sh
+[[ $- == *i* ]] && { command -v starship >/dev/null 2>&1 && eval "$(starship init bash)" || source ~/.prompt.sh; }
+
 
 # reload alias
 alias ref='source ~/.bashrc && echo reloaded bashrc'
