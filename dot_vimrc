@@ -60,8 +60,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-nnoremap <leader>pf :Files<cr>
-nnoremap <leader>pg :Rg<cr>
+nnoremap <leader>ff :Files<cr>
+nnoremap <leader><leader> :Files<cr>
+nnoremap <leader>/ :Rg<cr>
 
 colorscheme gruvbox
 set bg=dark
