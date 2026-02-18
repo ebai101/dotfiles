@@ -25,7 +25,4 @@ eval "$(starship init zsh)"
 alias ref='source ~/.zshrc && echo reloaded shell'
 alias href='exec $SHELL'
 
-# clear
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

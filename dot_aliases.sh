@@ -15,6 +15,7 @@ alias drs="docker compose restart"
 alias dcp="docker compose pull"
 alias openports='sudo lsof -PiTCP -sTCP:LISTEN'
 alias k='kubectl'
+alias tf='tofu'
 
 case $OSTYPE in
     darwin*)
