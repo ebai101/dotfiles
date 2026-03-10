@@ -1,0 +1,43 @@
+theme = TokyoNight Night
+font-size = 14
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = ssh-env,no-cursor
+mouse-hide-while-typing = true
+window-decoration = false
+window-height = 10000
+window-width = 10000
+window-padding-x = 5
+window-padding-y = 5
+quit-after-last-window-closed = true
+
+keybind = cmd+one=unbind
+keybind = cmd+two=unbind
+keybind = cmd+three=unbind
+keybind = cmd+four=unbind
+keybind = cmd+five=unbind
+keybind = cmd+six=unbind
+keybind = cmd+seven=unbind
+keybind = cmd+eight=unbind
+keybind = cmd+nine=unbind
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+keybind = cmd+digit_9=unbind
+
+keybind = cmd+s=text:\x13
+keybind = cmd+d=text:\x13d
+keybind = cmd+one=text:\x131
+keybind = cmd+two=text:\x132
+keybind = cmd+three=text:\x133
+keybind = cmd+four=text:\x134
+keybind = cmd+five=text:\x135
+keybind = cmd+six=text:\x136
+keybind = cmd+seven=text:\x137
+keybind = cmd+eight=text:\x138
+keybind = cmd+nine=text:\x139
