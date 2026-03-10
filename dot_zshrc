@@ -1,7 +1,5 @@
 autoload -Uz compinit; compinit
 bindkey -e
-bindkey "^F" forward-word
-bindkey "^B" backward-word
 disable r
 setopt AUTO_CD
 
