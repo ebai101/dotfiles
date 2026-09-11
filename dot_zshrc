@@ -1,4 +1,7 @@
-autoload -Uz compinit; compinit
+# vim: set ft=zsh :
+
+autoload -Uz compinit
+compinit
 bindkey -e
 disable r
 setopt AUTO_CD
@@ -15,13 +18,17 @@ source ~/.aliases.sh
 # local config
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local
 
+# load mise
+if command -v mise >/dev/null 2>&1; then
+  eval "$(MISE_TIMINGS=1 mise activate zsh)"
+fi
+
 # load theme
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 else
   source ~/.prompt.sh
 fi
-
 
 # reload aliases
 alias ref='source ~/.zshrc && echo reloaded shell'

@@ -1,3 +1,5 @@
+# vim: set ft=toml :
+
 add_newline = false
 scan_timeout = 500
 format = """$python$hostname$directory$git_branch$character"""
