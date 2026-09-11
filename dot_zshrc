@@ -20,7 +20,7 @@ source ~/.aliases.sh
 
 # load mise
 if command -v mise >/dev/null 2>&1; then
-  eval "$(MISE_TIMINGS=1 mise activate zsh)"
+  eval "$(mise activate zsh)"
 fi
 
 # load theme
