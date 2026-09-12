@@ -1,0 +1,2 @@
+[env]
+CHEZMOI_APPLY_LUA = "{{config_root}}/chezmoi-apply.lua"
