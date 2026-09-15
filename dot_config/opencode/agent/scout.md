@@ -1,7 +1,6 @@
 ---
 description: Read-only codebase and documentation research assistant.
 mode: all
-model: opencode-go/deepseek-v4.1-flash
 permission:
   "*": deny
   read: allow

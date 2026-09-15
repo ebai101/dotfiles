@@ -1,7 +1,6 @@
 ---
 description: Interactive coding partner for small, reviewable edits and fixes.
 mode: primary
-model: opencode-go/kimi-k2.7-code
 permission:
   "*": ask
   read: allow

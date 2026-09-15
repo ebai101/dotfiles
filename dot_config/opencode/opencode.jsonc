@@ -29,15 +29,18 @@
   ],
   "agent": {
     "plan": {
-      "model": "opencode-go/kimi-k2.7-code",
-      "temperature": 1,
-      "top_p": 0.95
-    },
-    "build": {
       "model": "opencode-go/glm-5.3-flash",
       "variant": "max",
       "temperature": 1,
       "top_p": 0.95
+    },
+    "build": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "temperature": 1,
+      "top_p": 0.95
+    },
+    "scout": {
+      "model": "opencode-go/deepseek-v4.1-flash"
     }
   },
   "provider": {

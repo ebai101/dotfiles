@@ -56,3 +56,4 @@ tests override these defaults.
 - Keep research separate from workspace changes unless the user requests both.
 - Prefer skills for task-specific workflows: Python, Go, async clients,
   containers, infrastructure, networking/security, model gateways, or research.
+- For substantial research, use the Scout/Research agent before implementing.

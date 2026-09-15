@@ -1,7 +1,6 @@
 ---
 description: Read-only planning, debugging, trade-off, and review assistant.
 mode: all
-model: opencode-go/glm-5.3-flash
 permission:
   "*": deny
   read: allow
