@@ -26,6 +26,7 @@
   },
   "plugin": [
     "file:///Users/ethan/dev/switchyard-opencode-bundle/plugin/tirith-guard/index.ts",
+    "opencode-mem",
   ],
   "agent": {
     "plan": {
