@@ -1,0 +1,126 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "autoupdate": "notify",
+  "lsp": true,
+  "default_agent": "build",
+  "permission": {
+    "websearch": "allow",
+    "webfetch": "allow",
+    "bash": {
+      "rm -rf *": "deny",
+      "rm -fr *": "deny",
+      "rm *": "ask",
+      "sudo *": "deny",
+      "su *": "deny",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "git reset --hard*": "deny",
+      "git clean -fdx*": "deny",
+      "mkfs*": "deny",
+      "dd if=*": "deny",
+      "shutdown*": "deny",
+      "reboot*": "deny",
+      "*": "allow"
+    }
+  },
+  "plugin": [
+    "file:///Users/ethan/dev/switchyard-opencode-bundle/plugin/tirith-guard/index.ts",
+  ],
+  "agent": {
+    "plan": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "temperature": 1,
+      "top_p": 0.95
+    },
+    "build": {
+      "model": "opencode-go/glm-5.3-flash",
+      "variant": "max",
+      "temperature": 1,
+      "top_p": 0.95
+    }
+  },
+  "provider": {
+    "switchyard": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Switchyard",
+      "options": {
+        "baseURL": "https://switchyard.ts.grouchy.cc/v1"
+      },
+      "models": {
+        "auto": {
+          "name": "auto — Switchyard routing",
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "auto-esc": {
+          "name": "auto-esc — fast-first, escalates on trouble",
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "strong-only": {
+          "name": "strong-only — kimi-k2.7-code",
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "standard-only": {
+          "name": "standard-only — deepseek-v4.1-flash",
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "fast-only": {
+          "name": "fast-only — glm-5.3-flash",
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "glm-53": {
+          "name": "glm-5.3 pinned",
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
