@@ -29,13 +29,14 @@
   ],
   "agent": {
     "plan": {
-      "model": "opencode-go/glm-5.3-flash",
-      "variant": "max",
+      "model": "opencode-go/minimax-m3",
+      "variant": "thinking",
       "temperature": 1,
       "top_p": 0.95
     },
     "build": {
-      "model": "opencode-go/kimi-k2.7-code",
+      "model": "opencode-go/glm-5.3-flash",
+      "variant": "high",
       "temperature": 1,
       "top_p": 0.95
     },
