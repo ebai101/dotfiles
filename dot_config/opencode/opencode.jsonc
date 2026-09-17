@@ -52,8 +52,8 @@
         "baseURL": "https://switchyard.ts.grouchy.cc/v1"
       },
       "models": {
-        "auto": {
-          "name": "auto — Switchyard routing",
+        "build": {
+          "name": "Deepseek v4.1 Flash (high)",
           "tool_call": true,
           "modalities": {
             "input": [
@@ -64,8 +64,8 @@
             ]
           }
         },
-        "auto-esc": {
-          "name": "auto-esc — fast-first, escalates on trouble",
+        "plan": {
+          "name": "GLM 5.3 Flash (max)",
           "tool_call": true,
           "modalities": {
             "input": [
@@ -76,8 +76,8 @@
             ]
           }
         },
-        "strong-only": {
-          "name": "strong-only — kimi-k2.7-code",
+        "scout": {
+          "name": "Mimo v2.5",
           "tool_call": true,
           "modalities": {
             "input": [
@@ -88,42 +88,6 @@
             ]
           }
         },
-        "standard-only": {
-          "name": "standard-only — deepseek-v4.1-flash",
-          "tool_call": true,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "fast-only": {
-          "name": "fast-only — glm-5.3-flash",
-          "tool_call": true,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        "glm-53": {
-          "name": "glm-5.3 pinned",
-          "tool_call": true,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        }
       }
     }
   },
