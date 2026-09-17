@@ -81,8 +81,8 @@
   //   OpenAI (API key):          "opencodeProvider": "openai",          "opencodeModel": "gpt-4o-mini"
   //   GitHub Copilot:            "opencodeProvider": "github-copilot",  "opencodeModel": "gpt-4o-mini"
   //
-  "opencodeProvider": "opencode-go",
-  "opencodeModel": "deepseek-v4.1-flash",
+  "opencodeProvider": "opencode",
+  "opencodeModel": "mimo-v2.5-free",
   // ============================================
   // Auto-Capture Settings
   // ============================================

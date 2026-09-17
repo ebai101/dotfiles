@@ -27,22 +27,21 @@
   "plugin": [
     "file:///Users/ethan/dev/switchyard-opencode-bundle/plugin/tirith-guard/index.ts",
     "opencode-mem",
+    "opencode-vibeguard"
   ],
   "agent": {
-    "plan": {
-      "model": "opencode-go/minimax-m3",
-      "variant": "thinking",
-      "temperature": 1,
-      "top_p": 0.95
-    },
     "build": {
-      "model": "opencode-go/glm-5.3-flash",
+      "model": "opencode-go/deepseek-v4.1-flash",
       "variant": "high",
+    },
+    "plan": {
+      "model": "opencode-go/glm-5.3-flash",
+      "variant": "max",
       "temperature": 1,
       "top_p": 0.95
     },
     "scout": {
-      "model": "opencode-go/deepseek-v4.1-flash"
+      "model": "opencode-go/mimo-v2.5",
     }
   },
   "provider": {
@@ -126,6 +125,17 @@
           }
         }
       }
+    }
+  },
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
     }
   }
 }
