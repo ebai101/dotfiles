@@ -1,0 +1,105 @@
+d4s:
+  body:
+    fgColor: "#cdd6f4" # text
+    bgColor: "#1e1e2e" # base
+    logoColor: "#cba6f7" # mauve
+
+  prompt:
+    fgColor: "#cdd6f4" # text
+    bgColor: "#181825" # mantle
+    suggestColor: "#89b4fa" # blue
+
+  info:
+    fgColor: "#bac2de" # subtext1
+    sectionColor: "#cba6f7" # mauve
+
+  help:
+    fgColor: "#bac2de" # subtext1
+    bgColor: "#181825" # mantle
+    keyColor: "#89b4fa" # blue
+    numKeyColor: "#f9e2af" # yellow
+    sectionColor: "#cba6f7" # mauve
+
+  dialog:
+    fgColor: "#cdd6f4" # text
+    bgColor: "#1e1e2e" # base
+    buttonFgColor: "#1e1e2e" # base
+    buttonBgColor: "#89b4fa" # blue
+    buttonFocusFgColor: "#1e1e2e" # base
+    buttonFocusBgColor: "#cba6f7" # mauve
+    labelFgColor: "#f5e0dc" # rosewater
+    fieldFgColor: "#cdd6f4" # text
+
+  frame:
+    border:
+      fgColor: "#6c7086" # overlay0
+      focusColor: "#89b4fa" # blue
+
+    menu:
+      fgColor: "#cdd6f4" # text
+      keyColor: "#89b4fa" # blue
+      numKeyColor: "#f9e2af" # yellow
+
+    crumbs:
+      fgColor: "#1e1e2e" # base
+      bgColor: "#89b4fa" # blue
+      activeColor: "#1e1e2e" # base
+
+    status:
+      newColor: "#89b4fa" # blue
+      modifyColor: "#f9e2af" # yellow
+      addColor: "#a6e3a1" # green
+      errorColor: "#f38ba8" # red
+      highlightcolor: "#cba6f7" # mauve
+      killColor: "#f38ba8" # red
+      completedColor: "#a6e3a1" # green
+
+    title:
+      fgColor: "#cdd6f4" # text
+      bgColor: "#1e1e2e" # base
+      highlightColor: "#cba6f7" # mauve
+      counterColor: "#89b4fa" # blue
+      filterColor: "#f9e2af" # yellow
+
+  views:
+    charts:
+      bgColor: "#1e1e2e" # base
+      dialBgColor: "#313244" # surface0
+      chartBgColor: "#181825" # mantle
+      defaultDialColors:
+        - "#89b4fa" # blue
+        - "#a6e3a1" # green
+      defaultChartColors:
+        - "#89b4fa" # blue
+        - "#cba6f7" # mauve
+
+    table:
+      fgColor: "#cdd6f4" # text
+      bgColor: "#1e1e2e" # base
+      cursorFgColor: "#1e1e2e" # base
+      cursorBgColor: "#89b4fa" # blue
+      markColor: "#f9e2af" # yellow
+      header:
+        fgColor: "#cdd6f4" # text
+        bgColor: "#313244" # surface0
+        sorterColor: "#cba6f7" # mauve
+
+    xray:
+      fgColor: "#cdd6f4" # text
+      bgColor: "#1e1e2e" # base
+      cursorColor: "#89b4fa" # blue
+      graphicColor: "#cba6f7" # mauve
+
+    yaml:
+      keyColor: "#89b4fa" # blue
+      colonColor: "#cdd6f4" # text
+      valueColor: "#a6e3a1" # green
+
+    logs:
+      fgColor: "#cdd6f4" # text
+      bgColor: "#1e1e2e" # base
+      indicator:
+        fgColor: "#cdd6f4" # text
+        bgColor: "#313244" # surface0
+        toggleOnColor: "#a6e3a1" # green
+        toggleOffColor: "#6c7086" # overlay0
