@@ -37,11 +37,10 @@
     "plan": {
       "model": "opencode-go/glm-5.3-flash",
       "variant": "max",
-      "temperature": 1,
-      "top_p": 0.95
     },
     "scout": {
-      "model": "opencode-go/mimo-v2.5",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "variant": "low",
     }
   },
   "provider": {
