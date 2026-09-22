@@ -1,8 +1,6 @@
 # vim: set ft=bash :
 
 shopt -s autocd
-bind "\C-b":backward-word
-bind "\C-f":forward-word
 
 # standard variables
 source ~/.variables.sh
