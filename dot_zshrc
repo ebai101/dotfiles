@@ -6,32 +6,16 @@ bindkey -e
 disable r
 setopt AUTO_CD
 
-# standard variables
 source ~/.variables.sh
-
-# standard aliases
 source ~/.aliases.sh
+source ~/.prompt.sh
 
-# ssh aliases (not in the git repo for obvious reasons)
-[ -f ~/.ssh-aliases ] && source ~/.ssh-aliases
-
-# local config
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# load mise
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
-# load theme
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init zsh)"
-else
-  source ~/.prompt.sh
-fi
-
-# reload aliases
 alias ref='source ~/.zshrc && echo reloaded shell'
 alias href='exec $SHELL'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

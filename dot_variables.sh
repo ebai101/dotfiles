@@ -2,13 +2,21 @@
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export STARSHIP_CONFIG=~/.starship
 
 case $OSTYPE in
 darwin*)
+  export EDITOR=/opt/homebrew/bin/nvim
+
   export HOMEBREW_NO_ANALYTICS=1
   export HOMEBREW_VERBOSE=1
-  export EDITOR=/opt/homebrew/bin/nvim
+  eval export HOMEBREW_PREFIX="/opt/homebrew"
+  export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+  export HOMEBREW_REPOSITORY="/opt/homebrew"
+  fpath[1,0]="/opt/homebrew/share/zsh/site-functions"
+  export FPATH
+  eval "$(/usr/bin/env PATH_HELPER_ROOT="/opt/homebrew" /usr/libexec/path_helper -s)"
+  [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
+  export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 
   # add system library to path (big sur broke this)
   # https://apple.stackexchange.com/questions/408999/gfortran-compiler-error-on-mac-os-big-sur
@@ -23,12 +31,6 @@ linux*)
   if [ $SHELL = "/bin/zsh" ]; then
     source /usr/share/doc/fzf/examples/key-bindings.zsh
     source /usr/share/doc/fzf/examples/completion.zsh
-    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   fi
   ;;
 esac
-
-# source virtualenvs
-if [ -n "$VIRTUAL_ENV" ]; then
-  source $VIRTUAL_ENV/bin/activate
-fi

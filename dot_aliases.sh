@@ -18,6 +18,7 @@ alias dcp="docker compose pull"
 alias openports='sudo lsof -PiTCP -sTCP:LISTEN'
 alias k='kubectl'
 alias tf='tofu'
+alias oc='opencode'
 
 case $OSTYPE in
 darwin*)
@@ -71,28 +72,6 @@ yta() {
   yt-dlp -x --audio-format wav "$url"
 }
 
-# create vim tmux session
-# vim tab 1, shell tab 2, lazygit tab 3
-v() {
-  # auto-source python venv
-  [ -d "venv" ] && . venv/bin/activate
-
-  # start session
-  local name="vim-$(basename "${PWD##*/.}")"
-  tmux new-session -Ads "$name"
-  tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
-  tmux new-window -t "$name:2"
-  tmux new-window -t "$name:3"
-
-  # open apps
-  tmux send-keys -t "$name:1" "vim" Enter
-  tmux send-keys -t "$name:3" "lg" Enter
-
-  # attach
-  tmux select-window -t "$name:1"
-  tmux attach -t "$name"
-}
-
 # smart tmux attach
 ta() {
   if [ -z "$1" ]; then tmux attach; else tmux attach -t $1; fi
@@ -101,57 +80,6 @@ ta() {
 # smart tmux kill-session
 tk() {
   if [ -z "$1" ]; then tmux kill-session; else tmux kill-session -t $1; fi
-}
-
-# source virtualenv
-sv() {
-  local venv_dirs=("venv" ".venv" "env" ".env" ".python-venv")
-  local found=0
-  if [[ -n "$VIRTUAL_ENV" ]]; then
-    echo "Already in virtual environment: $VIRTUAL_ENV"
-    return 0
-  fi
-  for vdir in "${venv_dirs[@]}"; do
-    if [[ -f "./$vdir/bin/activate" ]]; then
-      source "./$vdir/bin/activate"
-      tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
-      found=1
-      break
-    fi
-  done
-  if [[ $found -eq 0 ]]; then
-    local current_dir="$PWD"
-    while [[ "$current_dir" != "/" ]]; do
-      for vdir in "${venv_dirs[@]}"; do
-        if [[ -f "$current_dir/$vdir/bin/activate" ]]; then
-          source "$current_dir/$vdir/bin/activate"
-          tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
-          found=1
-          break 2
-        fi
-      done
-      current_dir=$(dirname "$current_dir")
-    done
-  fi
-  if [[ $found -eq 0 ]]; then
-    echo "No virtual environment found"
-    return 1
-  fi
-}
-
-# load nvm (slow)
-nvm_init() {
-  export NVM_DIR="$HOME/.nvm"
-  # shellcheck source=/dev/null
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  # shellcheck source=/dev/null
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-
-# load pyenv and pyenv-virtualenv (slow)
-pyenv_init() {
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
 }
 
 # get pid of process listening on a port
@@ -183,4 +111,38 @@ fftw() {
   filename=$(basename -- "$1")
   filename="${filename%.*}"
   ffmpeg -i "$1" -c:v libx264 -crf 20 -preset slow -vf format=yuv420p -c:a aac -movflags +faststart "${filename}.mp4"
+}
+
+# relay data between two remote hosts via this machine
+tar_relay() {
+  if (($# != 4)); then
+    printf 'Usage: tar_relay <source-host> <source-dir> <destination-host> <destination-dir>\n' >&2
+    return 2
+  fi
+
+  local source_host=$1
+  local source_dir=$2
+  local destination_host=$3
+  local destination_dir=$4
+
+  if [[ $source_dir != /* || $destination_dir != /* ]]; then
+    printf 'Error: source and destination paths must be absolute.\n' >&2
+    return 2
+  fi
+
+  local source_parent
+  local source_name
+
+  source_parent=$(dirname -- "$source_dir")
+  source_name=$(basename -- "$source_dir")
+
+  ssh "$source_host" \
+    "sudo -n tar --acls --xattrs --numeric-owner --sparse \
+      -C $(printf '%q' "$source_parent") \
+      -cpf - $(printf '%q' "$source_name")" |
+    ssh "$destination_host" \
+      "sudo -n mkdir -p $(printf '%q' "$destination_dir") &&
+     sudo -n tar --acls --xattrs --numeric-owner --sparse \
+       -C $(printf '%q' "$destination_dir") \
+       -xpf -"
 }
