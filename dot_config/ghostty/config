@@ -1,6 +1,6 @@
 # vim: set ft=config :
 
-theme = Catppuccin Mocha
+theme = Nordic
 font-size = 14
 cursor-style = block
 cursor-style-blink = false
