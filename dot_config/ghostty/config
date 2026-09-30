@@ -1,12 +1,18 @@
 # vim: set ft=config :
 
-theme = Nordic
+theme = TokyoNight Moon
+window-colorspace = display-p3
+alpha-blending = linear-corrected
+
 font-size = 14
+font-thicken = true
+font-thicken-strength = 70
+
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = ssh-env,no-cursor
 mouse-hide-while-typing = true
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 window-height = 10000
 window-width = 10000
 window-padding-x = 5
