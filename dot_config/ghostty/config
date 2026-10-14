@@ -4,9 +4,10 @@ theme = TokyoNight Moon
 window-colorspace = display-p3
 alpha-blending = linear-corrected
 
-font-size = 14
+font-family = GeistMono Nerd Font Mono
+font-size = 12
 font-thicken = true
-font-thicken-strength = 70
+font-thicken-strength = 100
 
 cursor-style = block
 cursor-style-blink = false
